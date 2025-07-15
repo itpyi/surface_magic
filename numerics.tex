@@ -1,0 +1,93 @@
+\documentclass[twocolumn,aps,prl,superscriptaddress,english]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{hyperref}% add hypertext capabilities
+\usepackage{lipsum}
+\usepackage{tikz,tikz-cd}
+\usepackage{braket}
+\usepackage{siunitx}
+\usepackage{stmaryrd}
+\usepackage{booktabs}
+
+\usetikzlibrary{quantikz2}
+
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+filecolor=blue,
+citecolor=blue,  
+urlcolor=blue,
+}
+\newcommand{\yw}[1]{\textcolor{purple}{YW: #1}}
+\renewcommand{\tilde}{\widetilde}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+
+\newcommand{\YG}[1]{{\color{red}[YG: #1]}}
+\newcommand{\wyf}[1]{{\color{green}[WYF: #1]}}
+\newcommand{\todo}[1]{{\color{red}[#1]}}
+
+\begin{document}
+
+\title{Supplemental Material: Magic teleportation with generalized lattice surgery}% Force line breaks with \\
+
+
+
+\author{Yifei Wang}
+\author{Yingfei Gu}
+ \email{guyingfei@tsinghua.edu.cn}
+\affiliation{Institute for Advanced Study, Tsinghua University, Beijing 100084, China}
+
+
+
+
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+
+
+\maketitle
+
+
+
+\onecolumngrid
+
+\appendix
+
+\section{A near-term practical implementation}
+
+In this section, we perform a numerical simulation of a near-term practical implementation of our protocol,
+namely the preparation of a surface code magic state.
+The reason for considering this task instead of performing a $T$ gate on the surface code directly is as follows.
+First, the preparation of a magic state is realized by performing a $T$ gate on a $\ket{+}$ state, which is schematically the same as performing a $T$ gate on a generic state.
+Second, for near-term demonstrations, state preparation is a simpler task and post selection can be leveraged to reduce the error rate.
+Third, we want to emphasize that our protocol can be freely generalized and encorporated into various tasks with other techniques. 
+
+A technical challenge in the simulation is that it requires a large number of qubits and involves non-Clifford gates,
+which is beyond the capability of most quantum simulators.
+We circumvent this issue by simulating the Clifford gate $T^2 = S$ in the same circuit, and benchmark the difference between $S$ and $T$ gates in small circuits,
+which is the stratergy used in \cite{gidneyMagicStateCultivation2024}.
+We use STIM \cite{gidney2021stim} for stabilizer simulation and use a Monte Carlo simulation for benchmarking the difference between $S$ and $T$ gates.
+
+The surface code magic state preparation is performed in the following steps:
+\begin{enumerate}
+    \item Prepare a encoded state $\ket{\overline{+}}$ on the $\llbracket 15,1,3\rrbracket$ quantum Reed-Muller code.
+    We first prepare $\ket{+}^{\otimes 15}$ and measure all the $Z$-stabilizers for one round.
+    This requires 15 data qubits and 10 ancilla qubits.
+    \item At the same time, prepare a distance-3 rotated surface code with 9 data qubits and 8 ancilla qubits.
+    \item Measure the combined $Z$-stabilizers in the interface between the two codes for ? rounds.
+    The sequence of performing C$Z$ gates for the measurement is designed such that errors can propagate to the QRM code but not the surface code.
+    \item Measure all the data qubits of the QRM code in the $X$ basis for ? rounds.
+    If the $X$-checks are all satisfied, grow the surface code to a larger (distance-7?) one.
+\end{enumerate}
+
+
+
+\bibliography{supp}
+
+
+\end{document}
