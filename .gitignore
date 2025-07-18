@@ -1,2 +1,19 @@
 Stim/
-**/.DS_Store
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+__MACOSX/
+
+# VSCode
+.vscode/
+.history/
+
+# Jupyter Notebook & Python
+.ipynb_checkpoints/
+*.pyc
+__pycache__/
+.pytest_cache/
