@@ -1,5 +1,6 @@
 #import "@preview/hetvid:0.1.0": *
-#import "@local/braket:0.1.0": *
+#import "@preview/physica:0.9.5": bra, ket, braket
+// #import "@local/braket:0.1.0": *
 #import "@preview/tablem:0.2.0": tablem, three-line-table
 
 #show: hetvid.with(
@@ -98,30 +99,103 @@ each edge center and face center is checked 3 times (totally 30).
 The list of checks are as follows.
 ```py
 QRM_Z_CHECKS_REDUCED = [
-[1,3,5,7],
-[3,2,7,6],
-[2,6,14,10],
-[6,14,12,4],
-[13,12,4,5],
-[12,8,9,13],
-[8,9,10,11],
-[9,1,11,3],
-[5,7,13,15],
+[ 1, 3, 5, 7],
+[ 3, 2, 7, 6],
+[ 2, 6,14,10],
+[ 6,14,12, 4],
+[13,12, 4, 5],
+[12, 8, 9,13],
+[ 8, 9,10,11],
+[ 9, 1,11, 3],
+[ 5, 7,13,15],
 [10,11,15,14]
 ]
 ```
 We have designed this list carefully such that a number only occurs once in each column.
 This meets our 2 requirements.
 
-Now the 10 checks can have different measurement results.
-These results can influence the gate to be applied.
-We infer from the measurement results that on which qubits we should apply $X$ operators to bring it to the standard QRM code.
-Suppose we should apply an $X$ string $S_X$.
+== Optimization of syndrome measurement using meta-checks
+
+We may also measure all 18 stabilizer generators and utilizing meta-checks.
+This is because if you just measure 10 independent checks,
+you must measure 3 rounds to ensure distance-3.
+But when considering mata-checks, these 18 checks form a $[18,10,3]$ classical code.
+One round of measurement is then enough for distance-3.
+
+The checks are 
+ 
+```py
+QRM_Z_CHECKS = [
+[ 1, 3, 5, 7],
+[ 3, 2, 7, 6],
+[ 2, 6,14,10],
+[ 6,14,12, 4],
+[13,12, 4, 5],
+[12, 8,   13, 9],
+[ 8, 9,10,11],
+[ 9, 1,11, 3],
+[ 5, 7,13,15],
+[10,11,15,14],
+# redundancies
+[ 4, 5,       7, 6],
+[14,    8,   10,12],
+[       9, 1, 5,13],
+[   10, 2,   11, 3],
+[   15, 6,   14, 7],
+[15,13,      12,14],
+[ 7,    3,   15,11],
+[11,       9,13,15]
+]
+```
+
+== Handling feedback on applying transversal gates
+
+After a correct syndrome measurement, we get the results of 10 independent checks.
+They determine the code we get,
+which can be converted to the standard QRM code by an $X$ string. 
+The $X$ string $X(s)$ ($s in FF_2^(15)$) to convert our code to the standard one is solved from the measurement result $m in FF_2^10$,
+by solving
+$ H_Z s = m, $
+where $H_Z in FF_2^(10 times 15)$ and $s in FF_2^(15)$.
 Now the logical state of the code abtained and the standard QRM code has the relation
-$ ket(overline(+)) = S_X ket(overline(+))_("std"), quad ket(overline(-)) = (-1)^(w(S_X)) S_X ket(overline(-))_("std"). $
+$ ket(overline(+)) = X(s) ket(overline(+))_("std"), quad ket(overline(-)) = overline(Z) ket(overline(+)) = (-1)^(w(s)) X(s) ket(overline(-))_("std"), $
+since $overline(Z)$ can be taken as $Z^(times.circle 15)$.
 Consequently, in computational basis,
-$ ket(overline(0)) = S_X overline(X)^(w(S_X)) ket(overline(0))_("std"), quad ket(overline(1)) = S_X overline(X)^(w(S_X)) ket(overline(1))_("std"). $
-Therefore, the logical $T$ on the new code 
+$ ket(overline(0)) = X(s) overline(X)^(w(s)) ket(overline(0))_("std"), quad ket(overline(1)) = X(s) overline(X)^(w(s)) ket(overline(1))_("std"). $
+Therefore, the logical $T$ on the new code is 
+$ overline(T) = overline(X)^(w(s)) X(s) T^(dagger times.circle 15) X(s) overline(X)^(w(s)), $
+which is a transversal $T$ conjugated by some $X$-string.
+This requies in-time feedback (bad for practical schemes).
+Note that 
+$ X T^dagger X = T $
+up to some overall phase.
+Therefore we can decompose the transversal $T$ gate into two parts,
+$ overline(T) =overline(X)^(w(s)) (X(s) T^(dagger times.circle 15) X(s)) overline(X)^(w(s)), $
+that is, we first apply the transversal gate in the parenthesis,
+which is a logical $T$ or $T^dagger$ depending on $w(s)$.
+The information of $w(s)$ is send to the Clifford correction part to ensure that
+we have applied a proper logical $T$.
+
+For our numerics, we simulate an $S$ gate.  
+The analysis above still holds with $T$ replaced by $S$ since
+$X S^dagger X = S = S Z$.
+We only simulate the gate
+$ X(s)S^(dagger times.circle 15) X(s), $
+and push the $overline(X)^(w(s))$ part into the post Clifford correction.
+This is because in Stim, feedback can only depend on single measurement.
+
+We need to write the feedback rules explicitly. 
+That is, we need to put the feedback operators in a form that
+each operator depends on only one measurement outcome.
+This can be done by solving the inverse $C in FF_2^(15 times 10)$ of the $H_Z$ matrix,
+$ H_Z C = I_(10). $
+Then given a measurement outcome $m in FF_2^(10)$, we can compute the feedback operators as
+$ s = C m. $
+When implementing in the $S$ simulation, this is done by
+adding a $Z$ gate to the qubit $i in [15]$ conditioned on the measurements $j in [10]$
+iff $C_(i,j) = 1$.
+
+== Error propagation in syndrome measurement
 
 Let's analyse the error propagation in measuring the listed checks.
 There are three types of errors: errors in data qubits, errors in ancilla qubits and measurement errors.
