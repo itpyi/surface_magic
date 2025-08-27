@@ -17,3 +17,7 @@ __MACOSX/
 *.pyc
 __pycache__/
 .pytest_cache/
+
+# circuits and results
+circuits/
+results/
