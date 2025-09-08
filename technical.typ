@@ -147,6 +147,21 @@ QRM_Z_CHECKS = [
 [11,       9,13,15]
 ]
 ```
+The meta-checks are
+```py
+QRM_META_CHECKS = [
+    [ 1,18, 8, 9],
+    [ 1,18,13,17],
+    [ 2,10,14,15],
+    [ 2,10, 3,17],
+    [ 5,15, 4, 9],
+    [ 5,15,11,16],
+    [ 7,16, 6,10],
+    [ 7,16,12,18],
+]
+```
+When implementing, we fill the empty positions of checks by 0,
+and add if-conditions when appyling the CNOT.
 
 == Handling feedback on applying transversal gates
 
@@ -209,3 +224,13 @@ Let's consider combined errors.
 
 
 == Optimization of syndrome measurement with flags
+
+Standard.
+
+= Growing surface code
+
+Initialize the data qubits to be growed to $ket(0)$.
+Add detectors to the stabilziers that should be 1.
+
+It is important not to change the indices of used qubits.
+
