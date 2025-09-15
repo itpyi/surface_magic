@@ -18,6 +18,6 @@ __MACOSX/
 __pycache__/
 .pytest_cache/
 
-# circuits and results
+# circuits and data
 circuits/
-results/
+data/
