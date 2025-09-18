@@ -153,7 +153,7 @@ class SurfaceCode:
                     rec_crr  = stim.target_rec(-(check_count - i_crr))
                     circuit.append('DETECTOR', [rec_crr], [check['pos'][0], check['pos'][1], round])
 
-    def syndrome_measurement_noiseless(self, circuit: stim.Circuit, round: int):
+    def syndrome_measurement_noiseless(self, circuit: stim.Circuit, round: int, rec_shift: int = 0):
         # initialize X-check ancillae
         for check in self.check_list:
             if check['type'] == 'X':
@@ -185,7 +185,7 @@ class SurfaceCode:
         if round > 0:
             for i_crr, check in enumerate(self.check_list):
                 rec_crr  = stim.target_rec(-(check_count - i_crr))
-                rec_prev = stim.target_rec(-(check_count - i_crr) - check_count)
+                rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
                 circuit.append('DETECTOR', [rec_crr, rec_prev], [check['pos'][0], check['pos'][1], round])
         else:
             for i_crr, check in enumerate(self.check_list):
@@ -427,24 +427,6 @@ class SurfaceCode:
         A noiseless logical Y measurement circuit.
         The logical Y operator is a product of a vertical logical Z operator and a horizontal logical X operator.
         """
-        # # For qubit (0, 0), measure Y
-        # circuit.append('S', self.data_dict[(0, 0)])
-        # circuit.append('H', self.data_dict[(0, 0)])
-        # circuit.append('MR', self.data_dict[(0, 0)])
-
-        # # For other qubits in the first row, measure X
-        # for i in range(1, self.m):
-        #     circuit.append('H', self.data_dict[(2 * i, 0)])
-        #     circuit.append('MR', self.data_dict[(2 * i, 0)])
-
-        # # For other qubits in the first column, measure Z
-        # for j in range(1, self.n):
-        #     circuit.append('MR', self.data_dict[(0, 2 * j)])
-
-        # # Extract logical Y
-        # logical_Y = [stim.target_rec(-i) for i in range(1, self.m + self.n)]
-
-        # Generate the string to pass to MPP
         logical_Y = [stim.target_y(self.data_dict[(0, 0)])]
         for i in range(1, self.m):
             logical_Y.append(stim.target_x(self.data_dict[(2 * i, 0)]))
@@ -454,18 +436,28 @@ class SurfaceCode:
         logical_Y = stim.target_combined_paulis(logical_Y)
         circuit.append('MPP', logical_Y)
 
-        circuit.append('OBSERVABLE_INCLUDE', stim.target_rec(-1), 0)
+        circuit.append('OBSERVABLE_INCLUDE', stim.target_rec(-1), 1)
 
+    ## This method is not fault-tolerant, trying to figure out the reason
+
+    # def S_state_preserving(self, rounds: int = 10):
+    #     circuit = self.encoding(gate=['H', 'S'])
+    #     for round in range(1, rounds):
+    #         self.syndrome_measurement(circuit, round)
+    #     self.Y_measurement_noiseless(circuit)
+    #     for round in range(rounds, rounds + 5):
+    #         shift = 1 if round == rounds else 0
+    #         self.syndrome_measurement(circuit, round, rec_shift=shift)
+    #     return circuit
+    
     def S_state_preserving(self, rounds: int = 10):
         circuit = self.encoding(gate=['H', 'S'])
         for round in range(1, rounds):
             self.syndrome_measurement(circuit, round)
         self.Y_measurement_noiseless(circuit)
-        for round in range(rounds, rounds + 5):
-            shift = 1 if round == rounds else 0
-            self.syndrome_measurement(circuit, round, rec_shift=shift)
+        self.syndrome_measurement_noiseless(circuit, rounds, rec_shift=1)
         return circuit
-    
+
     def S_state_preserving_with_growth(self, T, rounds):
         circuit = self.encoding(gate=['H', 'S'])
         if rounds < T:
@@ -474,7 +466,7 @@ class SurfaceCode:
         else:
             for round in range(1, T):
                 self.syndrome_measurement(circuit, round)
-            circuit = self.grow_code(circuit, T, rounds, self.m + 4, self.n + 4, if_measure=False)
-        self.syndrome_measurement_noiseless(circuit, rounds)
+            circuit = self.grow_code(circuit, T, rounds, self.m + 2, self.n + 2, if_measure=False)
         self.Y_measurement_noiseless(circuit)
+        self.syndrome_measurement_noiseless(circuit, rounds, rec_shift=1)
         return circuit
