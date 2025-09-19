@@ -79,6 +79,7 @@ class SurfaceCode:
         circuit = self.initialize_circuit_position()
         self.initialize_circuit(circuit)
         for t in range(rounds):
+            self.depolarize_data(circuit)
             self.syndrome_measurement(circuit, t)
         if if_measure:
             self.Z_measurement(circuit, rounds)
@@ -99,6 +100,10 @@ class SurfaceCode:
         # Initialize ancilla qubits
         for check in self.check_list:
             circuit.append("R", check['idx'])
+
+    def depolarize_data(self, circuit: stim.Circuit):
+        circuit.append("DEPOLARIZE1", self.data_list, self.error_rate)
+        circuit.append('TICK')
 
     def syndrome_measurement(self, circuit: stim.Circuit, round: int, rec_shift: int = 0):
         # initialize X-check ancillae
@@ -233,9 +238,11 @@ class SurfaceCode:
                 circuit.append("QUBIT_COORDS", idx, check['pos'])
                 circuit.append('R', idx)
 
+        self.depolarize_data(circuit)
         self.syndrome_measurement_after_growth(circuit, old_check_list, old_m, old_n, round_start)
 
         for t in range(round_start+1, round_end):
+            self.depolarize_data(circuit)
             self.syndrome_measurement(circuit, t)
         if if_measure:
             self.Z_measurement(circuit, round_end)
