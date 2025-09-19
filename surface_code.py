@@ -105,7 +105,7 @@ class SurfaceCode:
         circuit.append("DEPOLARIZE1", self.data_list, self.error_rate)
         circuit.append('TICK')
 
-    def syndrome_measurement(self, circuit: stim.Circuit, round: int, rec_shift: int = 0):
+    def syndrome_measurement(self, circuit: stim.Circuit, round: int, rec_shift: int = 0, postselection=None):
         # initialize X-check ancillae
         for check in self.check_list:
             if check['type'] == 'X':
@@ -151,12 +151,18 @@ class SurfaceCode:
             for i_crr, check in enumerate(self.check_list):
                 rec_crr  = stim.target_rec(-(check_count - i_crr))
                 rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
-                circuit.append('DETECTOR', [rec_crr, rec_prev], [check['pos'][0], check['pos'][1], round])
+                detector_pos = [check['pos'][0], check['pos'][1], round]
+                if postselection == 'all':
+                    detector_pos.append(1)
+                circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
         else:
             for i_crr, check in enumerate(self.check_list):
                 if check['type'] == 'Z':
                     rec_crr  = stim.target_rec(-(check_count - i_crr))
-                    circuit.append('DETECTOR', [rec_crr], [check['pos'][0], check['pos'][1], round])
+                    detector_pos = [check['pos'][0], check['pos'][1], round]
+                    if postselection == 'all':
+                        detector_pos.append(1)
+                    circuit.append('DETECTOR', [rec_crr], detector_pos)
 
     def syndrome_measurement_noiseless(self, circuit: stim.Circuit, round: int, rec_shift: int = 0):
         # initialize X-check ancillae
@@ -216,7 +222,7 @@ class SurfaceCode:
         logical_Z = [stim.target_rec(i + qubit_rec_shift) for i in range(self.n)]
         circuit.append('OBSERVABLE_INCLUDE', logical_Z, 0)
 
-    def grow_code(self, circuit: stim.Circuit, round_start: int, round_end: int, m_new: int, n_new: int, if_measure=True):
+    def grow_code(self, circuit: stim.Circuit, round_start: int, round_end: int, m_new: int, n_new: int, postselection=None, if_measure=True):
         old_N = self.total_qubit_number
         old_check_list = self.check_list.copy()
         old_m = self.m
@@ -239,11 +245,11 @@ class SurfaceCode:
                 circuit.append('R', idx)
 
         self.depolarize_data(circuit)
-        self.syndrome_measurement_after_growth(circuit, old_check_list, old_m, old_n, round_start)
+        self.syndrome_measurement_after_growth(circuit, old_check_list, old_m, old_n, round_start, postselection=postselection)
 
         for t in range(round_start+1, round_end):
             self.depolarize_data(circuit)
-            self.syndrome_measurement(circuit, t)
+            self.syndrome_measurement(circuit, t, postselection=postselection)
         if if_measure:
             self.Z_measurement(circuit, round_end)
         
@@ -298,7 +304,7 @@ class SurfaceCode:
                 # print('reset checked data qubit as', idx_new_construct, 'to', new_check_list[i]['data_qubits'][j])
         self.check_list = new_check_list
     
-    def syndrome_measurement_after_growth(self, circuit: stim.Circuit, old_check_list, old_m, old_n, round:int):
+    def syndrome_measurement_after_growth(self, circuit: stim.Circuit, old_check_list, old_m, old_n, round:int, postselection=None):
         # initialize X-check ancillae
         for check in self.check_list:
             if check['type'] == 'X':
@@ -352,7 +358,9 @@ class SurfaceCode:
 
         for i_curr, check in enumerate(self.check_list):
             pos = tuple(check['pos'])
-            pos_t = (pos[0], pos[1], round)
+            pos_t = [pos[0], pos[1], round]
+            if postselection == 'all':
+                pos_t.append(1)
 
             # REC of this round for this check (based on MR order, not qubit index)
             rec_curr = stim.target_rec(-(curr_check_count - i_curr))
