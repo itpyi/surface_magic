@@ -75,14 +75,18 @@ class SurfaceCode:
                     idx += 1
         return check_list
 
-    def circuit_standard_Z(self, rounds: int = 10, if_measure=True):
+    def circuit_standard(self, type: str, rounds: int, if_measure=True):
         circuit = self.initialize_circuit_position()
-        self.initialize_circuit(circuit)
+        self.initialize_circuit(circuit, type)
         for t in range(rounds):
-            self.depolarize_data(circuit)
-            self.syndrome_measurement(circuit, t)
+            self.depolarize_all(circuit)
+            self.syndrome_measurement(circuit)
+            if t == 0:
+                self.add_detectors_initial(circuit, t, type)
+            else:
+                self.add_detectors(circuit, t)
         if if_measure:
-            self.Z_measurement(circuit, rounds)
+            self.logical_measurement(circuit, type, rounds)
         return circuit
 
     def initialize_circuit_position(self):
@@ -93,166 +97,143 @@ class SurfaceCode:
             circuit.append("QUBIT_COORDS", check['idx'], check['pos'])
         return circuit
 
-    def initialize_circuit(self, circuit: stim.Circuit):
+    def initialize_circuit(self, circuit: stim.Circuit, type: str):
         # Initialize data qubits
-        for i in self.data_list:
-            circuit.append("R", i)
+        circuit.append("R", self.data_list)
         # Initialize ancilla qubits
-        for check in self.check_list:
-            circuit.append("R", check['idx'])
+        check_idx_list = [check['idx'] for check in self.check_list]
+        circuit.append("R", check_idx_list)
 
-    def depolarize_data(self, circuit: stim.Circuit):
+        if type == 'X':
+            circuit.append('H', self.data_list)
+            circuit.append("DEPOLARIZE1", self.data_list, self.error_rate)
+
+    def depolarize_all(self, circuit: stim.Circuit):
         circuit.append("DEPOLARIZE1", self.data_list, self.error_rate)
+        check_idx_list = [check['idx'] for check in self.check_list]
+        circuit.append("DEPOLARIZE1", check_idx_list, self.error_rate)
         circuit.append('TICK')
 
-    def syndrome_measurement(self, circuit: stim.Circuit, round: int, rec_shift: int = 0, postselection=None):
+    def syndrome_measurement(self, circuit: stim.Circuit, error_rate=None):
+        # use specified error rate if provided, otherwise use the default one
+        if error_rate is None:
+            error_rate = self.error_rate
+
         # initialize X-check ancillae
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append('H', check['idx'])
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append("DEPOLARIZE1", check['idx'], self.error_rate)
+        X_check_idx_list = [check['idx'] for check in self.check_list if check['type'] == 'X']
+        circuit.append('H', X_check_idx_list)
+        circuit.append("DEPOLARIZE1", X_check_idx_list, error_rate)
         circuit.append('TICK')
 
         # CNOT layers
         for i in range(4):
+            CNOT_idx_list = []
             for check in self.check_list:
-                if check['type'] == 'X' and check['data_qubits'][i] != None:
-                    circuit.append('CNOT', [check['idx'], check['data_qubits'][i]])
-                if check['type'] == 'Z' and check['data_qubits'][i] != None:
-                    circuit.append('CNOT', [check['data_qubits'][i], check['idx']])
-            for check in self.check_list:
-                if check['type'] == 'X' and check['data_qubits'][i] != None:
-                    circuit.append("DEPOLARIZE2", [check['idx'], check['data_qubits'][i]], self.error_rate)
-                if check['type'] == 'Z' and check['data_qubits'][i] != None:
-                    circuit.append("DEPOLARIZE2", [check['data_qubits'][i], check['idx']], self.error_rate)
+                data_qubit = check['data_qubits'][i]
+                if data_qubit is None:
+                    continue
+                if check['type'] == 'X':
+                    CNOT_idx_list.extend([check['idx'], data_qubit])
+                if check['type'] == 'Z':
+                    CNOT_idx_list.extend([data_qubit, check['idx']])
+            circuit.append('CNOT', CNOT_idx_list)
+            circuit.append("DEPOLARIZE2", CNOT_idx_list, error_rate)
             circuit.append('TICK')
 
         # Hadamard layer for X-check ancillae
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append('H', check['idx'])
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append("DEPOLARIZE1", [check['idx']], self.error_rate)
+        circuit.append('H', X_check_idx_list)
+        circuit.append("DEPOLARIZE1", X_check_idx_list, error_rate)
         circuit.append('TICK')
 
         # syndrome measurement
-        for check in self.check_list:
-            circuit.append('X_ERROR', [check['idx']], self.error_rate)
-        for check in self.check_list:
-            circuit.append('MR', [check['idx']])
+        check_idx_list = [check['idx'] for check in self.check_list]
+        circuit.append('X_ERROR', check_idx_list, error_rate)
+        circuit.append('MR', check_idx_list)
         circuit.append('TICK')
 
-        # if detector is required, add detector operations
+    def add_detectors(self, circuit: stim.Circuit, round: int, rec_shift: int = 0, postselection=None):
         check_count = len(self.check_list)
-        if round > 0:
-            for i_crr, check in enumerate(self.check_list):
+        for i_crr, check in enumerate(self.check_list):
+            rec_crr  = stim.target_rec(-(check_count - i_crr))
+            rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
+            detector_pos = [check['pos'][0], check['pos'][1], round]
+            if postselection == 'all':
+                detector_pos.append(1)
+            circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
+
+    def add_detectors_initial(self, circuit: stim.Circuit, round: int, type: str, postselection=None):
+        check_count = len(self.check_list)
+        for i_crr, check in enumerate(self.check_list):
+            if check['type'] == type:
                 rec_crr  = stim.target_rec(-(check_count - i_crr))
-                rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
                 detector_pos = [check['pos'][0], check['pos'][1], round]
                 if postselection == 'all':
                     detector_pos.append(1)
-                circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
-        else:
-            for i_crr, check in enumerate(self.check_list):
-                if check['type'] == 'Z':
-                    rec_crr  = stim.target_rec(-(check_count - i_crr))
-                    detector_pos = [check['pos'][0], check['pos'][1], round]
-                    if postselection == 'all':
-                        detector_pos.append(1)
-                    circuit.append('DETECTOR', [rec_crr], detector_pos)
+                circuit.append('DETECTOR', [rec_crr], detector_pos)
 
-    def syndrome_measurement_noiseless(self, circuit: stim.Circuit, round: int, rec_shift: int = 0):
-        # initialize X-check ancillae
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append('H', check['idx'])
-        circuit.append('TICK')
-
-        # CNOT layers
-        for i in range(4):
-            for check in self.check_list:
-                if check['type'] == 'X' and check['data_qubits'][i] != None:
-                    circuit.append('CNOT', [check['idx'], check['data_qubits'][i]])
-                if check['type'] == 'Z' and check['data_qubits'][i] != None:
-                    circuit.append('CNOT', [check['data_qubits'][i], check['idx']])
+    def logical_measurement(self, circuit: stim.Circuit, type: str, round: int):
+        # Hadamard for X measurement
+        if type == 'X':
+            circuit.append('H', self.data_list)
+            circuit.append("DEPOLARIZE1", self.data_list, self.error_rate)
             circuit.append('TICK')
 
-        # Hadamard layer for X-check ancillae
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append('H', check['idx'])
-        circuit.append('TICK')
-
-        # syndrome measurement
-        for check in self.check_list:
-            circuit.append('MR', [check['idx']])
-        circuit.append('TICK')
-
-        # if detector is required, add detector operations
-        check_count = len(self.check_list)
-        if round > 0:
-            for i_crr, check in enumerate(self.check_list):
-                rec_crr  = stim.target_rec(-(check_count - i_crr))
-                rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
-                circuit.append('DETECTOR', [rec_crr, rec_prev], [check['pos'][0], check['pos'][1], round])
-        else:
-            for i_crr, check in enumerate(self.check_list):
-                if check['type'] == 'Z':
-                    rec_crr  = stim.target_rec(-(check_count - i_crr))
-                    circuit.append('DETECTOR', [rec_crr], [check['pos'][0], check['pos'][1], round])
-
-    def Z_measurement(self, circuit: stim.Circuit, round: int):
         # Measure all data qubits
         circuit.append('X_ERROR', self.data_list, self.error_rate)
         circuit.append('MR', self.data_list)
 
-        # Extract Z-syndrome and make a detector
+        # Extract Z/X-syndrome and make a detector
         for i, check in enumerate(self.check_list):
-            if check['type'] == 'Z':
+            if check['type'] == type:
                 qubit_rec_shift = - self.m * self.n # shift (0, mn) to (-mn, 0)
                 check_rec_shift = - 2 * self.m * self.n + 1 # shift (0, mn-1) to (-2mn + 1, -mn)
                 detector_list = [stim.target_rec(i + check_rec_shift)] + [stim.target_rec(self.data_list.index(check['data_qubits'][j]) + qubit_rec_shift) for j in range(4) if check['data_qubits'][j] != None]
                 circuit.append('DETECTOR', detector_list, [check['pos'][0], check['pos'][1], round])
 
-        # Extract logical Z
+        # Extract logical Z/X
         qubit_rec_shift = - self.m * self.n # shift (0, mn) to (-mn, 0)
-        logical_Z = [stim.target_rec(i + qubit_rec_shift) for i in range(self.n)]
-        circuit.append('OBSERVABLE_INCLUDE', logical_Z, 0)
+        logical = []
+        if type == 'Z':
+            logical = [stim.target_rec(self.data_list.index(self.data_dict[(0, i * 2)]) + qubit_rec_shift) for i in range(self.n)]
+        elif type == 'X':
+            logical = [stim.target_rec(self.data_list.index(self.data_dict[(i * 2, 0)]) + qubit_rec_shift) for i in range(self.m)]
+        circuit.append('OBSERVABLE_INCLUDE', logical, 0)
 
-    def grow_code(self, circuit: stim.Circuit, round_start: int, round_end: int, m_new: int, n_new: int, postselection=None, if_measure=True):
+    def grow_code(self, circuit: stim.Circuit, round_start: int, round_end: int, m_new: int, n_new: int, postselection=None):
         old_N = self.total_qubit_number
         old_check_list = self.check_list.copy()
         old_m = self.m
         old_n = self.n
         self.reset_indices_for_growth(m_new, n_new)
         new_N = self.total_qubit_number
+        new_data_idx_list = []
+        new_check_idx_list = []
         for pos in self.data_dict:
             idx = self.data_dict[pos]
             if idx >= old_N:
                 circuit.append("QUBIT_COORDS", idx, pos)
-                circuit.append('R', idx)
-        for pos in self.data_dict:
-            if pos[0] > 2 * (old_m - 1):
-                idx = self.data_dict[pos]
-                circuit.append('H', idx)
+                new_data_idx_list.append(idx)
         for check in self.check_list:
             idx = check['idx']
             if idx in range(old_N, new_N):
                 circuit.append("QUBIT_COORDS", idx, check['pos'])
-                circuit.append('R', idx)
+                new_check_idx_list.append(idx)
+        new_data_X_idx_list = [self.data_dict[pos] for pos in self.data_dict if pos[0] > 2 * (old_m - 1)]
+        circuit.append("R", new_data_idx_list + new_check_idx_list)
+        circuit.append("H", new_data_X_idx_list)
+        circuit.append("DEPOLARIZE1", new_data_X_idx_list, self.error_rate)
 
-        self.depolarize_data(circuit)
-        self.syndrome_measurement_after_growth(circuit, old_check_list, old_m, old_n, round_start, postselection=postselection)
+        circuit.append('TICK')
+
+        self.depolarize_all(circuit)
+        self.syndrome_measurement(circuit)
+        self.add_detectors_after_growth(circuit, old_check_list, old_m, old_n, round_start, postselection=postselection)
 
         for t in range(round_start+1, round_end):
-            self.depolarize_data(circuit)
-            self.syndrome_measurement(circuit, t, postselection=postselection)
-        if if_measure:
-            self.Z_measurement(circuit, round_end)
-        
+            self.depolarize_all(circuit)
+            self.syndrome_measurement(circuit)
+            self.add_detectors(circuit, t, postselection=postselection)
+
         return circuit
 
 
@@ -304,49 +285,7 @@ class SurfaceCode:
                 # print('reset checked data qubit as', idx_new_construct, 'to', new_check_list[i]['data_qubits'][j])
         self.check_list = new_check_list
     
-    def syndrome_measurement_after_growth(self, circuit: stim.Circuit, old_check_list, old_m, old_n, round:int, postselection=None):
-        # initialize X-check ancillae
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append('H', check['idx'])
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append("DEPOLARIZE1", check['idx'], self.error_rate)
-        circuit.append('TICK')
-
-        # CNOT layers
-        for i in range(4):
-            for check in self.check_list:
-                if check['type'] == 'X' and check['data_qubits'][i] != None:
-                    circuit.append('CNOT', [check['idx'], check['data_qubits'][i]])
-                if check['type'] == 'Z' and check['data_qubits'][i] != None:
-                    circuit.append('CNOT', [check['data_qubits'][i], check['idx']])
-            for check in self.check_list:
-                if check['type'] == 'X' and check['data_qubits'][i] != None:
-                    circuit.append("DEPOLARIZE2", [check['idx'], check['data_qubits'][i]], self.error_rate)
-                    # circuit.append("CORRELATED_ERROR", [check['idx'], check['data_qubits'][i]], error_rate)
-                if check['type'] == 'Z' and check['data_qubits'][i] != None:
-                    circuit.append("DEPOLARIZE2", [check['data_qubits'][i], check['idx']], self.error_rate)
-                    # circuit.append("CORRELATED_ERROR", [check['data_qubits'][i], check['idx']], error_rate)
-            circuit.append('TICK')
-
-        # Hadamard layer for X-check ancillae
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append('H', check['idx'])
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append("DEPOLARIZE1", [check['idx']], self.error_rate)
-        circuit.append('TICK')
-
-        # syndrome measurement
-        for check in self.check_list:
-            circuit.append('X_ERROR', [check['idx']], self.error_rate)
-        for check in self.check_list:
-            circuit.append('MR', [check['idx']])
-        circuit.append('TICK')
-
-        # add detector
+    def add_detectors_after_growth(self, circuit: stim.Circuit, old_check_list, old_m, old_n, round:int, postselection=None):
         # 3 cases:
         #   1. The check qubit is in the old list: the detector compares measurement in this round with the previous round
         #   2. The check is of type-Z and pos[0] < 2 * (old_m - 1) and pos[1] > 2 * old_n: the detector is directly this round of measurement
@@ -401,39 +340,13 @@ class SurfaceCode:
 
         # Fan out along first row to encode into a repetition (logical X string) subsystem
         first_row_indices = [self.data_dict[(2 * j, 0)] for j in range(self.m)]
+        CNOT_idx_list = []
         for tgt in first_row_indices[1:]:
-            circuit.append("CNOT", [src_idx, tgt])
+            CNOT_idx_list.extend([src_idx, tgt])
+        circuit.append("CNOT", CNOT_idx_list)
         circuit.append("TICK")
 
-        # (Optional) One noiseless stabilizer round to start in codespace
-        # Initialize ancillas
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append("H", check['idx'])
-        circuit.append("TICK")
-
-        # Data-ancilla CNOT pattern (noiseless)
-        for layer in range(4):
-            for check in self.check_list:
-                dq = check['data_qubits'][layer]
-                if dq is None:
-                    continue
-                if check['type'] == 'X':
-                    circuit.append("CNOT", [check['idx'], dq])
-                else:  # Z check
-                    circuit.append("CNOT", [dq, check['idx']])
-            circuit.append("TICK")
-
-        # Finish X ancillas
-        for check in self.check_list:
-            if check['type'] == 'X':
-                circuit.append("H", check['idx'])
-        circuit.append("TICK")
-
-        # Measure ancillas (no detectors; projection only)
-        for check in self.check_list:
-            circuit.append("MR", [check['idx']])
-        circuit.append("TICK")
+        self.syndrome_measurement(circuit, error_rate=0)
 
         return circuit
 
@@ -468,20 +381,25 @@ class SurfaceCode:
     def S_state_preserving(self, rounds: int = 10):
         circuit = self.encoding(gate=['H', 'S'])
         for round in range(1, rounds):
-            self.syndrome_measurement(circuit, round)
+            self.syndrome_measurement(circuit)
+            self.add_detectors(circuit, round)
         self.Y_measurement_noiseless(circuit)
-        self.syndrome_measurement_noiseless(circuit, rounds, rec_shift=1)
+        self.syndrome_measurement(circuit, error_rate=0)
+        self.add_detectors(circuit, rounds, rec_shift=1)
         return circuit
 
     def S_state_preserving_with_growth(self, T, rounds):
         circuit = self.encoding(gate=['H', 'S'])
         if rounds < T:
             for round in range(1, rounds):
-                self.syndrome_measurement(circuit, round)
+                self.syndrome_measurement(circuit)
+                self.add_detectors(circuit, round)
         else:
             for round in range(1, T):
-                self.syndrome_measurement(circuit, round)
+                self.syndrome_measurement(circuit)
+                self.add_detectors(circuit, round)
             circuit = self.grow_code(circuit, T, rounds, self.m + 2, self.n + 2, if_measure=False)
         self.Y_measurement_noiseless(circuit)
-        self.syndrome_measurement_noiseless(circuit, rounds, rec_shift=1)
+        self.syndrome_measurement(circuit, error_rate=0)
+        self.add_detectors(circuit, rounds, rec_shift=1)
         return circuit
