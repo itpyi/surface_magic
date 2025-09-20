@@ -11,6 +11,22 @@ class SurfaceCode:
         self.check_list = self.generate_check_list(self.data_dict)
         self.total_qubit_number = len(self.data_list) + len(self.check_list) + self.off_set
 
+    
+    #########################################
+    ############### Data structures ##########################
+    #########################################
+    # data_dict: (for finding index of a data qubit from position)
+    #     key: position, 
+    #     value: index,
+    # data_list: list of indices (for loop over data qubits)
+    # check_list: list of dicts: {
+    #     'type': 'X' or 'Z', 
+    #     'pos': position,
+    #     'idx': index,
+    #     'data_qubits'; indices of data qubits to check
+    # }
+    #########################################
+
     def generate_data_dict_and_list(self):
         """
         data_dict: (for finding index of a data qubit from position)
@@ -75,19 +91,70 @@ class SurfaceCode:
                     idx += 1
         return check_list
 
-    def circuit_standard(self, type: str, rounds: int, if_measure=True):
-        circuit = self.initialize_circuit_position()
-        self.initialize_circuit(circuit, type)
-        for t in range(rounds):
-            self.depolarize_all(circuit)
-            self.syndrome_measurement(circuit)
-            if t == 0:
-                self.add_detectors_initial(circuit, t, type)
+    def reset_indices_for_growth(self, m_new, n_new):
+        self.m = m_new
+        self.n = n_new
+        new_data_dict, new_data_list = self.generate_data_dict_and_list()
+        new_check_list = self.generate_check_list(new_data_dict)
+        
+        # update data qubits and build data index map
+        data_map = {}
+        for i, data_qubit_position in enumerate(new_data_dict):
+            idx_new_construct = new_data_dict[data_qubit_position]
+            idx_targ = 0
+            if data_qubit_position in self.data_dict:
+                idx_targ = self.data_dict[data_qubit_position]
+                # print('existing data qubit found')
             else:
-                self.add_detectors(circuit, t)
-        if if_measure:
-            self.logical_measurement(circuit, type, rounds)
-        return circuit
+                idx_targ = self.total_qubit_number
+                self.total_qubit_number += 1
+                # print('new data qubit')
+            new_data_dict[data_qubit_position] = idx_targ
+            new_data_list[i] = idx_targ
+            data_map[idx_new_construct] = idx_targ
+            # print('reset index as', idx_new_construct, 'to', idx_targ)
+        self.data_dict = new_data_dict
+        self.data_list = new_data_list
+
+        # update checks
+        for i in range(len(new_check_list)):
+            check = new_check_list[i]
+            idx_targ = 0
+            if_old = False
+            for old_check in self.check_list:
+                if check['pos'] == old_check['pos']:
+                    if_old = True
+                    idx_targ = old_check['idx']
+                    # print('existing check qubit found')
+                    break
+            if not if_old:
+                idx_targ = self.total_qubit_number
+                self.total_qubit_number += 1
+                # print('new check qubit')
+            new_check_list[i]['idx'] = idx_targ
+            # print('reset index as', check['idx'], 'to', idx_targ)
+            for j in range(4):
+                idx_new_construct = check['data_qubits'][j]
+                new_check_list[i]['data_qubits'][j] = data_map.get(idx_new_construct)
+                # print('reset checked data qubit as', idx_new_construct, 'to', new_check_list[i]['data_qubits'][j])
+        self.check_list = new_check_list
+
+    #########################################
+    ############### Code cycles ##########################
+    #########################################
+
+    def initialize_cycle(self, type: str):
+        pass
+
+    def syndrome_cycle(self, circuit: stim.Circuit):
+        pass
+
+    def growth_cycle(self, circuit: stim.Circuit, m_new: int, n_new: int):
+        pass
+
+    #########################################
+    ############### Circuit components ##########################
+    #########################################
 
     def initialize_circuit_position(self):
         circuit = stim.Circuit()
@@ -151,26 +218,6 @@ class SurfaceCode:
         circuit.append('MR', check_idx_list)
         circuit.append('TICK')
 
-    def add_detectors(self, circuit: stim.Circuit, round: int, rec_shift: int = 0, postselection=None):
-        check_count = len(self.check_list)
-        for i_crr, check in enumerate(self.check_list):
-            rec_crr  = stim.target_rec(-(check_count - i_crr))
-            rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
-            detector_pos = [check['pos'][0], check['pos'][1], round]
-            if postselection == 'all':
-                detector_pos.append(1)
-            circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
-
-    def add_detectors_initial(self, circuit: stim.Circuit, round: int, type: str, postselection=None):
-        check_count = len(self.check_list)
-        for i_crr, check in enumerate(self.check_list):
-            if check['type'] == type:
-                rec_crr  = stim.target_rec(-(check_count - i_crr))
-                detector_pos = [check['pos'][0], check['pos'][1], round]
-                if postselection == 'all':
-                    detector_pos.append(1)
-                circuit.append('DETECTOR', [rec_crr], detector_pos)
-
     def logical_measurement(self, circuit: stim.Circuit, type: str, round: int):
         # Hadamard for X measurement
         if type == 'X':
@@ -199,92 +246,42 @@ class SurfaceCode:
             logical = [stim.target_rec(self.data_list.index(self.data_dict[(i * 2, 0)]) + qubit_rec_shift) for i in range(self.m)]
         circuit.append('OBSERVABLE_INCLUDE', logical, 0)
 
-    def grow_code(self, circuit: stim.Circuit, round_start: int, round_end: int, m_new: int, n_new: int, postselection=None):
-        old_N = self.total_qubit_number
-        old_check_list = self.check_list.copy()
-        old_m = self.m
-        old_n = self.n
-        self.reset_indices_for_growth(m_new, n_new)
-        new_N = self.total_qubit_number
-        new_data_idx_list = []
-        new_check_idx_list = []
-        for pos in self.data_dict:
-            idx = self.data_dict[pos]
-            if idx >= old_N:
-                circuit.append("QUBIT_COORDS", idx, pos)
-                new_data_idx_list.append(idx)
-        for check in self.check_list:
-            idx = check['idx']
-            if idx in range(old_N, new_N):
-                circuit.append("QUBIT_COORDS", idx, check['pos'])
-                new_check_idx_list.append(idx)
-        new_data_X_idx_list = [self.data_dict[pos] for pos in self.data_dict if pos[0] > 2 * (old_m - 1)]
-        circuit.append("R", new_data_idx_list + new_check_idx_list)
-        circuit.append("H", new_data_X_idx_list)
-        circuit.append("DEPOLARIZE1", new_data_X_idx_list, self.error_rate)
+    def Y_measurement_noiseless(self, circuit: stim.Circuit):
+        """
+        A noiseless logical Y measurement circuit.
+        The logical Y operator is a product of a vertical logical Z operator and a horizontal logical X operator.
+        """
+        logical_Y = [stim.target_y(self.data_dict[(0, 0)])]
+        for i in range(1, self.m):
+            logical_Y.append(stim.target_x(self.data_dict[(2 * i, 0)]))
+        for j in range(1, self.n):
+            logical_Y.append(stim.target_z(self.data_dict[(0, 2 * j)]))
 
-        circuit.append('TICK')
+        logical_Y = stim.target_combined_paulis(logical_Y)
+        circuit.append('MPP', logical_Y)
 
-        self.depolarize_all(circuit)
-        self.syndrome_measurement(circuit)
-        self.add_detectors_after_growth(circuit, old_check_list, old_m, old_n, round_start, postselection=postselection)
+        circuit.append('OBSERVABLE_INCLUDE', stim.target_rec(-1), 1)
 
-        for t in range(round_start+1, round_end):
-            self.depolarize_all(circuit)
-            self.syndrome_measurement(circuit)
-            self.add_detectors(circuit, t, postselection=postselection)
+    def add_detectors(self, circuit: stim.Circuit, round: int, rec_shift: int = 0, postselection=None):
+        check_count = len(self.check_list)
+        for i_crr, check in enumerate(self.check_list):
+            rec_crr  = stim.target_rec(-(check_count - i_crr))
+            rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
+            detector_pos = [check['pos'][0], check['pos'][1], round]
+            if postselection == 'all':
+                detector_pos.append(1)
+            circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
 
-        return circuit
+    def add_detectors_initial(self, circuit: stim.Circuit, round: int, type: str, postselection=None):
+        check_count = len(self.check_list)
+        for i_crr, check in enumerate(self.check_list):
+            if check['type'] == type:
+                rec_crr  = stim.target_rec(-(check_count - i_crr))
+                detector_pos = [check['pos'][0], check['pos'][1], round]
+                if postselection == 'all':
+                    detector_pos.append(1)
+                circuit.append('DETECTOR', [rec_crr], detector_pos)
 
-
-    def reset_indices_for_growth(self, m_new, n_new):
-        self.m = m_new
-        self.n = n_new
-        new_data_dict, new_data_list = self.generate_data_dict_and_list()
-        new_check_list = self.generate_check_list(new_data_dict)
-        
-        # update data qubits and build data index map
-        data_map = {}
-        for i, data_qubit_position in enumerate(new_data_dict):
-            idx_new_construct = new_data_dict[data_qubit_position]
-            idx_targ = 0
-            if data_qubit_position in self.data_dict:
-                idx_targ = self.data_dict[data_qubit_position]
-                # print('existing data qubit found')
-            else:
-                idx_targ = self.total_qubit_number
-                self.total_qubit_number += 1
-                # print('new data qubit')
-            new_data_dict[data_qubit_position] = idx_targ
-            new_data_list[i] = idx_targ
-            data_map[idx_new_construct] = idx_targ
-            # print('reset index as', idx_new_construct, 'to', idx_targ)
-        self.data_dict = new_data_dict
-        self.data_list = new_data_list
-
-        # update checks
-        for i in range(len(new_check_list)):
-            check = new_check_list[i]
-            idx_targ = 0
-            if_old = False
-            for old_check in self.check_list:
-                if check['pos'] == old_check['pos']:
-                    if_old = True
-                    idx_targ = old_check['idx']
-                    # print('existing check qubit found')
-                    break
-            if not if_old:
-                idx_targ = self.total_qubit_number
-                self.total_qubit_number += 1
-                # print('new check qubit')
-            new_check_list[i]['idx'] = idx_targ
-            # print('reset index as', check['idx'], 'to', idx_targ)
-            for j in range(4):
-                idx_new_construct = check['data_qubits'][j]
-                new_check_list[i]['data_qubits'][j] = data_map.get(idx_new_construct)
-                # print('reset checked data qubit as', idx_new_construct, 'to', new_check_list[i]['data_qubits'][j])
-        self.check_list = new_check_list
-    
     def add_detectors_after_growth(self, circuit: stim.Circuit, old_check_list, old_m, old_n, round:int, postselection=None):
         # 3 cases:
         #   1. The check qubit is in the old list: the detector compares measurement in this round with the previous round
@@ -350,21 +347,71 @@ class SurfaceCode:
 
         return circuit
 
-    def Y_measurement_noiseless(self, circuit: stim.Circuit):
-        """
-        A noiseless logical Y measurement circuit.
-        The logical Y operator is a product of a vertical logical Z operator and a horizontal logical X operator.
-        """
-        logical_Y = [stim.target_y(self.data_dict[(0, 0)])]
-        for i in range(1, self.m):
-            logical_Y.append(stim.target_x(self.data_dict[(2 * i, 0)]))
-        for j in range(1, self.n):
-            logical_Y.append(stim.target_z(self.data_dict[(0, 2 * j)]))
+    
+    #########################################
+    ############### Example circuits ##########################
+    #########################################
+    
+    def circuit_standard(self, type: str, rounds: int, if_measure=True):
+        circuit = self.initialize_circuit_position()
+        self.initialize_circuit(circuit, type)
+        for t in range(rounds):
+            self.depolarize_all(circuit)
+            self.syndrome_measurement(circuit)
+            if t == 0:
+                self.add_detectors_initial(circuit, t, type)
+            else:
+                self.add_detectors(circuit, t)
+        if if_measure:
+            self.logical_measurement(circuit, type, rounds)
+        return circuit
 
-        logical_Y = stim.target_combined_paulis(logical_Y)
-        circuit.append('MPP', logical_Y)
+    def grow_code(self, circuit: stim.Circuit, round_start: int, round_end: int, m_new: int, n_new: int, postselection=None):
+        old_N = self.total_qubit_number
+        old_check_list = self.check_list.copy()
+        old_m = self.m
+        old_n = self.n
+        self.reset_indices_for_growth(m_new, n_new)
+        new_N = self.total_qubit_number
+        new_data_idx_list = []
+        new_check_idx_list = []
+        for pos in self.data_dict:
+            idx = self.data_dict[pos]
+            if idx >= old_N:
+                circuit.append("QUBIT_COORDS", idx, pos)
+                new_data_idx_list.append(idx)
+        for check in self.check_list:
+            idx = check['idx']
+            if idx in range(old_N, new_N):
+                circuit.append("QUBIT_COORDS", idx, check['pos'])
+                new_check_idx_list.append(idx)
+        new_data_X_idx_list = [self.data_dict[pos] for pos in self.data_dict if pos[0] > 2 * (old_m - 1)]
+        circuit.append("R", new_data_idx_list + new_check_idx_list)
+        circuit.append("H", new_data_X_idx_list)
+        circuit.append("DEPOLARIZE1", new_data_X_idx_list, self.error_rate)
 
-        circuit.append('OBSERVABLE_INCLUDE', stim.target_rec(-1), 1)
+        circuit.append('TICK')
+
+        self.depolarize_all(circuit)
+        self.syndrome_measurement(circuit)
+        self.add_detectors_after_growth(circuit, old_check_list, old_m, old_n, round_start, postselection=postselection)
+
+        for t in range(round_start+1, round_end):
+            self.depolarize_all(circuit)
+            self.syndrome_measurement(circuit)
+            self.add_detectors(circuit, t, postselection=postselection)
+
+        return circuit
+
+    def S_state_preserving(self, rounds: int = 10):
+        circuit = self.encoding(gate=['H', 'S'])
+        for round in range(1, rounds):
+            self.syndrome_measurement(circuit)
+            self.add_detectors(circuit, round)
+        self.Y_measurement_noiseless(circuit)
+        self.syndrome_measurement(circuit, error_rate=0)
+        self.add_detectors(circuit, rounds, rec_shift=1)
+        return circuit
 
     ## This method is not fault-tolerant, trying to figure out the reason
 
@@ -377,16 +424,6 @@ class SurfaceCode:
     #         shift = 1 if round == rounds else 0
     #         self.syndrome_measurement(circuit, round, rec_shift=shift)
     #     return circuit
-    
-    def S_state_preserving(self, rounds: int = 10):
-        circuit = self.encoding(gate=['H', 'S'])
-        for round in range(1, rounds):
-            self.syndrome_measurement(circuit)
-            self.add_detectors(circuit, round)
-        self.Y_measurement_noiseless(circuit)
-        self.syndrome_measurement(circuit, error_rate=0)
-        self.add_detectors(circuit, rounds, rec_shift=1)
-        return circuit
 
     def S_state_preserving_with_growth(self, T, rounds):
         circuit = self.encoding(gate=['H', 'S'])
