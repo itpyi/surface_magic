@@ -180,35 +180,22 @@ $ ket(overline(0)) = X(s) overline(X)^(w(s)) ket(overline(0))_("std"), quad ket(
 Therefore, the logical $T$ on the new code is 
 $ overline(T) = overline(X)^(w(s)) X(s) T^(dagger times.circle 15) X(s) overline(X)^(w(s)), $
 which is a transversal $T$ conjugated by some $X$-string.
-This requies in-time feedback (bad for practical schemes).
 Note that 
-$ X T^dagger X = T $
-up to some overall phase.
-Therefore we can decompose the transversal $T$ gate into two parts,
-$ overline(T) =overline(X)^(w(s)) (X(s) T^(dagger times.circle 15) X(s)) overline(X)^(w(s)), $
-that is, we first apply the transversal gate in the parenthesis,
-which is a logical $T$ or $T^dagger$ depending on $w(s)$.
-The information of $w(s)$ is send to the Clifford correction part to ensure that
-we have applied a proper logical $T$.
-
+$ X T^dagger X = T = T^dagger S $
+up to some overall phase, therefore we should apply
+$ overline(T) = overline(X)^(w(s)) T^(dagger times.circle 15) S(s) overline(X)^(w(s)) $
+The feedback contains two parts:
+- The $S(s)$ part can be implemented as follows.
+  We first find a matrix $C in FF_2^(15 times 10)$ such that $H_Z C = I_(10)$.
+  Therefore we have $s = C m$.
+  In numerical simulation, such feedback can be implemented by adding a $Z$ gate to qubit $i$ conditioned on measurement $j$ iff $C_(i,j) = 1$.
+- The $overline(X)^(w(s))$ part can be eliminated by requiring that
+  every column of $C$ has even weight.
+  This can be done by adding any logical $X$ vector to any row of $C$ with odd weight.
 For our numerics, we simulate an $S$ gate.  
 The analysis above still holds with $T$ replaced by $S$ since
-$X S^dagger X = S = S Z$.
-We only simulate the gate
-$ X(s)S^(dagger times.circle 15) X(s), $
-and push the $overline(X)^(w(s))$ part into the post Clifford correction.
-This is because in Stim, feedback can only depend on single measurement.
+$X S^dagger X = S = S^dagger Z$.
 
-We need to write the feedback rules explicitly. 
-That is, we need to put the feedback operators in a form that
-each operator depends on only one measurement outcome.
-This can be done by solving the inverse $C in FF_2^(15 times 10)$ of the $H_Z$ matrix,
-$ H_Z C = I_(10). $
-Then given a measurement outcome $m in FF_2^(10)$, we can compute the feedback operators as
-$ s = C m. $
-When implementing in the $S$ simulation, this is done by
-adding a $Z$ gate to the qubit $i in [15]$ conditioned on the measurements $j in [10]$
-iff $C_(i,j) = 1$.
 
 == Error propagation in syndrome measurement
 
