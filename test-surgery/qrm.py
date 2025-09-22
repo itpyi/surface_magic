@@ -84,6 +84,83 @@ class QRMCode:
         return (n >> i) & 1
 
 
+    def prepare_X_state(self):
+        """
+        Returns a QRM circuit with depolarizing noise applied.
+        The error rate can be adjusted.
+        """
+        circuit = stim.Circuit()
+        for i in range(1, 16):
+            circuit.append_operation("QUBIT_COORDS", [i], [self.x_pos_shift + self.get_bit(i,0) + 2 * self.get_bit(i,2), self.get_bit(i,1) + 2 * self.get_bit(i,3)])
+        for j in range(16,34):
+            circuit.append_operation("QUBIT_COORDS", [j], [self.x_pos_shift + (j - 16) % 6, 5 + (j - 16) // 6])
+        for j in range(34,52):
+            circuit.append_operation("QUBIT_COORDS", [j], [self.x_pos_shift + (j - 34) % 6, 8 + (j - 34) // 6])
+
+        # initialize data qubits, ancilla qubits and flags
+        circuit.append('H', list(range(1, 16)) + list(range(34, 52)))
+        circuit.append("DEPOLARIZE1", range(1,52), [self.error_rate])
+        circuit.append('TICK')
+
+        # one round of stabilizer measurements
+        for i in range(6):
+            # initial flags
+            CNOT_list = []
+            if i == 0:
+                for j in range(18):
+                    CNOT_list.extend([34 + j, 16 + j])
+                circuit.append('CNOT', CNOT_list)
+                circuit.append("DEPOLARIZE2", CNOT_list, [self.error_rate])
+                circuit.append('TICK')
+            # Z-check measurements
+            CNOT_list = []
+            for j in range(18):
+                qubit = self.Z_checks[j][i]
+                if qubit != 0:
+                    CNOT_list.extend([qubit, 16 + j])
+            circuit.append('CNOT', CNOT_list)
+            circuit.append("DEPOLARIZE2", CNOT_list, [self.error_rate])
+            circuit.append('TICK')
+            # final flags
+            if i == 5:
+                CNOT_list = []
+                for j in range(18):
+                    CNOT_list.extend([34 + j, 16 + j])
+                circuit.append('CNOT', CNOT_list)
+                circuit.append("DEPOLARIZE2", CNOT_list, [self.error_rate])
+                circuit.append('TICK')
+                circuit.append('H', list(range(34,52)))
+                circuit.append("DEPOLARIZE1", range(34,52), [self.error_rate])
+                circuit.append('TICK')
+        circuit.append('MR', list(range(16, 52)))
+
+
+        # metachecks
+        for i, mc in enumerate(self.meta_checks):
+            mc = [c - 37 for c in mc]
+            circuit.append('DETECTOR', [stim.target_rec(mc[0]),stim.target_rec(mc[1]),stim.target_rec(mc[2]),stim.target_rec(mc[3])], [self.x_pos_shift + i, 0, 0, 1])
+
+        # check flags
+        for j in range(18):
+            circuit.append('DETECTOR', [stim.target_rec(-j-1)], [self.x_pos_shift + j // 4, j % 4, 1, 1]) 
+        circuit.append('TICK')
+
+
+        # apply transversal gates
+        # circuit.append('S_DAG', list(range(1, 16)))
+        feedback_list = []
+        for i in range(15):
+            for j in range(10):
+                if self.z_syndrome_feedback[i, j] == 1:
+                    feedback_list.extend([stim.target_rec(j - 36), i + 1])
+        # circuit.append('CZ', feedback_list)
+        circuit.append('CX', feedback_list)
+        circuit.append("DEPOLARIZE1", range(1,16), [self.error_rate])
+        circuit.append('TICK')
+
+        # return a standard qrm code in S state
+        return circuit
+
     def prepare_S_state(self):
         """
         Returns a QRM circuit with depolarizing noise applied.
