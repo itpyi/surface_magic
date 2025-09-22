@@ -143,19 +143,47 @@ class SurfaceCode:
     ############### Code cycles ##########################
     #########################################
 
-    def initialize_cycle(self, type: str):
+    def initialize_cycle(self, type: str, postselection=None):
         circuit = self.initialize_circuit_position()
         self.initialize_circuit(circuit, type)
         self.depolarize_all(circuit)
         self.syndrome_measurement(circuit)
-        self.add_detectors_initial(circuit, 0, type)
+        self.add_detectors_initial(circuit, 0, type, postselection)
         return circuit
-        
-    def syndrome_cycle(self, circuit: stim.Circuit):
-        pass
 
-    def growth_cycle(self, circuit: stim.Circuit, m_new: int, n_new: int):
-        pass
+    def syndrome_cycle(self, circuit: stim.Circuit, round: int, error_rate=None, rec_shift: int=0, postselection=None):
+        self.syndrome_measurement(circuit, error_rate)
+        self.add_detectors(circuit, round, rec_shift=rec_shift, postselection= postselection)
+
+    def growth_cycle(self, circuit: stim.Circuit, m_new: int, n_new: int, round: int, postselection=None):
+        old_N = self.total_qubit_number
+        old_check_list = self.check_list.copy()
+        old_m = self.m
+        old_n = self.n
+        self.reset_indices_for_growth(m_new, n_new)
+        new_N = self.total_qubit_number
+        new_data_idx_list = []
+        new_check_idx_list = []
+        for pos in self.data_dict:
+            idx = self.data_dict[pos]
+            if idx >= old_N:
+                circuit.append("QUBIT_COORDS", idx, pos)
+                new_data_idx_list.append(idx)
+        for check in self.check_list:
+            idx = check['idx']
+            if idx in range(old_N, new_N):
+                circuit.append("QUBIT_COORDS", idx, check['pos'])
+                new_check_idx_list.append(idx)
+        new_data_X_idx_list = [self.data_dict[pos] for pos in self.data_dict if pos[0] > 2 * (old_m - 1)]
+        circuit.append("R", new_data_idx_list + new_check_idx_list)
+        circuit.append("H", new_data_X_idx_list)
+        circuit.append("DEPOLARIZE1", new_data_X_idx_list, self.error_rate)
+
+        circuit.append('TICK')
+
+        self.depolarize_all(circuit)
+        self.syndrome_measurement(circuit)
+        self.add_detectors_after_growth(circuit, old_check_list, old_m, old_n, round, postselection=postselection)
 
     #########################################
     ############### Circuit components ##########################
@@ -265,7 +293,7 @@ class SurfaceCode:
         logical_Y = stim.target_combined_paulis(logical_Y)
         circuit.append('MPP', logical_Y)
 
-        circuit.append('OBSERVABLE_INCLUDE', stim.target_rec(-1), 1)
+        circuit.append('OBSERVABLE_INCLUDE', stim.target_rec(-1), 0)
 
     def add_detectors(self, circuit: stim.Circuit, round: int, rec_shift: int = 0, postselection=None):
         check_count = len(self.check_list)

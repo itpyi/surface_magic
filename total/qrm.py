@@ -182,3 +182,24 @@ class QRMCode:
     
         # readout logical Y
         circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(i - 15) for i in range(15)], 0)
+    
+
+    def X_measurement(self, circuit):
+        """
+        Returns a QRM circuit with X measurements applied.
+        """
+        circuit.append('H', list(range(1, 16)))
+        circuit.append("DEPOLARIZE1", range(1,16), [self.error_rate])
+        circuit.append('TICK')
+
+        circuit.append('X_ERROR', list(range(1, 16)), [self.error_rate])
+        circuit.append('MR', list(range(1, 16)))
+        circuit.append('TICK')
+    
+        # readout checks
+        for i, stabilizer in enumerate(self.X_checks):
+            circuit.append('DETECTOR', [stim.target_rec(i - 16) for i in stabilizer], [self.x_pos_shift + i, 0, 2, 1])
+
+    
+        # readout logical X
+        circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(i - 15) for i in range(15)], 0)
