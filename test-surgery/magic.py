@@ -18,7 +18,7 @@ def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain
     qrm_code = qrm.QRMCode(error_rate, x_pos_shift=-10)
     sc_shift = qrm_code.total_qubit_number + 1 + 2
     sc_code = sc.SurfaceCode(3, 3, error_rate, off_set=sc_shift)
-    circuit = qrm_code.prepare_X_state()
+    circuit = qrm_code.prepare_S_state()
     circuit += sc_code.initialize_cycle('X', postselection='all')
     surface_clock = 1
     # do T_sc_pre rounds of surface code stabilizer measurements
@@ -52,8 +52,8 @@ def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain
         sc_code.syndrome_cycle(circuit, t, error_rate)
     surface_clock += T_maintain
     # measure logical Y of the surface code
-    sc_code.logical_measurement(circuit, 'X', surface_clock)
-    # sc_code.Y_measurement_noiseless(circuit)
+    # sc_code.logical_measurement(circuit, 'X', surface_clock)
+    sc_code.Y_measurement_noiseless(circuit)
     # one round of error-free syndrome measurement to finalize the detectors
     # sc_code.syndrome_cycle(circuit, surface_clock, error_rate=0.0, rec_shift=1)
 
@@ -85,6 +85,7 @@ def lattice_surgery(circuit, T_lat_surg, error_rate, sc_shift, surgery_shift, ti
         A stim circuit object after performing lattice surgery.
     """
     check_list = check_list_gen(sc_shift, surgery_shift)
+    check_idx_list = [check['idx'] for check in check_list]
     for check in check_list:
         circuit.append('QUBIT_COORDS', check['idx'], check['pos'])
     
@@ -101,18 +102,20 @@ def lattice_surgery(circuit, T_lat_surg, error_rate, sc_shift, surgery_shift, ti
             circuit.append('TICK')
 
         # syndrome measurement
-        check_idx_list = [check['idx'] for check in check_list]
         circuit.append('X_ERROR', check_idx_list, error_rate)
         circuit.append('MR', check_idx_list)
         circuit.append('TICK')
     
         # detectors
+        check_count = len(check_list)
         if t > time_shift:
             for i, check in enumerate(check_list):
-                circuit.append('DETECTOR', [stim.target_rec(-i - 1), stim.target_rec(-i - 3)], check['pos'] + [time_shift + t, 1])
+                rec_crr = stim.target_rec(-(check_count - i))
+                rec_prev = stim.target_rec(-(check_count - i) - check_count)
+                circuit.append('DETECTOR', [rec_crr, rec_prev], check['pos'] + [time_shift + t, 1])
 
     # observable
-    # circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-1), stim.target_rec(-2)], 0)
+    circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-1), stim.target_rec(-2)], 0)
 
 def decouple_after_surgery(qrm_code: qrm.QRMCode, sc_code: sc.SurfaceCode, circuit: stim.Circuit, error_rate, round, rec_shift):
     """
