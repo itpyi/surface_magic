@@ -241,7 +241,7 @@ class QRMCode:
         return circuit
 
 
-    def Y_measurement(self, circuit):
+    def Y_measurement(self, circuit, ext_stabilizer):
         """
         Returns a QRM circuit with Y measurements applied.
         """
@@ -256,10 +256,13 @@ class QRMCode:
     
         # readout checks
         for i, stabilizer in enumerate(self.X_checks):
-            circuit.append('DETECTOR', [stim.target_rec(i - 16) for i in stabilizer], [self.x_pos_shift + i, 0, 2, 1])
+            if i > 0:
+                circuit.append('DETECTOR', [stim.target_rec(j - 16) for j in stabilizer], [self.x_pos_shift + i, 0, 2, 1])
+            else:
+                circuit.append('DETECTOR', [stim.target_rec(j - 16) for j in stabilizer] + [stim.target_rec(j) for j in ext_stabilizer], [self.x_pos_shift + i, 0, 2, 1])
 
     
-        # readout logical Y
+        # readout logical X
         circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(i - 15) for i in range(15)], 0)
     
 
