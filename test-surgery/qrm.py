@@ -84,7 +84,7 @@ class QRMCode:
         return (n >> i) & 1
 
 
-    def prepare_X_state(self):
+    def prepare_X_state(self, if_standard = True):
         """
         Returns a QRM circuit with depolarizing noise applied.
         The error rate can be adjusted.
@@ -154,14 +154,15 @@ class QRMCode:
                 if self.z_syndrome_feedback[i, j] == 1:
                     feedback_list.extend([stim.target_rec(j - 36), i + 1])
         # circuit.append('CZ', feedback_list)
-        circuit.append('CX', feedback_list)
+        if if_standard:
+            circuit.append('CX', feedback_list)
         circuit.append("DEPOLARIZE1", range(1,16), [self.error_rate])
         circuit.append('TICK')
 
         # return a standard qrm code in S state
         return circuit
 
-    def prepare_S_state(self):
+    def prepare_S_state(self, if_standard = True):
         """
         Returns a QRM circuit with depolarizing noise applied.
         The error rate can be adjusted.
@@ -231,7 +232,8 @@ class QRMCode:
                 if self.z_syndrome_feedback[i, j] == 1:
                     feedback_list.extend([stim.target_rec(j - 36), i + 1])
         circuit.append('CZ', feedback_list)
-        circuit.append('CX', feedback_list)
+        if if_standard:
+            circuit.append('CX', feedback_list)
         circuit.append("DEPOLARIZE1", range(1,16), [self.error_rate])
         circuit.append('TICK')
 
