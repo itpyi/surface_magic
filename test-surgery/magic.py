@@ -408,7 +408,7 @@ def lattice_surgery(circuit, T_lat_surg, error_rate, sc_shift, surgery_shift, ti
                 circuit.append('DETECTOR', [rec_crr, rec_prev], check['pos'] + [time_shift + t, 1])
 
     # observable
-    circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-1), stim.target_rec(-2)], 0)
+    circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-3), stim.target_rec(-4)], 0)
 
 def decouple_after_surgery(qrm_code: qrm.QRMCode, sc_code: sc.SurfaceCode, circuit: stim.Circuit, error_rate, round, rec_shift):
     """
