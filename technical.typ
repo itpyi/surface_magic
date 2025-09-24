@@ -173,25 +173,30 @@ by solving
 $ H_Z s = m, $
 where $H_Z in FF_2^(10 times 15)$ and $s in FF_2^(15)$.
 Now the logical state of the code abtained and the standard QRM code has the relation
-$ ket(overline(+)) = X(s) ket(overline(+))_("std"), quad ket(overline(-)) = overline(Z) ket(overline(+)) = (-1)^(w(s)) X(s) ket(overline(-))_("std"), $
-since $overline(Z)$ can be taken as $Z^(times.circle 15)$.
-Consequently, in computational basis,
-$ ket(overline(0)) = X(s) overline(X)^(w(s)) ket(overline(0))_("std"), quad ket(overline(1)) = X(s) overline(X)^(w(s)) ket(overline(1))_("std"). $
-Therefore, the logical $T$ on the new code is 
-$ overline(T) = overline(X)^(w(s)) X(s) T^(dagger times.circle 15) X(s) overline(X)^(w(s)), $
+$ ket(overline(+)) = X(s) ket(overline(+))_("std") $
+However, different logical $overline(Z)$ operators of the standard code (different by stabilizers)
+can now be $plus.minus overline(Z)$ of the new code,
+depending on the signs of the stabilizers.
+We are to measure $Z(l) = Z_1Z_2Z_3$ in lattice surgery ($l = (1,1,1,0,...,0) in FF_2^(15)$),
+so that we want this string is the logical $overline(Z)$ rather than $minus overline(Z)$.
+To ensure this, we have 
+$ ket(overline(-)) = Z(l)X(s) ket(overline(+))_("std") = (-1)^(l dot s) X(s) ket(overline(-))_("std"). $
+Therefore, the obtained code is related to the standard code by $overline(X)^(l dot s) X(s)$.
+The logical $T$ on the obtained code is thus
+$ overline(T) = overline(X)^(l dot s) X(s) T^(dagger times.circle 15) X(s) overline(X)^(l dot s), $
 which is a transversal $T$ conjugated by some $X$-string.
 Note that 
 $ X T^dagger X = T = T^dagger S $
 up to some overall phase, therefore we should apply
-$ overline(T) = overline(X)^(w(s)) T^(dagger times.circle 15) S(s) overline(X)^(w(s)) $
+$ overline(T) = overline(X)^(l dot s) T^(dagger times.circle 15) S(s) overline(X)^(l dot s) $
 The feedback contains two parts:
 - The $S(s)$ part can be implemented as follows.
   We first find a matrix $C in FF_2^(15 times 10)$ such that $H_Z C = I_(10)$.
   Therefore we have $s = C m$.
   In numerical simulation, such feedback can be implemented by adding a $Z$ gate to qubit $i$ conditioned on measurement $j$ iff $C_(i,j) = 1$.
-- The $overline(X)^(w(s))$ part can be eliminated by requiring that
-  every column of $C$ has even weight.
-  This can be done by adding any logical $X$ vector to any row of $C$ with odd weight.
+- The $overline(X)^(l dot s)$ part can be eliminated by requiring that
+  columns of $C$ span the orthogonal complement of $l$.
+  This can be done by adding any logical $X$ vector to any column of $C$ that is not orthogonal to $l$.
 For our numerics, we simulate an $S$ gate.  
 The analysis above still holds with $T$ replaced by $S$ since
 $X S^dagger X = S = S^dagger Z$.
