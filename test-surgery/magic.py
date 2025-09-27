@@ -1,5 +1,6 @@
 import surface_code as sc
 import qrm
+import qrm_std
 import stim
 import numpy as np
 
@@ -180,7 +181,7 @@ def magic_preparation_test_3(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_m
     Returns:
         A stim circuit object that prepares a surface code magic state.
     """
-    qrm_code = qrm.QRMCode(error_rate, x_pos_shift=-10)
+    qrm_code = qrm_std.QRMCode(error_rate, x_pos_shift=-10)
     sc_shift = qrm_code.total_qubit_number + 1 + 2
     sc_code = sc.SurfaceCode(3, 3, error_rate, off_set=sc_shift)
     circuit = qrm_code.prepare_S_state()
