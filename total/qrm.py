@@ -62,7 +62,7 @@ class QRMCode:
         log_X = np.array([1] * 7 + [0] * 8, dtype=np.uint8).view(F)
         C_full = np.array([C_sub[sub_col.index(i), :] if i in sub_col else [0]*10 for i in range(15)], dtype=np.uint8).view(F)
         for i in range(10):
-            if np.sum(C_full[:, i]) == 1:  # odd weight
+            if np.sum(C_full[:3, i]) == 1:  # odd overlap with qubits 1, 2, 3
                 C_full[:, i] = (C_full[:, i] + log_X)
         return C_full
 
@@ -154,7 +154,6 @@ class QRMCode:
                 if self.z_syndrome_feedback[i, j] == 1:
                     feedback_list.extend([stim.target_rec(j - 36), i + 1])
         circuit.append('CZ', feedback_list)
-        circuit.append('CX', feedback_list)
         circuit.append("DEPOLARIZE1", range(1,16), [self.error_rate])
         circuit.append('TICK')
 
