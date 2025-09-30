@@ -2,6 +2,7 @@ import surface_code as sc
 import qrm
 import stim
 import numpy as np
+import surgery as sg
 
 def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain, error_rate):
     """

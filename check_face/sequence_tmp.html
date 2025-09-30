@@ -365,34 +365,34 @@ code {
           : 'default'
     });
   </script>
+<h2 id="the-non-ft-version">The non-FT version</h2>
 <pre><code class="language-mermaid"><div class="mermaid">sequenceDiagram
-    participant A as QRM Code
-    participant B as Surface Code
-    participant S as Surgery Unit
-    participant M as Measurements
-    participant D as Detectors
+    participant C as Control
     participant O as Observable
+    participant D as Detectors
+    participant M as Measurements
+    participant SurfaceCode@{ "type" : "collections" }
+    participant QRM@{ "type" : "collections" }
 
-    Note over A, O: Initialization Phase
+    Note over C, QRM: Initialization Phase
     
-    A->>A: Set QRM code parameters
-    B->>B: Set surface code parameters
+    C->>QRM: Set QRM code parameters
+    C->>SurfaceCode: Set surface code parameters
     
-    activate A
-    activate B
-    Note over D: Postselection On
+    C->>D: 🔘 Postselection On
     activate D
     par 
-        A->>A: Prepare Y state
-        A->>M: 18 measurements for Z checks
-        Note over A: ❌ non FT errors on 1, 2, 3
-        A->>M: 18 measurements for flags
+        C->>QRM: Prepare Y state
+        QRM->>M: 18 measurements for Z checks
+        Note over QRM: ❌ non FT errors on 1, 2, 3
+        QRM->>M: 18 measurements for flags
         M->>D: 8 detectors for meta-checks
         M->>D: 10 detectors for flags
     and
-        B->>B: Prepare X state
+        C->>SurfaceCode: Prepare X state
+        C->>SurfaceCode: Syndrome measurements
         loop T_sc_pre 
-            B->>M: 8 measurements for syndrome
+            SurfaceCode->>M: 8 measurements for syndrome
             alt The first round
                 M->>D: 4 Z detectors for syndrome
             else
@@ -401,64 +401,177 @@ code {
         end
     end
 
-    Note over A, O: Lattice Surgery Phase
+    Note over C, QRM: Lattice Surgery Phase
 
-    activate S
-    Note over S: Coupling
+    create participant S as Surgery Unit
+    C->>S: Merge
     loop T_lat_surg
-        S->>A: Stabilizer measurements
-        Note over A, S: ❌ correlated errors in the first round is non-FT
-        S->>B: Stabilizer measurements
+        S->>QRM: Stabilizer measurements
+        Note over QRM, S: ❌ correlated errors in the first round is non-FT
+        S->>SurfaceCode: Stabilizer measurements
         S->>M: 2 measurements for joint Z stabilizers
         opt Not the first round
             M->>D: 2 detectors for joint Z stabilizers  
         end
     end
     M->>O: Logical ZZ
-    Note over S: Decoupling
+
+    C->>S: Decouple
     par
-        B->>M: 8 measurements for syndrome
+        SurfaceCode->>M: 8 measurements for syndrome
         M->>D: 7 detectors for syndrome except the (-1,1) corner
+        Note right of D: ⚠️ rec_shift = 2 * T_lat_surg
         M->>S: Joint X stabilizer synthesis
     and
-        A->>M: 15 destructive measurements on X basis
-        deactivate A
+        destroy QRM
+        QRM->>M: 15 destructive measurements on X basis
         M->>D: 3 detectors for X checks
         M->>S: Joint X stabilizer synthesis
         M->>O: Logical X
     end
+    destroy S
     S->>D: 1 detector for joint X stabilizer
-    deactivate S
 
-    Note over A, O: Growing Phase
+    Note over C, SurfaceCode: Growing Phase
+    C->>SurfaceCode: Syndrome measurements
     loop T_before_grow
-        B->>M: 8 measurements for syndrome
+        SurfaceCode->>M: 8 measurements for syndrome
         M->>D: 8 detectors for syndrome
+        Note right of D: ⚠️ rec_shift = 15 for first round
     end
-    B->>B: Grow to full distance
-    B->>M: d^2-1 measurements for syndrome
+    C->>SurfaceCode: Grow to full distance
+    SurfaceCode->>M: d^2-1 measurements for syndrome
     M->>D: Several detectors for syndrome
+    C->>SurfaceCode: Syndrome measurements
     loop T_ps_grow
-        B->>M: d^2-1 measurements for syndrome
+        SurfaceCode->>M: d^2-1 measurements for syndrome
         M->>D: d^2-1 detectors for syndrome
     end
 
+    C->>D: 🔘 Postselection Off
     deactivate D
-    Note over D: Postselection Off
 
-    Note over A, O: Maintaining Phase
+    Note over C, SurfaceCode: Maintaining Phase
+    C->>SurfaceCode: Syndrome measurements
     loop T_maintain
-        B->>M: d^2-1 measurements for syndrome
+        SurfaceCode->>M: d^2-1 measurements for syndrome
         M->>D: d^2-1 detectors for syndrome
     end
 
-    Note over A, O: Final Virtual Measurement
-    B->>M: Noiseless Y measurement
+    Note over C, SurfaceCode: Final Virtual Measurement
+    C->>SurfaceCode: Virtual Y measurement (noiseless)
+    SurfaceCode->>M: 1 MPP measurement
     M->>O: Logical Y
-    B->>M: d^2-1 noiseless measurements for syndrome
+    C->>SurfaceCode: Virtual stabilizer measurement (noiseless)
+    SurfaceCode->>M: d^2-1 measurements for syndrome
     M->>D: d^2-1 detectors for syndrome
+</div></code></pre>
+<h2 id="face-check-version">Face-check version</h2>
+<pre><code class="language-mermaid"><div class="mermaid">sequenceDiagram
+    participant C as Control
+    participant O as Observable
+    participant D as Detectors
+    participant M as Measurements
+    participant SurfaceCode@{ "type" : "collections" }
+    participant QRM@{ "type" : "collections" }
 
-    deactivate B
+    Note over C, QRM: Initialization Phase
+    
+    C->>QRM: Set QRM code parameters
+    C->>SurfaceCode: Set surface code parameters
+    
+    C->>D: 🔘 Postselection On
+    activate D
+    par 
+        C->>QRM: Prepare Y state
+        QRM->>M: 18 measurements for Z checks
+        Note over QRM: ❌ non FT errors on 1, 2, 3
+        QRM->>M: 18 measurements for flags
+        M->>D: 8 detectors for meta-checks
+        M->>D: 10 detectors for flags
+    and
+        C->>SurfaceCode: Prepare X state
+        C->>SurfaceCode: Syndrome measurements
+        loop T_sc_pre 
+            SurfaceCode->>M: 8 measurements for syndrome
+            alt The first round
+                M->>D: 4 Z detectors for syndrome
+            else
+                M->>D: 8 detectors for syndrome
+            end
+        end
+    end
+
+    Note over C, QRM: Lattice Surgery Phase
+
+    create participant S as Surgery Unit
+    C->>S: Merge
+    loop T_lat_surg
+        S->>QRM: Stabilizer measurements
+        Note over QRM, S: ❌ correlated errors in the first round is non-FT
+        S->>SurfaceCode: Stabilizer measurements
+        QRM-->>QRM: Face check
+        S->>M: 2 measurements for joint Z stabilizers
+        QRM-->>M: 3 measurements for face Z checks
+        QRM-->>M: 3 measurements for flags
+        M-->>D: 3 detectors for Z checks
+        note right of D: ⚠️ rec_shit = ? for the first round
+        M-->>D: 3 detectors for flags
+        opt Not the first round
+            M->>D: 2 detectors for joint Z stabilizers  
+        end
+    end
+    M->>O: Logical ZZ
+
+    C->>S: Decouple
+    par
+        SurfaceCode->>M: 8 measurements for syndrome
+        M->>D: 7 detectors for syndrome except the (-1,1) corner
+        Note right of D: ⚠️ rec_shift = 8 * T_lat_surg
+        M->>S: Joint X stabilizer synthesis
+    and
+        destroy QRM
+        QRM->>M: 15 destructive measurements on X basis
+        M->>D: 3 detectors for X checks
+        M->>S: Joint X stabilizer synthesis
+        M->>O: Logical X
+    end
+    destroy S
+    S->>D: 1 detector for joint X stabilizer
+
+    Note over C, SurfaceCode: Growing Phase
+    C->>SurfaceCode: Syndrome measurements
+    loop T_before_grow
+        SurfaceCode->>M: 8 measurements for syndrome
+        M->>D: 8 detectors for syndrome
+        Note right of D: ⚠️ rec_shift = 15 for first round
+    end
+    C->>SurfaceCode: Grow to full distance
+    SurfaceCode->>M: d^2-1 measurements for syndrome
+    M->>D: Several detectors for syndrome
+    C->>SurfaceCode: Syndrome measurements
+    loop T_ps_grow
+        SurfaceCode->>M: d^2-1 measurements for syndrome
+        M->>D: d^2-1 detectors for syndrome
+    end
+
+    C->>D: 🔘 Postselection Off
+    deactivate D
+
+    Note over C, SurfaceCode: Maintaining Phase
+    C->>SurfaceCode: Syndrome measurements
+    loop T_maintain
+        SurfaceCode->>M: d^2-1 measurements for syndrome
+        M->>D: d^2-1 detectors for syndrome
+    end
+
+    Note over C, SurfaceCode: Final Virtual Measurement
+    C->>SurfaceCode: Virtual Y measurement (noiseless)
+    SurfaceCode->>M: 1 MPP measurement
+    M->>O: Logical Y
+    C->>SurfaceCode: Virtual stabilizer measurement (noiseless)
+    SurfaceCode->>M: d^2-1 measurements for syndrome
+    M->>D: d^2-1 detectors for syndrome
 </div></code></pre>
 
 </body>
