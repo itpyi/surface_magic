@@ -9,6 +9,7 @@ sequenceDiagram
     participant SurfaceCode@{ "type" : "collections" }
     participant QRM@{ "type" : "collections" }
 
+
     Note over C, QRM: Initialization Phase
     
     C->>QRM: Set QRM code parameters
@@ -149,8 +150,8 @@ sequenceDiagram
         Note over QRM, S: ❌ correlated errors in the first round is non-FT
         S->>SurfaceCode: Stabilizer measurements
         QRM-->>QRM: Face check
-        S->>M: 2 measurements for joint Z stabilizers
         QRM-->>M: 3 measurements for face Z checks
+        S->>M: 2 measurements for joint Z stabilizers
         QRM-->>M: 3 measurements for flags
         M-->>D: 3 detectors for Z checks
         note right of D: ⚠️ rec_shit = ? for the first round
