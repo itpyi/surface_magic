@@ -58,4 +58,3 @@ def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain
     sc_code.syndrome_cycle(circuit, surface_clock, error_rate=0.0, rec_shift=1)
 
     return circuit
-

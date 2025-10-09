@@ -75,7 +75,7 @@ class SurgeryUnit:
 
         # set rec_shift for detectors for the first round
         rec_curr_shift = 8
-        rec_prev_shift = 8 * T_sc_pre + 36 + rec_curr_shift + 16
+        rec_prev_shift = 8 * (T_sc_pre + 1) + 36 + rec_curr_shift + 16
 
 
         # measure the stabilizers
