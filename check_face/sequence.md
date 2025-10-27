@@ -26,14 +26,11 @@ sequenceDiagram
         M->>D: 10 detectors for flags
     and
         C->>SurfaceCode: Prepare X state
-        C->>SurfaceCode: Syndrome measurements
+        SurfaceCode->>M: 8 measurements for syndrome
+        M->>D: 4 detectors for X syndrome
         loop T_sc_pre 
             SurfaceCode->>M: 8 measurements for syndrome
-            alt The first round
-                M->>D: 4 Z detectors for syndrome
-            else
-                M->>D: 8 detectors for syndrome
-            end
+            M->>D: 8 detectors for syndrome
         end
     end
 
@@ -130,14 +127,11 @@ sequenceDiagram
         M->>D: 10 detectors for flags
     and
         C->>SurfaceCode: Prepare X state
-        C->>SurfaceCode: Syndrome measurements
+        SurfaceCode->>M: 8 measurements for syndrome
+        M->>D: 4 detectors for X syndrome
         loop T_sc_pre 
             SurfaceCode->>M: 8 measurements for syndrome
-            alt The first round
-                M->>D: 4 Z detectors for syndrome
-            else
-                M->>D: 8 detectors for syndrome
-            end
+            M->>D: 8 detectors for syndrome
         end
     end
 
