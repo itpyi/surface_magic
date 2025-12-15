@@ -9,7 +9,6 @@ sequenceDiagram
     participant SurfaceCode@{ "type" : "collections" }
     participant QRM@{ "type" : "collections" }
 
-
     Note over C, QRM: Initialization Phase
     
     C->>QRM: Set QRM code parameters
@@ -153,14 +152,14 @@ sequenceDiagram
         opt Not the first round
             M->>D: 2 detectors for joint Z stabilizers  
         end
+        SurfaceCode->>M: 8 measurements for syndrome
+        M->>D: 7 detectors for syndrome except the (-1,1) corner
+        Note right of D: ⚠️ rec_shift = 8 * T_lat_surg
     end
     M->>O: Logical ZZ
 
     C->>S: Decouple
     par
-        SurfaceCode->>M: 8 measurements for syndrome
-        M->>D: 7 detectors for syndrome except the (-1,1) corner
-        Note right of D: ⚠️ rec_shift = 8 * T_lat_surg
         M->>S: Joint X stabilizer synthesis
     and
         destroy QRM
@@ -207,4 +206,4 @@ sequenceDiagram
     M->>D: d^2-1 detectors for syndrome
 ```
 
-should measure X checks of surface code during surgery
+should measure Z checks of surface code during surgery

@@ -135,6 +135,8 @@ class SurgeryUnit:
             for i, flag in enumerate(self.flag_list):
                 circuit.append('DETECTOR', [stim.target_rec(i-3)], flag['pos'] + [time_shift + t, 1]) # flag detectors, position not tuned
 
+            # surface code Z checks
+
 
         # observable
         circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-4), stim.target_rec(-5)], 0)
