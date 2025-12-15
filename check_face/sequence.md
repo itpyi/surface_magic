@@ -206,3 +206,5 @@ sequenceDiagram
     SurfaceCode->>M: d^2-1 measurements for syndrome
     M->>D: d^2-1 detectors for syndrome
 ```
+
+should measure X checks of surface code during surgery
