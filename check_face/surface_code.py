@@ -251,6 +251,30 @@ class SurfaceCode:
         circuit.append('MR', check_idx_list)
         circuit.append('TICK')
 
+    def Z_syndrome_measurement(self, circuit: stim.Circuit, error_rate=None):
+        # use specified error rate if provided, otherwise use the default one
+        if error_rate is None:
+            error_rate = self.error_rate
+
+        # CNOT layers
+        for i in range(4):
+            CNOT_idx_list = []
+            for check in self.check_list:
+                data_qubit = check['data_qubits'][i]
+                if data_qubit is None:
+                    continue
+                if check['type'] == 'Z':
+                    CNOT_idx_list.extend([data_qubit, check['idx']])
+            circuit.append('CNOT', CNOT_idx_list)
+            circuit.append("DEPOLARIZE2", CNOT_idx_list, error_rate)
+            circuit.append('TICK')
+
+        # syndrome measurement
+        check_idx_list = [check['idx'] for check in self.check_list if check['type'] == 'Z']
+        circuit.append('X_ERROR', check_idx_list, error_rate)
+        circuit.append('MR', check_idx_list)
+        circuit.append('TICK')
+
     def logical_measurement(self, circuit: stim.Circuit, type: str, round: int):
         # Hadamard for X measurement
         if type == 'X':

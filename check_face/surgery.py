@@ -131,34 +131,50 @@ class SurgeryUnit:
                     circuit.append('DETECTOR', [stim.target_rec(c) for c in mc], check['pos'] + [time_shift + t, 1])
             if t > time_shift:
                 for i, check in enumerate(self.check_list):
-                    circuit.append('DETECTOR', [stim.target_rec(i - 8), stim.target_rec(i - 16)], check['pos'] + [time_shift + t, 1])
+                    circuit.append('DETECTOR', [stim.target_rec(i - 8), stim.target_rec(i - 20)], check['pos'] + [time_shift + t, 1])
             for i, flag in enumerate(self.flag_list):
                 circuit.append('DETECTOR', [stim.target_rec(i-3)], flag['pos'] + [time_shift + t, 1]) # flag detectors, position not tuned
 
-            # surface code Z checks
+            # surface code checks
+            self.sc_code.Z_syndrome_measurement(circuit)
 
+            # add detectors except the (-1, 1) X check
+            check_list = [check for check in self.sc_code.check_list if check['type'] == 'Z']
+            check_count = len(check_list)
+            for i_crr, check in enumerate(check_list):
+                if not check['pos'] == [-1, 1]:
+                    rec_crr  = stim.target_rec(-(check_count - i_crr))
+                    rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - 8)
+                    detector_pos = [check['pos'][0], check['pos'][1], t, 2]
+                    circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
 
         # observable
-        circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-4), stim.target_rec(-5)], 0)
+        circuit.append('OBSERVABLE_INCLUDE', [stim.target_rec(-8), stim.target_rec(-9)], 0)
 
     def decouple_after_surgery(self, circuit: stim.Circuit, round):
         """
         Logical X measurement on QRM and one round of stabilizer measurement on surface code to decouple the two codes.
         Handle the combined X-stabilzier.
         """
-        rec_shift = 8 * self.T_lat_surg
+        rec_shift = 12 * self.T_lat_surg
+        # rec_shift = 0
         # syndrome measurement of the surface code
         self.sc_code.syndrome_measurement(circuit)
 
         # add detectors except the (-1, 1) X check
         check_count = len(self.sc_code.check_list)
         for i_crr, check in enumerate(self.sc_code.check_list):
+            if check['type'] == 'Z':
+                rec_shift = 0
+            else:
+                rec_shift = 12 * self.T_lat_surg
             if not check['pos'] == [-1, 1]:
                 rec_crr  = stim.target_rec(-(check_count - i_crr))
                 rec_prev = stim.target_rec(-(check_count - i_crr) - check_count - rec_shift)
                 detector_pos = [check['pos'][0], check['pos'][1], round, 2]
                 circuit.append('DETECTOR', [rec_crr, rec_prev], detector_pos)
 
+        rec_shift = 12 * self.T_lat_surg
         i_crr = 0
         for i, check in enumerate(self.sc_code.check_list):
             if check['pos'] == [-1, 1]:
