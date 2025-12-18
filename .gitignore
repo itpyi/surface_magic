@@ -22,3 +22,6 @@ __pycache__/
 circuits/
 data/
 debug/
+
+# any output data
+*.csv
