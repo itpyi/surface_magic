@@ -1,80 +1,7 @@
 import magic
 import stim
 import sys
-
-# def check_errors_pure_L0(dem):
-#     """
-#     检查 dem 中是否存在仅导致 L0 错误（且不触发任何 D 探测器）的 error 项。
-#     如果有，这意味着存在不可探测的逻辑错误 (Distance <= 1)。
-    
-#     Returns:
-#         list: 所有导致纯 L0 错误的原始 error 字符串列表。
-#     """
-#     import re
-#     pure_L0_errors = []
-
-#     # 遍历 dem 的每一行
-#     for line in str(dem).splitlines():
-#         line = line.strip()
-#         # 仅处理 error 指令
-#         if line.startswith("error("):
-#             # 提取括号后的内容
-#             m = re.match(r"error\([^\)]+\)\s+(.*)", line)
-#             if m:
-#                 # 获取该错误触发的所有目标 (如 D0, D1, L0)
-#                 targets = m.group(1).split()
-                
-#                 # 判定条件：
-#                 # 1. 列表中包含 "L0"
-#                 # 2. 列表中不包含任何以 "D" 开头的探测器
-#                 has_L0 = "L0" in targets
-#                 has_detector = any(t.startswith("D") for t in targets)
-                
-#                 if has_L0 and not has_detector:
-#                     pure_L0_errors.append(line)
-                    
-#     return pure_L0_errors
-
-# def check_errors_differ_by_L0(dem):
-#     """
-#     检查dem中是否有仅相差L0的error项。
-#     返回所有满足条件的error对。
-#     """
-#     import re
-#     # 提取所有error行
-#     error_lines = []
-#     for line in str(dem).splitlines():
-#         line = line.strip()
-#         if line.startswith("error("):
-#             # 提取概率和项
-#             m = re.match(r"error\([^\)]+\)\s+(.*)", line)
-#             if m:
-#                 items = tuple(sorted(m.group(1).split()))
-#                 error_lines.append(items)
-
-#     # 建立集合便于查找
-#     error_set = set(error_lines)
-#     pairs = []
-#     for items in error_lines:
-#         # 如果有L0，去掉L0再查找
-#         if "L0" in items:
-#             items_wo_L0 = tuple(sorted([x for x in items if x != "L0"]))
-#             if items_wo_L0 in error_set:
-#                 pairs.append((items_wo_L0, items))
-#         else:
-#             # 没有L0，查找加上L0的
-#             items_with_L0 = tuple(sorted(list(items) + ["L0"]))
-#             if items_with_L0 in error_set:
-#                 pairs.append((items, items_with_L0))
-#     # 去重
-#     unique_pairs = []
-#     seen = set()
-#     for a, b in pairs:
-#         key = (a, b)
-#         if key not in seen and (b, a) not in seen:
-#             unique_pairs.append((a, b))
-#             seen.add(key)
-#     return unique_pairs
+import os
 
 def check_dem_dist_errors(dem):
     """
@@ -135,7 +62,7 @@ def check_dem_dist_errors(dem):
     return d1_errors, d2_pairs
 
 T_SC_PRE=0
-T_LAT_SURG=3 # should be at least 3
+T_LAT_SURG=1 # should be at least 3
 T_BEFORE_GROW=1 # should be at least 1 to read out the combined X check
 T_PS_GROW=0
 T_MAINTAIN=5
@@ -170,7 +97,27 @@ if __name__ == "__main__":
     # 5. 输出最终结果
     if d1_errors or d2_pairs:
         print(">> FAIL: Potential logical errors found (Distance < 3).")
+        # 1. 确保目录存在
+        save_dir = '../debug'
+        os.makedirs(save_dir, exist_ok=True)
         
+        # 2. 构造带参数的文件名 (例如: dem_fail_Pre0_Lat3_Bef1_Ps0_Main5.dem)
+        file_name = (
+            f"dem_fail_"
+            f"Pre{T_SC_PRE}_"
+            f"Lat{T_LAT_SURG}_"
+            f"Bef{T_BEFORE_GROW}_"
+            f"Ps{T_PS_GROW}_"
+            f"Main{T_MAINTAIN}"
+            f".dem"
+        )
+        
+        save_path = os.path.join(save_dir, file_name)
+        
+        # 3. 保存文件
+        dem.to_file(save_path)
+        print(f">> Debug: Failed DEM saved to: {save_path}")
+
         if d1_errors:
             print(f"\n[Distance 1 Errors Found] ({len(d1_errors)} items):")
             for err in d1_errors:
