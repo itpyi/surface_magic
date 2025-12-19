@@ -28,7 +28,6 @@ if __name__ == "__main__":
         )
 
         # 2. 从该 Circuit 生成 Mask
-        # 直接使用刚生成的 circuit，不用重新调用 generating function
         psmask = sinter.post_selection_mask_from_4th_coord(circuit)
 
         # 3. 添加到任务列表

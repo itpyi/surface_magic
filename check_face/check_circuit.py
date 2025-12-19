@@ -61,11 +61,11 @@ def check_dem_dist_errors(dem):
             d2_pairs.append((detectors, tuple(list(detectors) + ["L0"])))
     return d1_errors, d2_pairs
 
-T_SC_PRE=0
-T_LAT_SURG=1 # should be at least 3
+T_SC_PRE=0 # >=0
+T_LAT_SURG=3 # should be at least 3
 T_BEFORE_GROW=1 # should be at least 1 to read out the combined X check
-T_PS_GROW=0
-T_MAINTAIN=5
+T_PS_GROW=0 # >=0
+T_MAINTAIN=0 # >=0
 
 if __name__ == "__main__":
     # 1. 生成线路

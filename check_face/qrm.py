@@ -132,6 +132,7 @@ class QRMCode:
                 circuit.append('H', list(range(34,52)))
                 circuit.append("DEPOLARIZE1", range(34,52), [self.error_rate])
                 circuit.append('TICK')
+        circuit.append('X_ERROR', list(range(16, 52)), [self.error_rate])
         circuit.append('MR', list(range(16, 52)))
 
 
