@@ -69,9 +69,9 @@ if __name__ == "__main__":
     # 1. 生成线路
     print("Generating circuit...")
     circuit = magic.magic_preparation(
-        T_sc_pre=T_SC_PRE,
+        T=6,
         T_lat_surg=T_LAT_SURG,
-        T_before_grow=T_BEFORE_GROW,
+        t_round=8,
         error_rate=0.001
     )
 
@@ -108,8 +108,6 @@ if __name__ == "__main__":
             f"Pre{T_SC_PRE}_"
             f"Lat{T_LAT_SURG}_"
             f"Bef{T_BEFORE_GROW}_"
-            f"Ps{T_PS_GROW}_"
-            f"Main{T_MAINTAIN}"
             f".dem"
         )
         
