@@ -10,7 +10,7 @@ from stimbposd import SinterDecoder_BPOSD, sinter_decoders
 # Constants
 T = 6
 # T_BEFORE_GROW = 1 # >=1
-ERROR_RATE = 1e-5
+ERROR_RATE = 1e-6
 
 if __name__ == "__main__":
     tasks = []
@@ -45,7 +45,7 @@ if __name__ == "__main__":
         tasks=tasks,
         decoders=['bposd'],
         custom_decoders=sinter_decoders(),
-        max_shots=1_000_000,
+        max_shots=10_000_000,
         max_errors=5000,
         print_progress=True, # 在服务器上建议开启，可以看到大概进度
     )
