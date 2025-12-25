@@ -25,6 +25,7 @@ debug/
 
 # any output data
 *.csv
+*.dem
 
 # testing dir for bposd
 bposd/

@@ -19,16 +19,19 @@ def magic_preparation(T, T_lat_surg, t_round, error_rate):
     qrm_code = qrm.QRMCode(error_rate, x_pos_shift=-10)
     sc_shift = qrm_code.total_qubit_number + 1 + 2
     sc_code = sc.SurfaceCode(3, 3, error_rate, off_set=sc_shift)
-    circuit = qrm_code.prepare_S_state()
-    circuit += sc_code.initialize_cycle('X', postselection='all')
     surface_clock = 1
     if t_round <= T:
         # do T rounds of surface code stabilizer measurements
+        circuit = sc_code.initialize_cycle('X', postselection='all')
         for t in range(surface_clock, surface_clock + t_round):
             sc_code.syndrome_cycle(circuit, t, error_rate, postselection='all')
         surface_clock += t_round
         sc_code.logical_measurement(circuit, 'X', surface_clock)
+        
+        return circuit
     else:
+        circuit = qrm_code.prepare_S_state()
+        circuit += sc_code.initialize_cycle('X', postselection='all')
         T_post = t_round - T
         # do T rounds of surface code stabilizer measurements
         for t in range(surface_clock, surface_clock + T):
@@ -54,4 +57,4 @@ def magic_preparation(T, T_lat_surg, t_round, error_rate):
         # one round of error-free syndrome measurement to finalize the detectors
         sc_code.syndrome_cycle(circuit, surface_clock, error_rate=0.0, rec_shift=1)
 
-    return circuit
+        return circuit
