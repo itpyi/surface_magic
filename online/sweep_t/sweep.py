@@ -10,7 +10,7 @@ import math
 # Constants
 T = 10
 # T_BEFORE_GROW = 1 # >=1
-ERROR_RATE = 10**(-2.5)
+ERROR_RATE = 1e-3
 
 if __name__ == "__main__":
     tasks = []
