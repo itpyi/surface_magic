@@ -51,7 +51,7 @@ if __name__ == "__main__":
     )
 
     # 保存结果到 CSV
-    output_file = "sinter_results_sweep_err_2.csv"
+    output_file = "sinter_results_sweep_err_3.csv"
     with open(output_file, 'w') as f:
         print(sinter.CSV_HEADER, file=f)
         for sample in collected_stats:
