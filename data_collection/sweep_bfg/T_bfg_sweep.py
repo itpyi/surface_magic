@@ -46,7 +46,7 @@ if __name__ == "__main__":
         num_workers=16,
         tasks=tasks,
         decoders=['pymatching'],
-        max_shots=100_000_000,
+        max_shots=1_000_000_000,
         max_errors=5000,
         print_progress=True, # 在服务器上建议开启，可以看到大概进度
     )
