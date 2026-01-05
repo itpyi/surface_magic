@@ -5,7 +5,7 @@ import numpy as np
 from typing import List
 
 # Constants
-T_SC_PRE = 1
+T_SC_PRE = 0
 T_LAT_SURG = 3
 # T_BEFORE_GROW = 1 # >=1
 T_PS_GROW = 2

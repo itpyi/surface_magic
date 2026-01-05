@@ -55,6 +55,6 @@ def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, error_rate):
     # measure logical Y of the surface code
     sc_code.Y_measurement_noiseless(circuit)
     # one round of error-free syndrome measurement to finalize the detectors
-    sc_code.syndrome_cycle(circuit, surface_clock, error_rate=0.0, rec_shift=1)
+    sc_code.syndrome_cycle(circuit, surface_clock, error_rate=0.0, rec_shift=1, postselection='all')
 
     return circuit

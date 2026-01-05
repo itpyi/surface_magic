@@ -4,7 +4,7 @@ import stim
 import numpy as np
 import src.surgery as sg
 
-def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain, error_rate):
+def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain, error_rate, d=7):
     """
     Args:
         T_sc_pre: number of rounds of surface code stabilizer measurements during the initial preparation stage
@@ -42,7 +42,7 @@ def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain
         sc_code.syndrome_cycle(circuit, t, rec_shift=rec_shift, postselection='all')
     surface_clock += T_before_grow
     # grow the surface code
-    sc_code.growth_cycle(circuit, 7, 7, surface_clock, postselection='all')
+    sc_code.growth_cycle(circuit, d, d, surface_clock, postselection='all')
     surface_clock += 1
     # do T_ps_grow rounds of post-selected surface code stabilizer measurements
     for t in range(surface_clock, surface_clock + T_ps_grow):

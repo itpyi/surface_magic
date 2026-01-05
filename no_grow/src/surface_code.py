@@ -176,12 +176,13 @@ class SurfaceCode:
                 new_check_idx_list.append(idx)
         new_data_X_idx_list = [self.data_dict[pos] for pos in self.data_dict if pos[0] > 2 * (old_m - 1)]
         circuit.append("R", new_data_idx_list + new_check_idx_list)
+        circuit.append("DEPOLARIZE1", new_data_idx_list + new_check_idx_list, self.error_rate)
+        circuit.append('TICK')
         circuit.append("H", new_data_X_idx_list)
         circuit.append("DEPOLARIZE1", new_data_X_idx_list, self.error_rate)
 
         circuit.append('TICK')
 
-        self.depolarize_all(circuit)
         self.syndrome_measurement(circuit)
         self.add_detectors_after_growth(circuit, old_check_list, old_m, old_n, round, postselection=postselection)
 

@@ -5,7 +5,7 @@ import numpy as np
 from typing import List
 
 # Constants
-T_SC_PRE = 1
+T_SC_PRE = 0
 T_LAT_SURG = 3
 T_BEFORE_GROW = 1
 # ERROR_RATE = 0.001
@@ -41,13 +41,13 @@ if __name__ == "__main__":
         num_workers=16,
         tasks=tasks,
         decoders=['pymatching'],
-        max_shots=1_000_000_000,
-        max_errors=5000,
+        max_shots=10_000_000_000,
+        max_errors=500,
         print_progress=True, # 在服务器上建议开启，可以看到大概进度
     )
 
     # 保存结果到 CSV
-    output_file = "sinter_results_sweep_err.csv"
+    output_file = "sinter_results_sweep_err_0.csv"
     with open(output_file, 'w') as f:
         print(sinter.CSV_HEADER, file=f)
         for sample in collected_stats:
