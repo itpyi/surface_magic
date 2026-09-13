@@ -43,7 +43,8 @@ Each ordinary circuit task attempts **128 shots**, IP/DEM tasks **8 shots**,
 and each S/T gate uses **2 trajectories** per physical error rate. One worker
 is used. Smoke grids retain both postselection boundary values and both online
 stages; circuit sizes are not artificially reduced. Growth smoke covers distances
-7 and 9. Each command has a 240-second timeout; numeric thread settings are
+7 and 9; an additional eight-shot full-grid check covers 7, 9, 11, 13 and 15.
+Each command has a 240-second timeout; numeric thread settings are
 cooperative limits. A failed command fails the suite; inspect its `.log` file.
 
 Small samples verify execution, detector construction, decoding, postselection,
