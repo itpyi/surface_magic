@@ -179,6 +179,11 @@ protocols selected by `reproduction.experiments`.
 The published tables include 44 offline task identifiers that can be checked
 against the circuit definitions with `python -m checks.published_ids`.
 
+## Acknowledgments
+
+This repository was organized and its reproducibility checks were carried out
+with assistance from OpenAI’s GPT-6 Astra.
+
 ## Note on the S/T comparison in Fig. 14
 
 While organizing the code, we identified a minor error in the S/T comparison
