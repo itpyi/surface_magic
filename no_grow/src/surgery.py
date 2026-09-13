@@ -1,7 +1,7 @@
 import stim
 import numpy as np
-import src.surface_code as sc
-import src.qrm as qrm
+from . import surface_code as sc
+from . import qrm as qrm
 
 class SurgeryUnit:
     """A class for performing lattice surgery between a QRM code and a surface code."""
