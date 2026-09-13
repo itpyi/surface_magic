@@ -1,4 +1,4 @@
-"""Authenticate 44 historical offline rows against the current circuit builders."""
+"""Compare the 44 published offline task identifiers with the supplied circuits."""
 import sinter
 import stim
 from reproduction.experiments import cases
@@ -30,7 +30,7 @@ def main():
                 raise AssertionError((filename, row.json_metadata, task.strong_id(), row.strong_id))
             total += 1
         print(f'PASS: {filename}: {len(rows)} strong IDs')
-    print(f'PASS: all {total} historical offline task IDs match; this authenticates task inputs, not sampled counts.')
+    print(f'PASS: all {total} published offline task IDs match the supplied task definitions.')
 
 if __name__ == '__main__':
     main()

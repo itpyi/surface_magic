@@ -1,8 +1,7 @@
-"""Minimum-weight error-configuration decoding, not degenerate logical ML.
+"""Minimum-weight error-configuration decoding with SciPy/HiGHS.
 
-Uses the undecomposed DEM and SciPy/HiGHS integer programming. This is a
-portable replacement for the historical TensorQEC solver, not a claim of
-bitwise equivalence with its tie breaking.
+The solver uses the undecomposed detector error model. Equally weighted
+corrections can be resolved differently from the published TensorQEC solver.
 """
 import numpy as np
 from scipy import sparse

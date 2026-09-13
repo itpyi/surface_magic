@@ -30,10 +30,10 @@ def parser():
     p.add_argument('--workers', type=positive, default=1)
     p.add_argument('--decoder', choices=['pymatching', 'bposd', 'ip'], default='pymatching')
     p.add_argument('--p', type=float, nargs='+', help='physical error probabilities for error sweeps')
-    p.add_argument('--seed', type=int, default=20260913, help='IP/TS seed; sinter 1.13 does not expose a seed')
+    p.add_argument('--seed', type=int, default=20260913, help='random seed for direct IP/DEM sampling and S/T trajectories')
     p.add_argument('--ip-timeout', type=float, default=30, help='per-shot solve seconds; nonoptimal result fails')
     p.add_argument('--ts-mode', choices=['legacy', 'probability'], default='legacy')
-    p.add_argument('--output', type=Path, required=True, help='new output directory; never overwrites prior runs')
+    p.add_argument('--output', type=Path, required=True, help='new output directory')
     return p
 
 def provenance(args):
@@ -49,7 +49,7 @@ def provenance(args):
                     for p in sorted((ROOT/folder).glob('*.py'))},
                 randomness='NumPy PCG64/Stim seeded' if args.decoder == 'ip' or args.experiment == 'ts'
                            else 'sinter 1.13 sampling is unseeded; statistical reproducibility only',
-                non_claim='Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.')
+                sampling_scope='Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.')
 
 def run(args):
     if importlib.metadata.version('sinter') != '1.13.0':
