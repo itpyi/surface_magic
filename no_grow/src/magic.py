@@ -1,8 +1,8 @@
-import src.surface_code as sc
-import src.qrm as qrm
+from . import surface_code as sc
+from . import qrm as qrm
 import stim
 import numpy as np
-import src.surgery as sg
+from . import surgery as sg
 
 def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, error_rate):
     """

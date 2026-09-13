@@ -29,3 +29,9 @@ debug/
 
 # testing dir for bposd
 bposd/
+.venv/
+results/
+.mplconfig/
+
+# Curated publication tables are small, fixed scientific inputs.
+!data-pub/*.csv

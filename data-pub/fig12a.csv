@@ -1,0 +1,11 @@
+     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts
+ 100000000,       238,  63520295,    47.7,pymatching,75cade232c71d145ee0e56515513b841572283c4ddb970c5ade13b3bb2258c07,"{""T_PS_GROW"":1,""p"":0.001}",
+ 100000000,        62,  71361349,    55.0,pymatching,46aac293574eefd5196de913427bdd1e7d9496ff8648366fca9648232cb88d14,"{""T_PS_GROW"":2,""p"":0.001}",
+ 100000000,      2819,  49188191,    42.5,pymatching,e59d4d4e50dfee49511dd49830cac8f4bbbec92b7b30e76994fd7dbd330e3612,"{""T_PS_GROW"":0,""p"":0.001}",
+ 100000000,        55,  77509385,    62.3,pymatching,255078097405fc1680ba5b0b80b7152afc4717df222300a76888ff627320da81,"{""T_PS_GROW"":3,""p"":0.001}",
+ 100000000,        32,  82343133,    69.3,pymatching,0cf5376693a1b08e14e633cd16c8082ca80de4bb1337a4ebe08d83f4bcc9a6e0,"{""T_PS_GROW"":4,""p"":0.001}",
+ 100000000,        27,  86128856,    75.0,pymatching,ad4e5518e0a220bbdb2a27198c3bc1548e124bdc0499909fcdd24ae33a248e80,"{""T_PS_GROW"":5,""p"":0.001}",
+ 100000000,        24,  89111165,    82.2,pymatching,bcb414e3e1cfa13c47c95dd54e66adf554bd830519b6f1d5172e80d494889dee,"{""T_PS_GROW"":6,""p"":0.001}",
+ 100000000,        13,  91443197,    89.5,pymatching,96cc86ccaec48517f8f2733e5b407f1aa17d3c342fa124e09ec5d462bc76a494,"{""T_PS_GROW"":7,""p"":0.001}",
+ 100000000,        13,  93282511,    96.1,pymatching,e5f1a2312734fa6dfa54b83e93a70f1867a3c14d9833b58443900091680d91df,"{""T_PS_GROW"":8,""p"":0.001}",
+ 100000000,         7,  94724037,   100.6,pymatching,6cee3e6cdd1dbfc40e77dc613d89fd239efa5261f45ad6a8dfcfedbe556a79c3,"{""T_PS_GROW"":9,""p"":0.001}",

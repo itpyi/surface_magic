@@ -1,0 +1,600 @@
+{
+  "commands": [
+    {
+      "name": "invariants",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "checks",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 9.641610209015198
+    },
+    {
+      "name": "published-ids",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "checks.published_ids"
+      ],
+      "exit_code": 0,
+      "seconds": 84.94514712499222
+    },
+    {
+      "name": "offline-t2",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "data_collection/sweep_ps/T_ps_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t2"
+      ],
+      "exit_code": 0,
+      "seconds": 3.087500584020745
+    },
+    {
+      "name": "offline-t2-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t2",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t2.png"
+      ],
+      "exit_code": 0,
+      "seconds": 14.36171570897568
+    },
+    {
+      "name": "offline-t1",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "data_collection/sweep_bfg/T_bfg_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t1"
+      ],
+      "exit_code": 0,
+      "seconds": 3.2185215830104426
+    },
+    {
+      "name": "offline-t1-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t1",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t1.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5045816669880878
+    },
+    {
+      "name": "offline-maintain",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "data_collection/sweep_maintain/T_main_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-maintain"
+      ],
+      "exit_code": 0,
+      "seconds": 2.992316749994643
+    },
+    {
+      "name": "offline-maintain-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-maintain",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-maintain.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5007135409978218
+    },
+    {
+      "name": "offline-distance",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "data_collection/sweep_d/sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-distance"
+      ],
+      "exit_code": 0,
+      "seconds": 3.1005082089977805
+    },
+    {
+      "name": "offline-distance-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-distance",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-distance.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5011400420044083
+    },
+    {
+      "name": "offline-error",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "data_collection/sweep_err/err_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-error"
+      ],
+      "exit_code": 0,
+      "seconds": 2.081112416984979
+    },
+    {
+      "name": "offline-error-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-error",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-error.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5102560000086669
+    },
+    {
+      "name": "no-grow-t1",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "no_grow/sweep_ps/sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-t1"
+      ],
+      "exit_code": 0,
+      "seconds": 1.9720132499933243
+    },
+    {
+      "name": "no-grow-t1-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-t1",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-t1.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5068744999880437
+    },
+    {
+      "name": "no-grow-error",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "no_grow/sweep_err/err_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-error"
+      ],
+      "exit_code": 0,
+      "seconds": 1.5885314579936676
+    },
+    {
+      "name": "no-grow-error-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-error",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-error.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5077771249925718
+    },
+    {
+      "name": "online-time",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "online/sweep_t/sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-time"
+      ],
+      "exit_code": 0,
+      "seconds": 1.786114875023486
+    },
+    {
+      "name": "online-time-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-time",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-time.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5141932919796091
+    },
+    {
+      "name": "online-legacy-bposd",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "online/sweep_err/err_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-legacy-bposd"
+      ],
+      "exit_code": 0,
+      "seconds": 2.450803374988027
+    },
+    {
+      "name": "online-legacy-bposd-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-legacy-bposd",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-legacy-bposd.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.502950083988253
+    },
+    {
+      "name": "online-mwpm",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "online/ip_decoder/sweept1.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm"
+      ],
+      "exit_code": 0,
+      "seconds": 1.7007982499781065
+    },
+    {
+      "name": "online-mwpm-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5093130830209702
+    },
+    {
+      "name": "online-bposd",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.run",
+        "online",
+        "--decoder",
+        "bposd",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd"
+      ],
+      "exit_code": 0,
+      "seconds": 2.4478802920202725
+    },
+    {
+      "name": "online-bposd-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4958822080225218
+    },
+    {
+      "name": "online-ip",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.run",
+        "online",
+        "--decoder",
+        "ip",
+        "--smoke",
+        "--shots",
+        "8",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip"
+      ],
+      "exit_code": 0,
+      "seconds": 1.6852649170032237
+    },
+    {
+      "name": "online-ip-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5032129170140252
+    },
+    {
+      "name": "ts-legacy",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.run",
+        "ts",
+        "--smoke",
+        "--shots",
+        "2",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-legacy"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7261317500087898
+    },
+    {
+      "name": "ts-legacy-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-legacy",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-legacy.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5111077920009848
+    },
+    {
+      "name": "ts-probability",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.run",
+        "ts",
+        "--ts-mode",
+        "probability",
+        "--smoke",
+        "--shots",
+        "2",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-probability"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7211052079801448
+    },
+    {
+      "name": "ts-probability-plot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-probability",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-probability.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5129607919952832
+    },
+    {
+      "name": "dem-gen",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "online/ip_decoder/dem_gen.py",
+        "--smoke",
+        "--shots",
+        "8",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/dem-gen"
+      ],
+      "exit_code": 0,
+      "seconds": 1.4824474579945672
+    },
+    {
+      "name": "dem-sweep",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "online/ip_decoder/sweep_dem.py",
+        "--decoder",
+        "bposd",
+        "--smoke",
+        "--shots",
+        "8",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/dem-sweep"
+      ],
+      "exit_code": 0,
+      "seconds": 1.5995124580222182
+    },
+    {
+      "name": "online-comparison",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.plot",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-comparison.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5075809580157511
+    },
+    {
+      "name": "distance-full-grid",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.run",
+        "offline-distance",
+        "--shots",
+        "8",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/distance-full-grid"
+      ],
+      "exit_code": 0,
+      "seconds": 7.59072587499395
+    },
+    {
+      "name": "published-replot",
+      "command": [
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/.venv/bin/python",
+        "-m",
+        "reproduction.published",
+        "--output",
+        "/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/published-replot"
+      ],
+      "exit_code": 0,
+      "seconds": 1.335709292005049
+    }
+  ],
+  "runs": {
+    "dem-gen": {
+      "dem-stats.json": "[\n  {\n    \"name\": \"000-before\",\n    \"decoder\": \"ip\",\n    \"shots\": 8,\n    \"seed\": 20260913,\n    \"errors\": 0\n  },\n  {\n    \"name\": \"001-after\",\n    \"decoder\": \"ip\",\n    \"shots\": 8,\n    \"seed\": 20260914,\n    \"errors\": 0\n  }\n]\n"
+    },
+    "dem-sweep": {
+      "dem-stats.json": "[\n  {\n    \"name\": \"000-before\",\n    \"decoder\": \"bposd\",\n    \"shots\": 8,\n    \"seed\": 20260913,\n    \"errors\": 0\n  },\n  {\n    \"name\": \"001-after\",\n    \"decoder\": \"bposd\",\n    \"shots\": 8,\n    \"seed\": 20260914,\n    \"errors\": 0\n  }\n]\n"
+    },
+    "distance-full-grid": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"offline-distance\",\n    \"smoke\": false,\n    \"shots\": 8,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/distance-full-grid\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 5,\n  \"shots\": 40,\n  \"discards\": 30,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 6.957298916997388,\n  \"outputs_sha256\": {\n    \"000.dem\": \"79668c95a9475cb47f4f06dac996d62e676f969bc552ddefa62fdafec11ba921\",\n    \"000.stim\": \"5d14534b38a6fea8b362e407e4b187179e5891f488686163e852b299412aa3a7\",\n    \"001.dem\": \"206b490d6f63da48de0ca6e2fa71b8648424f1ed56bee1f8373a94723f1da7ef\",\n    \"001.stim\": \"4fa6c9c516fc7f1137ca0c6107f308f43e409dc506db180e98c5e9d8c4ac59fe\",\n    \"002.dem\": \"e13e2b9890fcc32564998da3b84a15a09b88f1c9809602c7b163fd2026b0a328\",\n    \"002.stim\": \"01367e20ff298d6df5e9614c78ed309b921569d3585249ffc73cee5b584a6fb1\",\n    \"003.dem\": \"1bfee0fd1ebca229cb71ca797666700721b541ebd81a2188dadcc8dc7bfa71af\",\n    \"003.stim\": \"4f6d72477fcc12d374479a748f73999709d0026d51d00d1c38770a1389d030e8\",\n    \"004.dem\": \"d80d706c9807d59ebf52efb2974505207866a0cacd4136b51835b74587f311b7\",\n    \"004.stim\": \"ad4fd59830df31291c671f441f83c860ef7df58daf064124bc87374bf0f50c8b\",\n    \"stats.csv\": \"11e72223a4d9a33703d4d5c89198545d8a06cfb7ae7a28d71ee933cba1b5e944\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n         8,         0,         7,   0.008,pymatching,98dd89b9bcb4fca0899921f6ee0ce3adf22d278c6b79e63ffc5ff32bd0392ab3,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":11,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         6,   0.009,pymatching,39fc9da51661d2a92ef4aa57dc49ad853e255a0fb73a75897a4a20fc84aa36a9,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":13,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         4,   0.011,pymatching,06cfec8d4936aeb734611ad4b3fb7f99644f5e8d6af2b9ab6c4c0a81ab996c3e,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":15,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         6,   0.155,pymatching,497911beba0917b9dfab7a79c41746c1ef5ccbdc3d356045bc610cd93f800857,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":7,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         7,   0.007,pymatching,41d2dc3645f2d36384fdf7896eed06b30c104fb4d5538499e94706b752e63fe2,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":9,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n"
+    },
+    "no-grow-error": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"no-grow-error\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-error\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 1,\n  \"shots\": 128,\n  \"discards\": 48,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 0.9883717919874471,\n  \"outputs_sha256\": {\n    \"000.dem\": \"0fdb01775ff4b6025f3a99376dbb2d5a8b05eb6b76f7e981a6d539ab25a761fc\",\n    \"000.stim\": \"fa1b46d331a75ab687f27214c9573a9845658eff196d886df5fa8ecac720ac9f\",\n    \"stats.csv\": \"6c14916cbcc45ea62fa97a5e1a83a9cc6bae5174c0ac725ee0f68b14d8e4f448\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        48,   0.214,pymatching,804fb84b411f7385ae3649741fcd97b9c379d3b6116e4c742dbfedd918b5ff0a,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"no-grow-error\"\"}\",\n"
+    },
+    "no-grow-t1": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"no-grow-t1\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-t1\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 108,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.344918124988908,\n  \"outputs_sha256\": {\n    \"000.dem\": \"d6d0c8826d3a8f3a65f784c7ee1ea90fa75148bea813b3774048a81bc539bc7b\",\n    \"000.stim\": \"119e786cb49082c2f0e577e0c234ddbbf068c7be5bdfc06c22512dff1756fc8a\",\n    \"001.dem\": \"b331bc011187f8bff02a5ad1b8c7d5776aade46e4122a520a3811f374ac56594\",\n    \"001.stim\": \"e29699ca2264f9dcba3b6626c56a6a314438d436d99dd1c1768ccbfff70950cb\",\n    \"stats.csv\": \"e9613570786ae192a378fc326c3db54f8c57583fec125414e1ed22abfeb72f81\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        60,   0.219,pymatching,b5ce8f856e7816d06bfc9b19b9218732e28f6e2add5e4ffd453dac7cb94bd96e,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"no-grow-t1\"\"}\",\n       128,         0,        48,   0.005,pymatching,45f58e4359c370eae6311112a3b93c87c7883e4a53e3f1f430fd9f4452ce6e8a,\"{\"\"T_before_grow\"\":2,\"\"T_lat_surg\"\":3,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"no-grow-t1\"\"}\",\n"
+    },
+    "offline-distance": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"offline-distance\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-distance\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 184,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 2.454892915993696,\n  \"outputs_sha256\": {\n    \"000.dem\": \"79668c95a9475cb47f4f06dac996d62e676f969bc552ddefa62fdafec11ba921\",\n    \"000.stim\": \"5d14534b38a6fea8b362e407e4b187179e5891f488686163e852b299412aa3a7\",\n    \"001.dem\": \"206b490d6f63da48de0ca6e2fa71b8648424f1ed56bee1f8373a94723f1da7ef\",\n    \"001.stim\": \"4fa6c9c516fc7f1137ca0c6107f308f43e409dc506db180e98c5e9d8c4ac59fe\",\n    \"stats.csv\": \"d8dbfe4805bdb8c3a272cd670ddb2faee58bb015af6f06b812d60c5cb52bee0b\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        95,   0.229,pymatching,497911beba0917b9dfab7a79c41746c1ef5ccbdc3d356045bc610cd93f800857,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":7,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n       128,         0,        89,   0.015,pymatching,41d2dc3645f2d36384fdf7896eed06b30c104fb4d5538499e94706b752e63fe2,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":9,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n"
+    },
+    "offline-error": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"offline-error\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-error\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 1,\n  \"shots\": 128,\n  \"discards\": 93,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.4682632090116385,\n  \"outputs_sha256\": {\n    \"000.dem\": \"4d64e9ff6945fe792db1bc98dd09050388a78b8790a4851241062982276c3a2b\",\n    \"000.stim\": \"a3e74bd8dd85a6a5e29672a4a01e015942c2d27176debb94568a1d3af3f45dd4\",\n    \"stats.csv\": \"593a7f744e6846886ce150cd5bf71a7d06fcbb8f183dbb2a4bb166042bb40b0f\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        93,   0.240,pymatching,f0df33e8bfb0cd27181f42e7b2d161e750fd599e3df25a64e3fbc59594df7f2a,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-error\"\"}\",\n"
+    },
+    "offline-maintain": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"offline-maintain\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-maintain\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 188,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 2.334930000011809,\n  \"outputs_sha256\": {\n    \"000.dem\": \"79668c95a9475cb47f4f06dac996d62e676f969bc552ddefa62fdafec11ba921\",\n    \"000.stim\": \"5d14534b38a6fea8b362e407e4b187179e5891f488686163e852b299412aa3a7\",\n    \"001.dem\": \"a89735b7b4f8201a4447471f5b8f55f2ebbb54f920b7a5b578288aba9fb1cce7\",\n    \"001.stim\": \"8fb4ee7fe7ab92ee2a5f94979cba60aacfd1c8bc8f7d51b118dc526cf2b8965a\",\n    \"stats.csv\": \"5524bae8129fd4e8e4499ba37e4f47c701cc2cd31d75748913da355cfa2f2421\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        96,   0.234,pymatching,b2207ecd33770fa54ddab6d1758b5fa93bd26171bdf8052c08716f5e47b4a3c2,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-maintain\"\"}\",\n       128,         0,        92,   0.013,pymatching,6ad9527aaedf612f9dbbc670a847b591ef03f70ad14e3e409971c83b114167e8,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":1,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-maintain\"\"}\",\n"
+    },
+    "offline-t1": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"offline-t1\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t1\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 181,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 2.258087666996289,\n  \"outputs_sha256\": {\n    \"000.dem\": \"4d64e9ff6945fe792db1bc98dd09050388a78b8790a4851241062982276c3a2b\",\n    \"000.stim\": \"a3e74bd8dd85a6a5e29672a4a01e015942c2d27176debb94568a1d3af3f45dd4\",\n    \"001.dem\": \"735841cb0d3f048db0a633c80a9703cfa8545c657f3113b8894ef53578f27c97\",\n    \"001.stim\": \"0c2c048c895e9430192fc24fdac9dc4973d693854042b0c420df06fa77647da1\",\n    \"stats.csv\": \"90e0967cdb580658a030cdb88424e9e0adaa18f415708bcf30506e87c47c1f3d\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        87,   0.281,pymatching,8a87f02f02c1dd88f3c33fb935116ef86181f42c9e4426a277bcc659ecd87407,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t1\"\"}\",\n       128,         0,        94,   0.011,pymatching,28510ce718d1ec753cd9913271eda5f4af1c9fad398783170a889eab73882b8c,\"{\"\"T_before_grow\"\":2,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t1\"\"}\",\n"
+    },
+    "offline-t2": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"offline-t2\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t2\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 146,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 2.207250125007704,\n  \"outputs_sha256\": {\n    \"000.dem\": \"9463acaee9a99d8675a0f1a0cb46c1acedafb0e2a44b66423ed7f3ae57831d32\",\n    \"000.stim\": \"2210f122894c27b2ea392e3adb22c0a24431b9907bad755a63e15bde503724cf\",\n    \"001.dem\": \"4d64e9ff6945fe792db1bc98dd09050388a78b8790a4851241062982276c3a2b\",\n    \"001.stim\": \"a3e74bd8dd85a6a5e29672a4a01e015942c2d27176debb94568a1d3af3f45dd4\",\n    \"stats.csv\": \"9333dc90fa73647a0dbf7f59d15e1c620447368941b0fbef6a06633d4d567afe\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        57,   0.346,pymatching,70979d96f9bdcc18dbe5bed36c44807ab2b1cd14debb1cc138db73c0c9b558e7,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":0,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t2\"\"}\",\n       128,         0,        89,   0.011,pymatching,85a11d8f7655fc018e1a237a5a6a0945b1e3c78a33252d06523e3640415e4c82,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t2\"\"}\",\n"
+    },
+    "online-bposd": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"online\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"bposd\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 0,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.7563256660068873,\n  \"outputs_sha256\": {\n    \"000.dem\": \"1ff84e20b71ef1ce43ad2d9097c0419dd40ed8897a35500699ad9f90699d7bb8\",\n    \"000.stim\": \"fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe\",\n    \"001.dem\": \"4e0de3e5b3115ff7c7e06368839bc0b0e7fa12c91408c3ee1c4a807ac5f9cd7c\",\n    \"001.stim\": \"a6c4463d0b3ea04f1b34f1b911e29c9b6749c51861d53fb77121b21381e6a975\",\n    \"stats.csv\": \"3e3893d4c321aecb8ceaf62cc6138888bd0b2dd15558fc664604d1386d6c94e5\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,         0,   0.175,bposd,a9bef174465775c7895fb79d3b101d4af4bec6723382f2cd2572940fe5865225,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":2}\",\n       128,         0,         0,   0.005,bposd,6589a2cbd54440182fd9667440d25cf2cee32a6f1e2af97ad74d35f9503c5551,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":1}\",\n"
+    },
+    "online-ip": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"online\",\n    \"smoke\": true,\n    \"shots\": 8,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"ip\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"NumPy PCG64/Stim seeded\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 16,\n  \"discards\": 0,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.046577041997807,\n  \"outputs_sha256\": {\n    \"000.dem\": \"1ff84e20b71ef1ce43ad2d9097c0419dd40ed8897a35500699ad9f90699d7bb8\",\n    \"000.stim\": \"fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe\",\n    \"001.dem\": \"4e0de3e5b3115ff7c7e06368839bc0b0e7fa12c91408c3ee1c4a807ac5f9cd7c\",\n    \"001.stim\": \"a6c4463d0b3ea04f1b34f1b911e29c9b6749c51861d53fb77121b21381e6a975\",\n    \"stats.csv\": \"862d7e9216d2b6df01984afbb7da74ecc96763940aacc5ffdaf6f5d78500a856\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n         8,         0,         0,   0.121,ip,2db4c6bfaf77b69b47057e5b9edb3a7cfd7ff6b81873b7f779c1c9aaacbeac83,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":2}\",\n         8,         0,         0,   0.020,ip,6b364d5e841d4b1d06054f2b6648f33f895b17f391a010110163a629314b4bb8,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":1}\",\n"
+    },
+    "online-legacy-bposd": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"online-legacy-error\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"bposd\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-legacy-bposd\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 0,\n  \"errors\": 3,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.7686693330178969,\n  \"outputs_sha256\": {\n    \"000.dem\": \"21773eb4371acaaf7e16a04cba386670edb0b39bac13f88e5152fc5bbae12f7a\",\n    \"000.stim\": \"06cca032c779d2dd2d25e4cbb61406e8fce1ad7b8172649c6fb211fe96462dd9\",\n    \"001.dem\": \"29bc7f15319a183e96f6173f30e77d83d7b49446651063bd35e5ccac1e44871d\",\n    \"001.stim\": \"5716b82d2d3fc38c697d35ee791092696b71a85ec897e34b878c7391dfee8bed\",\n    \"stats.csv\": \"ee97e609b26754be9313badee71b65b4f5d333ebacc158a26397b2c4fb6cb1ed\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         3,         0,   0.279,bposd,e18b892234ffde2dc292792f532d87f616c77a210311488167b388b9b7b3afd2,\"{\"\"T\"\":6,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-legacy-error\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":7}\",\n       128,         0,         0,   0.033,bposd,dcd742fbedc5093218a767efdf43d94d3122994d0b275ee53c93b5c339f9caa0,\"{\"\"T\"\":6,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-legacy-error\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":6}\",\n"
+    },
+    "online-mwpm": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"online\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 0,\n  \"errors\": 3,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.0597855419910047,\n  \"outputs_sha256\": {\n    \"000.dem\": \"3322988fc50f80a4791e9afb44701649f3e9b473ccb471013de5167dfa343c4c\",\n    \"000.stim\": \"fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe\",\n    \"001.dem\": \"59d78bceccda11843b767a597418c14e149d003e13ea3f679eb0ce7074419fcb\",\n    \"001.stim\": \"a6c4463d0b3ea04f1b34f1b911e29c9b6749c51861d53fb77121b21381e6a975\",\n    \"stats.csv\": \"05691480cdf8f03ba8ff7c8cfd3651390f917fceed64fd3e5e82af7286b775bd\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         3,         0,   0.004,pymatching,dd581e4e57fc966ce1700b3eaa79f427ea7201b7459f018b3d6508a8af52fef2,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":2}\",\n       128,         0,         0,   0.212,pymatching,491b69fea01a7b86ce033fb04789b625cdf75e4dc09fb36c5ea82c31a0fb6780,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":1}\",\n"
+    },
+    "online-time": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"online-time\",\n    \"smoke\": true,\n    \"shots\": 128,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-time\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"sinter 1.13 sampling is unseeded; statistical reproducibility only\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"tasks\": 2,\n  \"shots\": 256,\n  \"discards\": 0,\n  \"errors\": 0,\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 1.0225900830118917,\n  \"outputs_sha256\": {\n    \"000.dem\": \"3322988fc50f80a4791e9afb44701649f3e9b473ccb471013de5167dfa343c4c\",\n    \"000.stim\": \"fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe\",\n    \"001.dem\": \"b5e8cbe142148bfbfe3c05405aef09b5b4bd1de61168d588868828131c45714d\",\n    \"001.stim\": \"0cff82bea19b283bc7f389a0ff8019c3b4f2cb24e283464a8c7c626f8ef503d6\",\n    \"stats.csv\": \"4eb45b81e23abd6d913c821e929700cde0bca7ef17dca4c5173dd418d1d9a443\"\n  }\n}\n",
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,         0,   0.227,pymatching,990b2453d2d7e7a7c0549b57905573d00ec2fa375b583c1ef02f14adeca6869d,\"{\"\"T\"\":10,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-time\"\",\"\"t_round\"\":1}\",\n       128,         0,         0,   0.003,pymatching,d6c03a2363deb3757d2d518ca147d076fc983bc9a22c262f642ed7f92b870c00,\"{\"\"T\"\":10,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-time\"\",\"\"t_round\"\":9}\",\n"
+    },
+    "published-replot": {
+      "sources.json": "{\n  \"operation\": \"Replot existing tables; no fresh simulation or statistical validation\",\n  \"input_sha256\": {\n    \"fig12a.csv\": \"8f9a555abbd17a6c67d6bcd2d7501afb2f00d6b409f4373210aad60b61d8c443\",\n    \"fig12b.csv\": \"8ba8ddd00cd47a614f2137957086ba0472326e05d728589d0d660d3791290609\",\n    \"fig13a_ungrown.csv\": \"f580102ed3900ecb0e6c0d34bb8ee0be1a80c69ceb4e9cff1affda290b0a4e4e\",\n    \"fig13b.csv\": \"9a326c3d36c3cf4b92440b3cdf1cc5eff86a16a5a049610bf1bcc1fc4a21e2cc\",\n    \"fig14.csv\": \"83cbf63ae74e127f4f5676c82bc2e42e0483dd18537d2b22b6b7fc2e36327065\",\n    \"fig3a&11.csv\": \"b5e93763c6d4bd09d2848e21b10f3e41e756ad2600c1b82228b3d5274711b85f\",\n    \"fig3b&13a_grown.csv\": \"179a00c2712f0a7cf492f7cad82f7cfc9b35885841d042dab0ed8f5ecad5a62f\"\n  }\n}\n"
+    },
+    "ts-legacy": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"ts\",\n    \"smoke\": true,\n    \"shots\": 2,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"legacy\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-legacy\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"NumPy PCG64/Stim seeded\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 0.0964651669783052,\n  \"outputs_sha256\": {\n    \"ts.json\": \"90c3f2a2f4ee5c1a3bad2b75fb844f16368a8ca7d73f2e5a33f8713aaf7b813d\"\n  }\n}\n",
+      "ts.json": "[\n  {\n    \"p\": 0.001,\n    \"gate\": \"S\",\n    \"mode\": \"legacy\",\n    \"trajectories\": 2,\n    \"discard\": 0.004069740204601546,\n    \"logical_error\": 2.731710802006404e-09,\n    \"trajectory_variance\": 5.060433952088095e-18\n  },\n  {\n    \"p\": 0.001,\n    \"gate\": \"T\",\n    \"mode\": \"legacy\",\n    \"trajectories\": 2,\n    \"discard\": 0.002036369878169464,\n    \"logical_error\": 3.407266691013433e-10,\n    \"trajectory_variance\": 7.868826042684082e-20\n  }\n]\n"
+    },
+    "ts-probability": {
+      "run.json": "{\n  \"arguments\": {\n    \"experiment\": \"ts\",\n    \"smoke\": true,\n    \"shots\": 2,\n    \"max_errors\": null,\n    \"workers\": 1,\n    \"decoder\": \"pymatching\",\n    \"p\": null,\n    \"seed\": 20260913,\n    \"ip_timeout\": 30,\n    \"ts_mode\": \"probability\",\n    \"output\": \"/Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-probability\"\n  },\n  \"python\": \"3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]\",\n  \"platform\": \"macOS-26.5.1-arm64-arm-64bit\",\n  \"packages\": {\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.15.3\",\n    \"stim\": \"1.15.0\",\n    \"sinter\": \"1.13.0\",\n    \"pymatching\": \"2.3.0\",\n    \"galois\": \"0.4.6\",\n    \"stimbposd\": \"0.2.0\",\n    \"ldpc\": \"2.4.1\"\n  },\n  \"git_commit\": \"85e6afb563e1904ed0d42b68525fb9d0d65edb68\",\n  \"git_status\": \"?? pytest.ini\\n?? validation/circuit-comparison.txt\\n?? validation/final/\\n?? validation/verified/\",\n  \"source_sha256\": {\n    \"reproduction/__init__.py\": \"d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7\",\n    \"reproduction/dem.py\": \"22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d\",\n    \"reproduction/experiments.py\": \"7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc\",\n    \"reproduction/ip.py\": \"66c91c2f30e3edcfebec580de59adb27bfd49659b519320d46c6a0e9b07c745f\",\n    \"reproduction/plot.py\": \"8b63a0c957e71a6313b8ccabbacbcebb989aed9fc78bcf138394e91164b397b1\",\n    \"reproduction/published.py\": \"b9243fe04f04c99368350bb38b561c66bc4597a8a8ba0ada083ada08ee8d8d64\",\n    \"reproduction/run.py\": \"5a0ee073b44e70a1e7c1f753cfc478ae62341e64afdf285aff9797da34be5212\",\n    \"data_collection/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"data_collection/src/magic.py\": \"b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8\",\n    \"data_collection/src/magicd2.py\": \"2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21\",\n    \"data_collection/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"data_collection/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"data_collection/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"no_grow/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"no_grow/src/magic.py\": \"b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9\",\n    \"no_grow/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"no_grow/src/surface_code.py\": \"841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec\",\n    \"no_grow/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"online/src/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"online/src/magic.py\": \"2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f\",\n    \"online/src/qrm.py\": \"a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4\",\n    \"online/src/surface_code.py\": \"46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c\",\n    \"online/src/surgery.py\": \"21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2\",\n    \"TS/__init__.py\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n    \"TS/qrm_state.py\": \"c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542\"\n  },\n  \"randomness\": \"NumPy PCG64/Stim seeded\",\n  \"non_claim\": \"Smoke execution does not reproduce rare-event rates, error bars, or scaling exponents.\",\n  \"status\": \"completed\",\n  \"elapsed_seconds\": 0.09292366699082777,\n  \"outputs_sha256\": {\n    \"ts.json\": \"9f4a7b0fec06a1e5dd241f09690fb17bddbb502db509554dc411976cb0bad29b\"\n  }\n}\n",
+      "ts.json": "[\n  {\n    \"p\": 0.001,\n    \"gate\": \"S\",\n    \"mode\": \"probability\",\n    \"trajectories\": 2,\n    \"discard\": 0.008120660200243546,\n    \"logical_error\": 5.449846951269655e-09,\n    \"trajectory_variance\": 2.0241737306847625e-17\n  },\n  {\n    \"p\": 0.001,\n    \"gate\": \"T\",\n    \"mode\": \"probability\",\n    \"trajectories\": 2,\n    \"discard\": 0.004068027181390876,\n    \"logical_error\": 6.806075742155573e-10,\n    \"trajectory_variance\": 3.147526057007393e-19\n  }\n]\n"
+    }
+  },
+  "logs": {
+    "dem-gen.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nGenerated and decoded 2 DEMs: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/dem-gen\n",
+    "dem-sweep.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nGenerated and decoded 2 DEMs: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/dem-sweep\n",
+    "distance-full-grid.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted offline-distance: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/distance-full-grid\n",
+    "invariants.log": "test_circuit_noiseless (test_invariants.Invariants.test_circuit_noiseless) ... OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nok\ntest_ip_against_exhaustive (test_invariants.Invariants.test_ip_against_exhaustive) ... ok\ntest_ip_timeout_is_failure (test_invariants.Invariants.test_ip_timeout_is_failure) ... ok\ntest_ts_accepted_weighting (test_invariants.Invariants.test_ts_accepted_weighting) ... ok\ntest_ts_born_probabilities (test_invariants.Invariants.test_ts_born_probabilities) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 8.453s\n\nOK\n",
+    "no-grow-error-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-error.png\n",
+    "no-grow-error.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted no-grow-error: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-error\n",
+    "no-grow-t1-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-t1.png\n",
+    "no-grow-t1.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted no-grow-t1: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/no-grow-t1\n",
+    "offline-distance-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-distance.png\n",
+    "offline-distance.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted offline-distance: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-distance\n",
+    "offline-error-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-error.png\n",
+    "offline-error.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted offline-error: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-error\n",
+    "offline-maintain-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-maintain.png\n",
+    "offline-maintain.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted offline-maintain: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-maintain\n",
+    "offline-t1-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t1.png\n",
+    "offline-t1.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted offline-t1: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t1\n",
+    "offline-t2-plot.log": "Matplotlib is building the font cache; this may take a moment.\nPlot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t2.png\n",
+    "offline-t2.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted offline-t2: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/offline-t2\n",
+    "online-bposd-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd.png\n",
+    "online-bposd.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted online: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-bposd\n",
+    "online-comparison.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-comparison.png\n",
+    "online-ip-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip.png\n",
+    "online-ip.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted online: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-ip\n",
+    "online-legacy-bposd-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-legacy-bposd.png\n",
+    "online-legacy-bposd.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted online-legacy-error: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-legacy-bposd\n",
+    "online-mwpm-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm.png\n",
+    "online-mwpm.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted online: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-mwpm\n",
+    "online-time-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-time.png\n",
+    "online-time.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nCompleted online-time: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/online-time\n",
+    "published-ids.log": "OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.\nPASS: fig3b&13a_grown.csv: 10 strong IDs\nPASS: fig12a.csv: 10 strong IDs\nPASS: fig12b.csv: 9 strong IDs\nPASS: fig13b.csv: 5 strong IDs\nPASS: fig13a_ungrown.csv: 10 strong IDs\nPASS: all 44 historical offline task IDs match; this authenticates task inputs, not sampled counts.\n",
+    "published-replot.log": "Replotted five historical figures in /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/published-replot\n",
+    "ts-legacy-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-legacy.png\n",
+    "ts-legacy.log": "Completed ts: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-legacy\n",
+    "ts-probability-plot.log": "Plot: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-probability.png\n",
+    "ts-probability.log": "Completed ts: /Users/wangyifei/Documents/Research/2410_magic_injection/numerics/results/verified-smoke/ts-probability\n"
+  }
+}

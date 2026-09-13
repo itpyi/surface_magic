@@ -99,12 +99,15 @@ def transversal_gate(gate, ket):
         ket = gate_on_site(gate, i, ket)
     return ket
 
-def noise_layer(ket, p, type):
+def noise_layer(ket, p, type, rng=None):
+    if not 0 <= p < 0.5:
+        raise ValueError("Random-rotation noise requires 0 <= p < 0.5")
+    rng = np.random if rng is None else rng
     for i in range(15):
         theta = 0
         if not p == 0:
             sigma = np.sqrt(-2*np.log(1-2*p))
-            theta = np.random.normal(0, sigma)
+            theta = rng.normal(0, sigma)
         if type == 'X':
             gate = rotation_X(theta)
         elif type == 'Z':
@@ -114,7 +117,9 @@ def noise_layer(ket, p, type):
         ket = gate_on_site(gate, i, ket)
     return ket
 
-def X_measurement_postselected(ket):
+def X_measurement_postselected(ket, mode="legacy"):
+    if mode not in ("legacy", "probability"):
+        raise ValueError("mode must be legacy or probability")
     X_stabilizer = tensor_product([GATE_X]*8)
     Id = tensor_product([GATE_I]*8)
     X_stabilizer_proj = (Id+X_stabilizer)/2
@@ -134,17 +139,19 @@ def X_measurement_postselected(ket):
         check = [c - 1 for c in check]
         ket = gate_on_site(X_stabilizer_proj, check, ket)
     
-    ps_rate = norm(ket)
+    ps_rate = norm(ket) ** (2 if mode == "probability" else 1)
     dscd_rate = 1 - ps_rate
 
     ket = gate_on_site(X_logical_proj, [i for i in range(7)], ket)
 
-    err_rate = 1 - norm(ket) / ps_rate if ps_rate > 0 else 0
+    err_rate = 1 - norm(ket) ** (2 if mode == "probability" else 1) / ps_rate if ps_rate > 0 else 0
 
     return dscd_rate, err_rate
 
 
-def circuit_simulation(p, gate_type):
+def circuit_simulation(p, gate_type, rng=None, mode="legacy"):
+    if gate_type not in ("S", "T"):
+        raise ValueError("gate_type must be S or T")
     gate = GATE_T
     gate_dag = GATE_T_DAG
     if gate_type == 'S':
@@ -153,11 +160,11 @@ def circuit_simulation(p, gate_type):
     
     ket = qrm_initialization()
     ket = transversal_gate(gate, ket)
-    ket = noise_layer(ket, p, 'X')
+    ket = noise_layer(ket, p, 'X', rng=rng)
     ket = transversal_gate(gate_dag, ket)
     # ket = noise_layer(ket, p, 'Z')
 
-    dscd_rate, err_rate = X_measurement_postselected(ket)
+    dscd_rate, err_rate = X_measurement_postselected(ket, mode=mode)
 
     return dscd_rate, err_rate
 
@@ -172,15 +179,19 @@ def circuit_simulation(p, gate_type):
 #     variance = np.average((values-average)**2, weights=weights)
 #     return (average, np.sqrt(variance))
 
-def experiment(N, p, type):
+def experiment(N, p, type, seed=None, mode="legacy"):
+    if N < 1:
+        raise ValueError("N must be positive")
+    rng = np.random.default_rng(seed)
     dscd_rate_list, err_rate_list = [], []
     for i in range(N):
-        dscd_rate, err_rate = circuit_simulation(p, type)
+        dscd_rate, err_rate = circuit_simulation(p, type, rng=rng, mode=mode)
         dscd_rate_list.append(dscd_rate)
         err_rate_list.append(err_rate)
 
     dscd_rate = np.mean(dscd_rate_list)
-    err_rate = np.mean(err_rate_list)
+    err_rate = (np.average(err_rate_list, weights=1 - np.array(dscd_rate_list))
+                if mode == "probability" else np.mean(err_rate_list))
     err_var = np.var(err_rate_list)
 
     return dscd_rate, err_rate, err_var
