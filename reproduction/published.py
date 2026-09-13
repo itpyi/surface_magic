@@ -1,4 +1,4 @@
-"""Replot existing publication tables, without rerunning or relabeling simulations."""
+"""Replot the data tables used in the published figures."""
 import argparse
 import csv
 import hashlib
@@ -36,8 +36,8 @@ def main():
         fig.savefig(args.output/(name+'.png'), dpi=180)
         plt.close(fig)
     fig, ax = plt.subplots(1, 2, figsize=(11, 4))
-    stat_plot(ax[0], 'fig12a.csv', 'T_PS_GROW', 't2 sweep (historical)')
-    stat_plot(ax[1], 'fig12b.csv', 'T_BEFORE_GROW', 't1 sweep (historical)')
+    stat_plot(ax[0], 'fig12a.csv', 'T_PS_GROW', 't2 sweep')
+    stat_plot(ax[1], 'fig12b.csv', 'T_BEFORE_GROW', 't1 sweep')
     save(fig, 'postselection')
     fig, ax = plt.subplots(1, 2, figsize=(11, 4))
     for filename, label in [('fig13a_ungrown.csv', 'Ungrown'), ('fig3b&13a_grown.csv', 'Grown')]:
@@ -53,7 +53,7 @@ def main():
     ax[1].set_ylabel('Discard fraction')
     save(fig, 'grown-comparison')
     fig, ax = plt.subplots(figsize=(6, 4))
-    stat_plot(ax, 'fig13b.csv', 'd', 'Second growth (historical)')
+    stat_plot(ax, 'fig13b.csv', 'd', 'Second growth')
     save(fig, 'distance')
     with (DATA/'fig3a&11.csv').open() as f:
         rows = list(csv.DictReader(f))
@@ -78,15 +78,15 @@ def main():
         ax[1].plot(x, [float(r[gate+'_ps']) for r in rows], 'o-', label=gate)
     for a in ax:
         a.set_xscale('log'); a.set_xlabel('Physical error rate'); a.legend()
-    ax[0].set_yscale('log'); ax[0].set_ylabel('Historical logical error estimator')
-    ax[1].set_ylabel('Historical discard estimator')
-    fig.suptitle('S/T: archived values, legacy norm convention')
+    ax[0].set_yscale('log'); ax[0].set_ylabel('Original logical error estimate')
+    ax[1].set_ylabel('Original discard estimate')
+    fig.suptitle('S/T comparison: original Fig. 14 estimates')
     save(fig, 'ts-historical')
     (args.output/'sources.json').write_text(json.dumps({
-        'operation':'Replot existing tables; no fresh simulation or statistical validation',
+        'operation':'Replot the published data tables',
         'input_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(DATA.glob('*.csv'))}
     }, indent=2)+'\n')
-    print(f'Replotted five historical figures in {args.output}')
+    print(f'Replotted five figures from the published data in {args.output}')
 
 if __name__ == '__main__':
     main()

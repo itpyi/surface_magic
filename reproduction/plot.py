@@ -1,4 +1,4 @@
-"""Plot fresh run outputs; zero-error samples get Wilson intervals, not log fits."""
+"""Plot simulation results with Wilson intervals for binomial counts."""
 import argparse
 import json
 import os
@@ -64,7 +64,7 @@ def main(argv=None):
                     lows.append(after[1]-before[2]); highs.append(after[2]-before[1])
                 axes[0].errorbar(xs, ys, yerr=[np.array(ys)-lows, np.array(highs)-ys], fmt='o-', label=decoder)
                 axes[0].axhline(0, color='gray', lw=.5)
-                axes[1].text(.5, .5, 'Online: no postselection\nDifference = after − before', ha='center', va='center', transform=axes[1].transAxes)
+                axes[1].text(.5, .5, 'Online: all shots retained\nDifference = after − before', ha='center', va='center', transform=axes[1].transAxes)
             else:
                 rows = sorted(rows, key=lambda r:r.json_metadata[xkey])
                 xs = [r.json_metadata[xkey] for r in rows]
@@ -81,7 +81,7 @@ def main(argv=None):
         ax.grid(alpha=.2)
         if ax.get_legend_handles_labels()[0]:
             ax.legend(fontsize=8)
-    fig.suptitle(' / '.join(names)+' — finite samples; no scaling fit')
+    fig.suptitle(' / '.join(names)+' — sampled estimates')
     fig.tight_layout()
     fig.savefig(args.output, dpi=160)
     plt.close(fig)

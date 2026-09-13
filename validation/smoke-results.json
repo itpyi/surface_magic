@@ -1,0 +1,1649 @@
+{
+  "description": "Small-sample verification after repository cleanup. Commands and output paths are relative to the repository directory. Source checksums identify the tested simulation files.",
+  "commands": [
+    {
+      "name": "invariants",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "checks",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 9.5310703330033
+    },
+    {
+      "name": "published-ids",
+      "command": [
+        "python",
+        "-m",
+        "checks.published_ids"
+      ],
+      "exit_code": 0,
+      "seconds": 84.7711731250165
+    },
+    {
+      "name": "offline-t2",
+      "command": [
+        "python",
+        "data_collection/sweep_ps/T_ps_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/offline-t2"
+      ],
+      "exit_code": 0,
+      "seconds": 2.9401635410031304
+    },
+    {
+      "name": "offline-t2-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/offline-t2",
+        "--output",
+        "results/reader-final-smoke/offline-t2.png"
+      ],
+      "exit_code": 0,
+      "seconds": 14.331887707987335
+    },
+    {
+      "name": "offline-t1",
+      "command": [
+        "python",
+        "data_collection/sweep_bfg/T_bfg_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/offline-t1"
+      ],
+      "exit_code": 0,
+      "seconds": 3.211687000002712
+    },
+    {
+      "name": "offline-t1-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/offline-t1",
+        "--output",
+        "results/reader-final-smoke/offline-t1.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5150400830025319
+    },
+    {
+      "name": "offline-maintain",
+      "command": [
+        "python",
+        "data_collection/sweep_maintain/T_main_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/offline-maintain"
+      ],
+      "exit_code": 0,
+      "seconds": 3.1012622080161236
+    },
+    {
+      "name": "offline-maintain-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/offline-maintain",
+        "--output",
+        "results/reader-final-smoke/offline-maintain.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5117094169836491
+    },
+    {
+      "name": "offline-distance",
+      "command": [
+        "python",
+        "data_collection/sweep_d/sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/offline-distance"
+      ],
+      "exit_code": 0,
+      "seconds": 3.11719424999319
+    },
+    {
+      "name": "offline-distance-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/offline-distance",
+        "--output",
+        "results/reader-final-smoke/offline-distance.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5024622500059195
+    },
+    {
+      "name": "offline-error",
+      "command": [
+        "python",
+        "data_collection/sweep_err/err_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/offline-error"
+      ],
+      "exit_code": 0,
+      "seconds": 2.0830227499827743
+    },
+    {
+      "name": "offline-error-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/offline-error",
+        "--output",
+        "results/reader-final-smoke/offline-error.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5120411670068279
+    },
+    {
+      "name": "no-grow-t1",
+      "command": [
+        "python",
+        "no_grow/sweep_ps/sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/no-grow-t1"
+      ],
+      "exit_code": 0,
+      "seconds": 1.9778443329851143
+    },
+    {
+      "name": "no-grow-t1-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/no-grow-t1",
+        "--output",
+        "results/reader-final-smoke/no-grow-t1.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5125677080068272
+    },
+    {
+      "name": "no-grow-error",
+      "command": [
+        "python",
+        "no_grow/sweep_err/err_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/no-grow-error"
+      ],
+      "exit_code": 0,
+      "seconds": 1.6020791249757167
+    },
+    {
+      "name": "no-grow-error-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/no-grow-error",
+        "--output",
+        "results/reader-final-smoke/no-grow-error.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5038860409986228
+    },
+    {
+      "name": "online-time",
+      "command": [
+        "python",
+        "online/sweep_t/sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/online-time"
+      ],
+      "exit_code": 0,
+      "seconds": 1.638321791018825
+    },
+    {
+      "name": "online-time-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/online-time",
+        "--output",
+        "results/reader-final-smoke/online-time.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5038075000047684
+    },
+    {
+      "name": "online-legacy-bposd",
+      "command": [
+        "python",
+        "online/sweep_err/err_sweep.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/online-legacy-bposd"
+      ],
+      "exit_code": 0,
+      "seconds": 2.4321924160176422
+    },
+    {
+      "name": "online-legacy-bposd-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/online-legacy-bposd",
+        "--output",
+        "results/reader-final-smoke/online-legacy-bposd.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5078156249946915
+    },
+    {
+      "name": "online-mwpm",
+      "command": [
+        "python",
+        "online/ip_decoder/sweept1.py",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/online-mwpm"
+      ],
+      "exit_code": 0,
+      "seconds": 1.686130249989219
+    },
+    {
+      "name": "online-mwpm-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/online-mwpm",
+        "--output",
+        "results/reader-final-smoke/online-mwpm.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5005157919949852
+    },
+    {
+      "name": "online-bposd",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.run",
+        "online",
+        "--decoder",
+        "bposd",
+        "--smoke",
+        "--shots",
+        "128",
+        "--output",
+        "results/reader-final-smoke/online-bposd"
+      ],
+      "exit_code": 0,
+      "seconds": 2.3984383750066627
+    },
+    {
+      "name": "online-bposd-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/online-bposd",
+        "--output",
+        "results/reader-final-smoke/online-bposd.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5077020419994369
+    },
+    {
+      "name": "online-ip",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.run",
+        "online",
+        "--decoder",
+        "ip",
+        "--smoke",
+        "--shots",
+        "8",
+        "--output",
+        "results/reader-final-smoke/online-ip"
+      ],
+      "exit_code": 0,
+      "seconds": 1.652423416991951
+    },
+    {
+      "name": "online-ip-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/online-ip",
+        "--output",
+        "results/reader-final-smoke/online-ip.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5070445419987664
+    },
+    {
+      "name": "ts-legacy",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.run",
+        "ts",
+        "--smoke",
+        "--shots",
+        "2",
+        "--output",
+        "results/reader-final-smoke/ts-legacy"
+      ],
+      "exit_code": 0,
+      "seconds": 0.6706540420127567
+    },
+    {
+      "name": "ts-legacy-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/ts-legacy",
+        "--output",
+        "results/reader-final-smoke/ts-legacy.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5142216249951161
+    },
+    {
+      "name": "ts-probability",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.run",
+        "ts",
+        "--ts-mode",
+        "probability",
+        "--smoke",
+        "--shots",
+        "2",
+        "--output",
+        "results/reader-final-smoke/ts-probability"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7275434999901336
+    },
+    {
+      "name": "ts-probability-plot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/ts-probability",
+        "--output",
+        "results/reader-final-smoke/ts-probability.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5076577080180869
+    },
+    {
+      "name": "dem-gen",
+      "command": [
+        "python",
+        "online/ip_decoder/dem_gen.py",
+        "--smoke",
+        "--shots",
+        "8",
+        "--output",
+        "results/reader-final-smoke/dem-gen"
+      ],
+      "exit_code": 0,
+      "seconds": 1.4316496669780463
+    },
+    {
+      "name": "dem-sweep",
+      "command": [
+        "python",
+        "online/ip_decoder/sweep_dem.py",
+        "--decoder",
+        "bposd",
+        "--smoke",
+        "--shots",
+        "8",
+        "--output",
+        "results/reader-final-smoke/dem-sweep"
+      ],
+      "exit_code": 0,
+      "seconds": 1.581861167011084
+    },
+    {
+      "name": "online-comparison",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.plot",
+        "results/reader-final-smoke/online-mwpm",
+        "results/reader-final-smoke/online-bposd",
+        "results/reader-final-smoke/online-ip",
+        "--output",
+        "results/reader-final-smoke/online-comparison.png"
+      ],
+      "exit_code": 0,
+      "seconds": 0.5084229999920353
+    },
+    {
+      "name": "distance-full-grid",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.run",
+        "offline-distance",
+        "--shots",
+        "8",
+        "--output",
+        "results/reader-final-smoke/distance-full-grid"
+      ],
+      "exit_code": 0,
+      "seconds": 7.721929249993991
+    },
+    {
+      "name": "published-replot",
+      "command": [
+        "python",
+        "-m",
+        "reproduction.published",
+        "--output",
+        "results/reader-final-smoke/published-replot"
+      ],
+      "exit_code": 0,
+      "seconds": 1.5342805410036817
+    }
+  ],
+  "runs": {
+    "dem-gen": {
+      "dem-stats.json": [
+        {
+          "name": "000-before",
+          "decoder": "ip",
+          "shots": 8,
+          "seed": 20260913,
+          "errors": 0
+        },
+        {
+          "name": "001-after",
+          "decoder": "ip",
+          "shots": 8,
+          "seed": 20260914,
+          "errors": 0
+        }
+      ]
+    },
+    "dem-sweep": {
+      "dem-stats.json": [
+        {
+          "name": "000-before",
+          "decoder": "bposd",
+          "shots": 8,
+          "seed": 20260913,
+          "errors": 0
+        },
+        {
+          "name": "001-after",
+          "decoder": "bposd",
+          "shots": 8,
+          "seed": 20260914,
+          "errors": 0
+        }
+      ]
+    },
+    "distance-full-grid": {
+      "run.json": {
+        "arguments": {
+          "experiment": "offline-distance",
+          "smoke": false,
+          "shots": 8,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/distance-full-grid"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 5,
+        "shots": 40,
+        "discards": 31,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 7.092421417008154,
+        "outputs_sha256": {
+          "000.dem": "79668c95a9475cb47f4f06dac996d62e676f969bc552ddefa62fdafec11ba921",
+          "000.stim": "5d14534b38a6fea8b362e407e4b187179e5891f488686163e852b299412aa3a7",
+          "001.dem": "206b490d6f63da48de0ca6e2fa71b8648424f1ed56bee1f8373a94723f1da7ef",
+          "001.stim": "4fa6c9c516fc7f1137ca0c6107f308f43e409dc506db180e98c5e9d8c4ac59fe",
+          "002.dem": "e13e2b9890fcc32564998da3b84a15a09b88f1c9809602c7b163fd2026b0a328",
+          "002.stim": "01367e20ff298d6df5e9614c78ed309b921569d3585249ffc73cee5b584a6fb1",
+          "003.dem": "1bfee0fd1ebca229cb71ca797666700721b541ebd81a2188dadcc8dc7bfa71af",
+          "003.stim": "4f6d72477fcc12d374479a748f73999709d0026d51d00d1c38770a1389d030e8",
+          "004.dem": "d80d706c9807d59ebf52efb2974505207866a0cacd4136b51835b74587f311b7",
+          "004.stim": "ad4fd59830df31291c671f441f83c860ef7df58daf064124bc87374bf0f50c8b",
+          "stats.csv": "27d2a21273bbce10836351d058407fc003782e1e7c5bd02997fa007a7a449061"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n         8,         0,         6,   0.008,pymatching,98dd89b9bcb4fca0899921f6ee0ce3adf22d278c6b79e63ffc5ff32bd0392ab3,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":11,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         5,   0.009,pymatching,39fc9da51661d2a92ef4aa57dc49ad853e255a0fb73a75897a4a20fc84aa36a9,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":13,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         7,   0.010,pymatching,06cfec8d4936aeb734611ad4b3fb7f99644f5e8d6af2b9ab6c4c0a81ab996c3e,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":15,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         8,   0.151,pymatching,497911beba0917b9dfab7a79c41746c1ef5ccbdc3d356045bc610cd93f800857,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":7,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n         8,         0,         5,   0.008,pymatching,41d2dc3645f2d36384fdf7896eed06b30c104fb4d5538499e94706b752e63fe2,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":9,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n"
+    },
+    "no-grow-error": {
+      "run.json": {
+        "arguments": {
+          "experiment": "no-grow-error",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/no-grow-error"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 1,
+        "shots": 128,
+        "discards": 48,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 0.9860902499931399,
+        "outputs_sha256": {
+          "000.dem": "0fdb01775ff4b6025f3a99376dbb2d5a8b05eb6b76f7e981a6d539ab25a761fc",
+          "000.stim": "fa1b46d331a75ab687f27214c9573a9845658eff196d886df5fa8ecac720ac9f",
+          "stats.csv": "4bfa88861374464e493bc071fe94d47a6d34478adefa6e51ab4142d3ad3e68ac"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        48,   0.219,pymatching,804fb84b411f7385ae3649741fcd97b9c379d3b6116e4c742dbfedd918b5ff0a,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"no-grow-error\"\"}\",\n"
+    },
+    "no-grow-t1": {
+      "run.json": {
+        "arguments": {
+          "experiment": "no-grow-t1",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/no-grow-t1"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 123,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 1.347040124994237,
+        "outputs_sha256": {
+          "000.dem": "d6d0c8826d3a8f3a65f784c7ee1ea90fa75148bea813b3774048a81bc539bc7b",
+          "000.stim": "119e786cb49082c2f0e577e0c234ddbbf068c7be5bdfc06c22512dff1756fc8a",
+          "001.dem": "b331bc011187f8bff02a5ad1b8c7d5776aade46e4122a520a3811f374ac56594",
+          "001.stim": "e29699ca2264f9dcba3b6626c56a6a314438d436d99dd1c1768ccbfff70950cb",
+          "stats.csv": "3568391c95109d0516c62ed6518413f057d4297eda1c3042eb081dd4b81f33cb"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        64,   0.222,pymatching,b5ce8f856e7816d06bfc9b19b9218732e28f6e2add5e4ffd453dac7cb94bd96e,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"no-grow-t1\"\"}\",\n       128,         0,        59,   0.005,pymatching,45f58e4359c370eae6311112a3b93c87c7883e4a53e3f1f430fd9f4452ce6e8a,\"{\"\"T_before_grow\"\":2,\"\"T_lat_surg\"\":3,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"no-grow-t1\"\"}\",\n"
+    },
+    "offline-distance": {
+      "run.json": {
+        "arguments": {
+          "experiment": "offline-distance",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/offline-distance"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 184,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 2.4731773329840507,
+        "outputs_sha256": {
+          "000.dem": "79668c95a9475cb47f4f06dac996d62e676f969bc552ddefa62fdafec11ba921",
+          "000.stim": "5d14534b38a6fea8b362e407e4b187179e5891f488686163e852b299412aa3a7",
+          "001.dem": "206b490d6f63da48de0ca6e2fa71b8648424f1ed56bee1f8373a94723f1da7ef",
+          "001.stim": "4fa6c9c516fc7f1137ca0c6107f308f43e409dc506db180e98c5e9d8c4ac59fe",
+          "stats.csv": "55a386fea0b946bdb8d484544b54c198f472c6a46a9f88b1a406ca4328be8b09"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        97,   0.231,pymatching,497911beba0917b9dfab7a79c41746c1ef5ccbdc3d356045bc610cd93f800857,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":7,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n       128,         0,        87,   0.015,pymatching,41d2dc3645f2d36384fdf7896eed06b30c104fb4d5538499e94706b752e63fe2,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"d2\"\":9,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-distance\"\"}\",\n"
+    },
+    "offline-error": {
+      "run.json": {
+        "arguments": {
+          "experiment": "offline-error",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/offline-error"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 1,
+        "shots": 128,
+        "discards": 96,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 1.4369651660090312,
+        "outputs_sha256": {
+          "000.dem": "4d64e9ff6945fe792db1bc98dd09050388a78b8790a4851241062982276c3a2b",
+          "000.stim": "a3e74bd8dd85a6a5e29672a4a01e015942c2d27176debb94568a1d3af3f45dd4",
+          "stats.csv": "0fcf99024adb2e7830dc7fe214cdfb5aa1aa97fdbe5d732c11fbb155e4119b68"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        96,   0.237,pymatching,f0df33e8bfb0cd27181f42e7b2d161e750fd599e3df25a64e3fbc59594df7f2a,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-error\"\"}\",\n"
+    },
+    "offline-maintain": {
+      "run.json": {
+        "arguments": {
+          "experiment": "offline-maintain",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/offline-maintain"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 179,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 2.4452485840010922,
+        "outputs_sha256": {
+          "000.dem": "79668c95a9475cb47f4f06dac996d62e676f969bc552ddefa62fdafec11ba921",
+          "000.stim": "5d14534b38a6fea8b362e407e4b187179e5891f488686163e852b299412aa3a7",
+          "001.dem": "a89735b7b4f8201a4447471f5b8f55f2ebbb54f920b7a5b578288aba9fb1cce7",
+          "001.stim": "8fb4ee7fe7ab92ee2a5f94979cba60aacfd1c8bc8f7d51b118dc526cf2b8965a",
+          "stats.csv": "be5c7aa9971dc8827990c903d2cddd543141f74802d7dc48f51e55b25c6e03fb"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        87,   0.242,pymatching,b2207ecd33770fa54ddab6d1758b5fa93bd26171bdf8052c08716f5e47b4a3c2,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-maintain\"\"}\",\n       128,         0,        92,   0.013,pymatching,6ad9527aaedf612f9dbbc670a847b591ef03f70ad14e3e409971c83b114167e8,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":1,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":1,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-maintain\"\"}\",\n"
+    },
+    "offline-t1": {
+      "run.json": {
+        "arguments": {
+          "experiment": "offline-t1",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/offline-t1"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 185,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 2.2542202080076095,
+        "outputs_sha256": {
+          "000.dem": "4d64e9ff6945fe792db1bc98dd09050388a78b8790a4851241062982276c3a2b",
+          "000.stim": "a3e74bd8dd85a6a5e29672a4a01e015942c2d27176debb94568a1d3af3f45dd4",
+          "001.dem": "735841cb0d3f048db0a633c80a9703cfa8545c657f3113b8894ef53578f27c97",
+          "001.stim": "0c2c048c895e9430192fc24fdac9dc4973d693854042b0c420df06fa77647da1",
+          "stats.csv": "d598d46051bb75707f8a46caadcb78351f042dd615719efa93de199c83e2cece"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        95,   0.278,pymatching,8a87f02f02c1dd88f3c33fb935116ef86181f42c9e4426a277bcc659ecd87407,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t1\"\"}\",\n       128,         0,        90,   0.012,pymatching,28510ce718d1ec753cd9913271eda5f4af1c9fad398783170a889eab73882b8c,\"{\"\"T_before_grow\"\":2,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t1\"\"}\",\n"
+    },
+    "offline-t2": {
+      "run.json": {
+        "arguments": {
+          "experiment": "offline-t2",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/offline-t2"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 149,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 2.051106708997395,
+        "outputs_sha256": {
+          "000.dem": "9463acaee9a99d8675a0f1a0cb46c1acedafb0e2a44b66423ed7f3ae57831d32",
+          "000.stim": "2210f122894c27b2ea392e3adb22c0a24431b9907bad755a63e15bde503724cf",
+          "001.dem": "4d64e9ff6945fe792db1bc98dd09050388a78b8790a4851241062982276c3a2b",
+          "001.stim": "a3e74bd8dd85a6a5e29672a4a01e015942c2d27176debb94568a1d3af3f45dd4",
+          "stats.csv": "9a9eca1d89526ad21398a43bd69df0eb9bedffb05693c0d71d0286440a010e23"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,        60,   0.320,pymatching,70979d96f9bdcc18dbe5bed36c44807ab2b1cd14debb1cc138db73c0c9b558e7,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":0,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t2\"\"}\",\n       128,         0,        89,   0.011,pymatching,85a11d8f7655fc018e1a237a5a6a0945b1e3c78a33252d06523e3640415e4c82,\"{\"\"T_before_grow\"\":1,\"\"T_lat_surg\"\":3,\"\"T_maintain\"\":0,\"\"T_ps_grow\"\":2,\"\"T_sc_pre\"\":0,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"offline-t2\"\"}\",\n"
+    },
+    "online-bposd": {
+      "run.json": {
+        "arguments": {
+          "experiment": "online",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "bposd",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/online-bposd"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 0,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 1.698252208007034,
+        "outputs_sha256": {
+          "000.dem": "1ff84e20b71ef1ce43ad2d9097c0419dd40ed8897a35500699ad9f90699d7bb8",
+          "000.stim": "fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe",
+          "001.dem": "4e0de3e5b3115ff7c7e06368839bc0b0e7fa12c91408c3ee1c4a807ac5f9cd7c",
+          "001.stim": "a6c4463d0b3ea04f1b34f1b911e29c9b6749c51861d53fb77121b21381e6a975",
+          "stats.csv": "6ec8bedbba3fe490a3032949b10a12d440cd9ba9458ff751d970b69a93ad9448"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,         0,   0.151,bposd,a9bef174465775c7895fb79d3b101d4af4bec6723382f2cd2572940fe5865225,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":2}\",\n       128,         0,         0,   0.005,bposd,6589a2cbd54440182fd9667440d25cf2cee32a6f1e2af97ad74d35f9503c5551,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":1}\",\n"
+    },
+    "online-ip": {
+      "run.json": {
+        "arguments": {
+          "experiment": "online",
+          "smoke": true,
+          "shots": 8,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "ip",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/online-ip"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "NumPy PCG64/Stim seeded",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 16,
+        "discards": 0,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 1.027302000002237,
+        "outputs_sha256": {
+          "000.dem": "1ff84e20b71ef1ce43ad2d9097c0419dd40ed8897a35500699ad9f90699d7bb8",
+          "000.stim": "fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe",
+          "001.dem": "4e0de3e5b3115ff7c7e06368839bc0b0e7fa12c91408c3ee1c4a807ac5f9cd7c",
+          "001.stim": "a6c4463d0b3ea04f1b34f1b911e29c9b6749c51861d53fb77121b21381e6a975",
+          "stats.csv": "b3a6428b8b99e3133cb4d3869efbb6f3423c92f39697c697bebadfb21b6e650c"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n         8,         0,         0,   0.119,ip,2db4c6bfaf77b69b47057e5b9edb3a7cfd7ff6b81873b7f779c1c9aaacbeac83,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":2}\",\n         8,         0,         0,   0.016,ip,6b364d5e841d4b1d06054f2b6648f33f895b17f391a010110163a629314b4bb8,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":1}\",\n"
+    },
+    "online-legacy-bposd": {
+      "run.json": {
+        "arguments": {
+          "experiment": "online-legacy-error",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "bposd",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/online-legacy-bposd"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 0,
+        "errors": 1,
+        "status": "completed",
+        "elapsed_seconds": 1.7670869169814978,
+        "outputs_sha256": {
+          "000.dem": "21773eb4371acaaf7e16a04cba386670edb0b39bac13f88e5152fc5bbae12f7a",
+          "000.stim": "06cca032c779d2dd2d25e4cbb61406e8fce1ad7b8172649c6fb211fe96462dd9",
+          "001.dem": "29bc7f15319a183e96f6173f30e77d83d7b49446651063bd35e5ccac1e44871d",
+          "001.stim": "5716b82d2d3fc38c697d35ee791092696b71a85ec897e34b878c7391dfee8bed",
+          "stats.csv": "651bfe9846d4cfe89dda5982c98a9b81a9f5d38ae5fdaab1de594caabd6b89f7"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         1,         0,   0.248,bposd,e18b892234ffde2dc292792f532d87f616c77a210311488167b388b9b7b3afd2,\"{\"\"T\"\":6,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-legacy-error\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":7}\",\n       128,         0,         0,   0.025,bposd,dcd742fbedc5093218a767efdf43d94d3122994d0b275ee53c93b5c339f9caa0,\"{\"\"T\"\":6,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-legacy-error\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":6}\",\n"
+    },
+    "online-mwpm": {
+      "run.json": {
+        "arguments": {
+          "experiment": "online",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/online-mwpm"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 0,
+        "errors": 4,
+        "status": "completed",
+        "elapsed_seconds": 1.069139291997999,
+        "outputs_sha256": {
+          "000.dem": "3322988fc50f80a4791e9afb44701649f3e9b473ccb471013de5167dfa343c4c",
+          "000.stim": "fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe",
+          "001.dem": "59d78bceccda11843b767a597418c14e149d003e13ea3f679eb0ce7074419fcb",
+          "001.stim": "a6c4463d0b3ea04f1b34f1b911e29c9b6749c51861d53fb77121b21381e6a975",
+          "stats.csv": "0ca2411863d97ae44ce82e823266db88365e5c4f1b4ebf54e2838faa788ce793"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         4,         0,   0.005,pymatching,dd581e4e57fc966ce1700b3eaa79f427ea7201b7459f018b3d6508a8af52fef2,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"after\"\",\"\"t_round\"\":2}\",\n       128,         0,         0,   0.218,pymatching,491b69fea01a7b86ce033fb04789b625cdf75e4dc09fb36c5ea82c31a0fb6780,\"{\"\"T\"\":1,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online\"\",\"\"stage\"\":\"\"before\"\",\"\"t_round\"\":1}\",\n"
+    },
+    "online-time": {
+      "run.json": {
+        "arguments": {
+          "experiment": "online-time",
+          "smoke": true,
+          "shots": 128,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/online-time"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "sinter 1.13 sampling is unseeded; statistical reproducibility only",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "tasks": 2,
+        "shots": 256,
+        "discards": 0,
+        "errors": 0,
+        "status": "completed",
+        "elapsed_seconds": 0.9757503340078983,
+        "outputs_sha256": {
+          "000.dem": "3322988fc50f80a4791e9afb44701649f3e9b473ccb471013de5167dfa343c4c",
+          "000.stim": "fe58800ef5c7678f25d88550a308e2dd763cf0a3ded4160e7613735d5f019cfe",
+          "001.dem": "b5e8cbe142148bfbfe3c05405aef09b5b4bd1de61168d588868828131c45714d",
+          "001.stim": "0cff82bea19b283bc7f389a0ff8019c3b4f2cb24e283464a8c7c626f8ef503d6",
+          "stats.csv": "63f92362a4355c9d1807e6cd3ea1eb0e9e0e36d0bed6f32d6b2ef2ad26a99634"
+        }
+      },
+      "stats.csv": "     shots,    errors,  discards, seconds,decoder,strong_id,json_metadata,custom_counts\n       128,         0,         0,   0.223,pymatching,990b2453d2d7e7a7c0549b57905573d00ec2fa375b583c1ef02f14adeca6869d,\"{\"\"T\"\":10,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-time\"\",\"\"t_round\"\":1}\",\n       128,         0,         0,   0.003,pymatching,d6c03a2363deb3757d2d518ca147d076fc983bc9a22c262f642ed7f92b870c00,\"{\"\"T\"\":10,\"\"T_lat_surg\"\":3,\"\"error_rate\"\":0.001,\"\"experiment\"\":\"\"online-time\"\",\"\"t_round\"\":9}\",\n"
+    },
+    "published-replot": {
+      "sources.json": {
+        "operation": "Replot the published data tables",
+        "input_sha256": {
+          "fig12a.csv": "8f9a555abbd17a6c67d6bcd2d7501afb2f00d6b409f4373210aad60b61d8c443",
+          "fig12b.csv": "8ba8ddd00cd47a614f2137957086ba0472326e05d728589d0d660d3791290609",
+          "fig13a_ungrown.csv": "f580102ed3900ecb0e6c0d34bb8ee0be1a80c69ceb4e9cff1affda290b0a4e4e",
+          "fig13b.csv": "9a326c3d36c3cf4b92440b3cdf1cc5eff86a16a5a049610bf1bcc1fc4a21e2cc",
+          "fig14.csv": "83cbf63ae74e127f4f5676c82bc2e42e0483dd18537d2b22b6b7fc2e36327065",
+          "fig3a&11.csv": "b5e93763c6d4bd09d2848e21b10f3e41e756ad2600c1b82228b3d5274711b85f",
+          "fig3b&13a_grown.csv": "179a00c2712f0a7cf492f7cad82f7cfc9b35885841d042dab0ed8f5ecad5a62f"
+        }
+      }
+    },
+    "ts-legacy": {
+      "run.json": {
+        "arguments": {
+          "experiment": "ts",
+          "smoke": true,
+          "shots": 2,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "legacy",
+          "output": "results/reader-final-smoke/ts-legacy"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "NumPy PCG64/Stim seeded",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "status": "completed",
+        "elapsed_seconds": 0.09343004200491123,
+        "outputs_sha256": {
+          "ts.json": "733ce2a390bc9221442a679e3dd48e493c237f9c59d2c3a6cb22e54105b699dc"
+        }
+      },
+      "ts.json": [
+        {
+          "p": 0.001,
+          "gate": "S",
+          "mode": "legacy",
+          "trajectories": 2,
+          "discard": 0.004069740204601546,
+          "logical_error": 2.7317108575175553e-09,
+          "trajectory_variance": 5.060434201837301e-18
+        },
+        {
+          "p": 0.001,
+          "gate": "T",
+          "mode": "legacy",
+          "trajectories": 2,
+          "discard": 0.002036369878169464,
+          "logical_error": 3.4072672461249454e-10,
+          "trajectory_variance": 7.868822928350283e-20
+        }
+      ]
+    },
+    "ts-probability": {
+      "run.json": {
+        "arguments": {
+          "experiment": "ts",
+          "smoke": true,
+          "shots": 2,
+          "max_errors": null,
+          "workers": 1,
+          "decoder": "pymatching",
+          "p": null,
+          "seed": 20260913,
+          "ip_timeout": 30,
+          "ts_mode": "probability",
+          "output": "results/reader-final-smoke/ts-probability"
+        },
+        "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:56:31) [Clang 19.1.7 ]",
+        "platform": "macOS-26.5.1-arm64-arm-64bit",
+        "packages": {
+          "numpy": "1.26.4",
+          "scipy": "1.15.3",
+          "stim": "1.15.0",
+          "sinter": "1.13.0",
+          "pymatching": "2.3.0",
+          "galois": "0.4.6",
+          "stimbposd": "0.2.0",
+          "ldpc": "2.4.1"
+        },
+        "source_sha256": {
+          "reproduction/__init__.py": "d6a4e62fbc2f9d44e754abe1b9032d8c10baedc022f61ce06e28660c3e83b9c7",
+          "reproduction/dem.py": "22faa95704f6ccaff7907bc064b53d7b3fc9cd223aea92ba2cd3c75a5f14b58d",
+          "reproduction/experiments.py": "7047b9e90031e5fdcf0b4c650711d50330a4f755f288104b3cf750bda62f06dc",
+          "reproduction/ip.py": "2deb726ac5fc21a6ef46a7f7a9a7107055c1515133af2ee3176e7efeb35c87cf",
+          "reproduction/plot.py": "efce3cf552dca08161cc1e8f716a06e11b159122069921e184b3ce2c7fe57f69",
+          "reproduction/published.py": "19018a07cd68bd1a78aca0c7b63924e491d2d4360a5fdb632ec07d2d5db50d10",
+          "reproduction/run.py": "ca0b353eb138e332161636d3ef183cd10bcefe0254cd704096ba71d900433c4a",
+          "data_collection/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "data_collection/src/magic.py": "b391ac2b60787aa328c67fcd2b0ad32f605a73d3e3317b98fc2dcdb2ff8cb7c8",
+          "data_collection/src/magicd2.py": "2eed428a3c10e0a8cdfdc1562d0e385a285326d1f22dadcd9129f90c5f2d9e21",
+          "data_collection/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "data_collection/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "data_collection/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "no_grow/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "no_grow/src/magic.py": "b12fb67ada776596aa4e4bc63bd7f3f59d1803bd5220466daa5cfe59cb86d9e9",
+          "no_grow/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "no_grow/src/surface_code.py": "841c432bad070cecb53c4ceb2c5b7ff0b819c6604dc1fa6e184e2037d4c722ec",
+          "no_grow/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "online/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "online/src/magic.py": "2d7536f4ddaf86ff455a0eaa0caeb0ab4cb15bc2da07fb96c0e8eb94f33be04f",
+          "online/src/qrm.py": "a1bff570025a0fd49855dd4aa6c1c2c6c65ab8cd0fa46548f52963c12e55d5d4",
+          "online/src/surface_code.py": "46ba6c5bb23d9acfb625e20f27e8c405ed6db820e735a0376d1652b71378383c",
+          "online/src/surgery.py": "21ebb0c47f6c43aae8f0672f4b39aa6e5c7aede4bb3aa175d006c8dab0cb0df2",
+          "TS/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "TS/qrm_state.py": "c7afed7fb4f62210fa71a013922b9aa8a83f3843ca8b388c7b49718b9e3b5542"
+        },
+        "randomness": "NumPy PCG64/Stim seeded",
+        "sampling_scope": "Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.",
+        "status": "completed",
+        "elapsed_seconds": 0.09232695901300758,
+        "outputs_sha256": {
+          "ts.json": "9e0b0b602b94c734eaca55203adeec6d11eb5595e575d9796685846ae6587f41"
+        }
+      },
+      "ts.json": [
+        {
+          "p": 0.001,
+          "gate": "S",
+          "mode": "probability",
+          "trajectories": 2,
+          "discard": 0.008120660200243768,
+          "logical_error": 5.4498467285550944e-09,
+          "trajectory_variance": 2.024173930484137e-17
+        },
+        {
+          "p": 0.001,
+          "gate": "T",
+          "mode": "probability",
+          "trajectories": 2,
+          "discard": 0.004068027181390876,
+          "logical_error": 6.806077959254464e-10,
+          "trajectory_variance": 3.147528548473446e-19
+        }
+      ]
+    }
+  }
+}
