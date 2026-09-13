@@ -109,6 +109,7 @@ def run(args):
                     custom = sinter_decoders()
                 stats = sinter.collect(num_workers=args.workers, tasks=tasks, decoders=[args.decoder],
                     custom_decoders=custom, max_shots=args.shots, max_errors=args.max_errors,
+                    start_batch_size=min(100, args.shots), max_batch_size=min(100000, args.shots),
                     print_progress=False)
             for s in stats:
                 if not (0 < s.shots <= args.shots and 0 <= s.discards <= s.shots and 0 <= s.errors <= s.shots-s.discards):

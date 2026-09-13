@@ -39,6 +39,12 @@ conventions are preserved from the original constructors.
   validation. Fresh plots handle zero errors with Wilson intervals, without
   fitting under-resolved scaling laws. Historical-data plots do not mix new data.
 
+Sinter 1.13 defaults to a 100-shot initial batch even when the requested cap is
+smaller. The maintained runner explicitly bounds its initial and maximum batch
+sizes; the eight-shot full-distance test checks this regression. The first
+final-suite attempt detected this overshoot and is retained as failed evidence
+in `validation/final/`; successful corrected evidence is in `validation/verified/`.
+
 Each script has a 240-second smoke-suite timeout, one sinter worker, and cooperative
 one-thread settings for standard numeric runtimes. IP has a 30-second timeout per
 shot and requires proven solver optimality. Production workloads are explicitly
