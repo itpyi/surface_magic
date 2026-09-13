@@ -109,3 +109,16 @@ scans above:
 | `online-legacy-error` | `T=6`, before/after at `t_round=6,7`; ten log-spaced probabilities from 10^-6 to 10^-3 |
 
 Their names are accepted by the same `reproduction.run` command.
+
+## Direct detector-model sampling
+
+`reproduction.dem` samples the online detector error models directly with IP,
+MWPM or BP-OSD decoding. For example:
+
+```bash
+python -m reproduction.dem --decoder ip --smoke --shots 8 --output results/online-dem
+```
+
+The command saves the detector error models and `dem-stats.json`. Use
+`--input path/to/model.dem` to sample an existing model, and `--decoder`
+to choose `ip`, `pymatching` or `bposd`.

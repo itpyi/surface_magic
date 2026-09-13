@@ -8,7 +8,7 @@ import numpy as np
 from .plot import plt, interval
 import sinter
 
-DATA = Path(__file__).resolve().parents[1]/'data-pub'
+DATA = Path(__file__).resolve().parents[1]/'published_data'
 
 def stat_plot(ax, filename, key, label):
     rows = sorted(sinter.read_stats_from_csv_files(DATA/filename), key=lambda r:r.json_metadata[key])

@@ -45,8 +45,8 @@ def provenance(args):
                           ['numpy', 'scipy', 'stim', 'sinter', 'pymatching', 'galois', 'stimbposd', 'ldpc']},
                 git_commit=git('rev-parse', 'HEAD'), git_status=git('status', '--short'),
                 source_sha256={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-                    for folder in ['reproduction', 'data_collection/src', 'no_grow/src', 'online/src', 'TS']
-                    for p in sorted((ROOT/folder).glob('*.py'))},
+                    for folder in ['reproduction', 'simulations']
+                    for p in sorted((ROOT/folder).rglob('*.py'))},
                 randomness='NumPy PCG64/Stim seeded' if args.decoder == 'ip' or args.experiment == 'ts'
                            else 'sinter 1.13 sampling is unseeded; statistical reproducibility only',
                 sampling_scope='Rates are estimated from the recorded sample counts; rare-event precision requires larger samples.')
@@ -65,7 +65,7 @@ def run(args):
     start = time.monotonic()
     try:
         if args.experiment == 'ts':
-            from TS.qrm_state import experiment
+            from simulations.st_comparison.statevector import experiment
             rows = []
             ps = args.p or ([1e-3] if args.smoke else np.linspace(1e-3, 1e-2, 10).tolist())
             for i, p in enumerate(ps):

@@ -1,9 +1,9 @@
 """Supplement D experiments. Circuit constructors retain their historical gates."""
 from dataclasses import dataclass
 import numpy as np
-from data_collection.src import magic as grown, magicd2
-from no_grow.src import magic as ungrown
-from online.src import magic as online
+from simulations.offline.with_growth import preparation as grown, further_growth
+from simulations.offline.without_growth import preparation as ungrown
+from simulations.online import teleportation as online
 
 @dataclass
 class Case:
@@ -33,7 +33,7 @@ def cases(name, smoke=False, probabilities=None):
             base['T_sc_pre'] = 1
         for value in values:
             kw = dict(base, **{key: value})
-            build = magicd2.magic_preparation if name == 'offline-distance' else grown.magic_preparation
+            build = further_growth.build_circuit if name == 'offline-distance' else grown.build_circuit
             yield Case(dict(experiment=name, **kw), build(**kw), True)
     elif name.startswith('no-grow'):
         base = {k: v for k, v in base.items() if k not in ('T_ps_grow', 'T_maintain')}
@@ -43,11 +43,11 @@ def cases(name, smoke=False, probabilities=None):
             base['T_sc_pre'] = 1
         for value in values:
             kw = dict(base, **{key: value})
-            yield Case(dict(experiment=name, **kw), ungrown.magic_preparation(**kw), True)
+            yield Case(dict(experiment=name, **kw), ungrown.build_circuit(**kw), True)
     elif name == 'online-time':
         for t in ([1, 9] if smoke else range(1, 10)):
             kw = dict(T=10, T_lat_surg=3, t_round=t, error_rate=1e-3)
-            yield Case(dict(experiment=name, **kw), online.magic_preparation(**kw), False)
+            yield Case(dict(experiment=name, **kw), online.build_circuit(**kw), False)
     else:
         # Supplement D.2 has one additional pre-cycle and one post-cycle.
         # Old error sweep used T=6 instead; retain it under a distinct name.
@@ -57,4 +57,4 @@ def cases(name, smoke=False, probabilities=None):
         for p in ps:
             for stage, t in [('before', T), ('after', T + 1)]:
                 kw = dict(T=T, T_lat_surg=3, t_round=t, error_rate=p)
-                yield Case(dict(experiment=name, stage=stage, **kw), online.magic_preparation(**kw), False)
+                yield Case(dict(experiment=name, stage=stage, **kw), online.build_circuit(**kw), False)

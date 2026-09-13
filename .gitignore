@@ -34,4 +34,4 @@ results/
 .mplconfig/
 
 # Curated publication tables are small, fixed scientific inputs.
-!data-pub/*.csv
+!published_data/*.csv

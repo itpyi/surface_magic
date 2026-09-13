@@ -1,10 +1,10 @@
 from . import surface_code as sc
-from . import qrm as qrm
+from . import qrm_code as qrm
 import stim
 import numpy as np
-from . import surgery as sg
+from . import lattice_surgery as sg
 
-def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain, error_rate, d=7, d2=9):
+def build_circuit(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain, error_rate, d=7):
     """
     Args:
         T_sc_pre: number of rounds of surface code stabilizer measurements during the initial preparation stage
@@ -52,10 +52,6 @@ def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, T_ps_grow, T_maintain
     for t in range(surface_clock, surface_clock + T_maintain):
         sc_code.syndrome_cycle(circuit, t, error_rate)
     surface_clock += T_maintain
-    # grow to d2
-    if d2 > d:
-        sc_code.growth_cycle(circuit, d2, d2, surface_clock)
-        surface_clock += 1
     # measure logical Y of the surface code
     sc_code.Y_measurement_noiseless(circuit)
     # one round of error-free syndrome measurement to finalize the detectors

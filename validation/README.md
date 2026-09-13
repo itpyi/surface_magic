@@ -1,6 +1,6 @@
 # Saved verification results
 
-The small-sample suite completed all **35 commands** in **157.26 seconds** on
+The small-sample suite completed all **35 commands** in **155.96 seconds** on
 macOS with Apple silicon, using the pinned Python environment. It covered
 simulation, decoding and plotting, and all five circuit-invariant tests passed.
 Ordinary circuit tasks used 128 attempted shots, IP/DEM tasks used eight, and
@@ -19,7 +19,7 @@ detector-model and plot files can be recreated by running the suite:
 python -m checks.smoke --output results/recheck --evidence results/recheck-evidence.json
 ```
 
-The [published-data check](../data-pub/README.md) additionally compares the
+The [published-data check](../published_data/README.md) additionally compares the
 44 saved offline task identifiers with the supplied circuit definitions.
 
 ## Exact S/T probabilities

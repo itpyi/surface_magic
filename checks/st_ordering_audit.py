@@ -157,7 +157,7 @@ def main():
     sv_checks = 0
     if args.statevector_check:
         import numpy as np
-        from TS import qrm_state as ts
+        from simulations.st_comparison import statevector as ts
         ket = ts.qrm_initialization()
         assert abs(ts.norm(ket)-1) < 1e-12
         masks = [0,1,3,7,15,bits([1,4,8]),bits([1,3,5,7]),(1<<15)-1]

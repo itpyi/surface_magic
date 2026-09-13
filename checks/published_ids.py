@@ -15,7 +15,7 @@ MAPPING = [
 def main():
     total = 0
     for filename, experiment, old_key, new_key in MAPPING:
-        rows = sinter.read_stats_from_csv_files(ROOT/'data-pub'/filename)
+        rows = sinter.read_stats_from_csv_files(ROOT/'published_data'/filename)
         for row in rows:
             value = row.json_metadata[old_key]
             grid = cases(experiment, probabilities=[value]) if old_key == 'p' else cases(experiment)

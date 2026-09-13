@@ -1,7 +1,8 @@
 # Non-Clifford quantum gate teleportation with generalized lattice surgery
 
-Numerical simulations for Yifei Wang and Yingfei Gu, **Physical Review A 113,
-062410 (2026)** ([preprint](https://arxiv.org/abs/2503.19758)). This repository
+Numerical simulations for Yifei Wang and Yingfei Gu, [**Physical Review A 113,
+062410 (2026)**](https://journals.aps.org/pra/abstract/10.1103/1xq4-856m)
+(also see [preprint](https://arxiv.org/abs/2503.19758)). This repository
 contains the circuit simulations described in Appendix D, the data used in
 Figs. 3 and 11–14, and commands for repeating the numerical experiments.
 
@@ -39,8 +40,10 @@ working directory is this repository. Use a new output directory for each run.
 
 ## Replot the paper's data
 
-The tables in [`data-pub/`](data-pub/README.md) contain the data used for the
-published figures. To plot them without repeating the simulations:
+The data used for the published figures are available on
+[Zenodo (DOI: 10.5281/zenodo.20019943)](https://doi.org/10.5281/zenodo.20019943).
+Copies of these tables are included in [`published_data/`](published_data/README.md).
+To plot them without repeating the simulations:
 
 ```bash
 python -m reproduction.published --output results/paper-figures
@@ -144,55 +147,46 @@ The S/T variance fields describe variation among trajectories.
 The files are grouped by their role in the calculation:
 
 ```text
-reproduction/         Commands for sampling and plotting
-  experiments.py      Parameter grids for the experiments
-  ip.py               Integer-programming decoder
+simulations/                     Physical models and circuit construction
+  offline/
+    with_growth/                 Postselected preparation and code growth
+      preparation.py             Preparation through the first growth stage
+      further_growth.py          Further growth to larger code distances
+    without_growth/              Postselected preparation at distance 3
+      preparation.py
+  online/
+    teleportation.py             Online gate teleportation and its baseline
+  st_comparison/
+    statevector.py               Isolated S/T noise model
 
-data-pub/             Tables used in the published figures
-docs/                 Experiment parameters and the S/T derivation
+reproduction/                    Commands for running and plotting experiments
+  experiments.py                 Parameter grids and circuit selection
+  ip.py                          Integer-programming decoder
+  dem.py                         Direct detector-model sampling
 
-data_collection/src/  Offline protocol with surface-code growth
-no_grow/src/          Offline protocol ending at distance 3
-online/src/           Online gate-teleportation protocol
-TS/qrm_state.py       S/T state-vector calculation
-
-checks/               Small-sample checks and exact S/T calculation
-validation/           Saved small-sample results and exact S/T certificate
-results/              Outputs created by the commands above
+published_data/                  Tables used in the published figures
+docs/                            Experiment parameters and S/T analysis
+checks/                          Small-sample checks and exact S/T calculation
+validation/                      Saved check results and S/T certificate
+results/                         Outputs created by the commands above
 ```
 
-The `sweep_*` directories alongside the circuit modules provide individual
-experiment scripts; the commands above give a common way to run them.
-The published tables include 44 offline task
-identifiers that can be checked against the circuit definitions with
-`python -m checks.published_ids`.
+Each circuit package contains `qrm_code.py`, `surface_code.py` and
+`lattice_surgery.py` for its QRM checks, surface-code operations and surgery
+sequence. The `build_circuit` functions assemble these components into the
+protocols selected by `reproduction.experiments`.
+
+The published tables include 44 offline task identifiers that can be checked
+against the circuit definitions with `python -m checks.published_ids`.
 
 ## Note on the S/T comparison in Fig. 14
 
-The original S/T state-vector calculation used the norm of a projected state
-where a probability requires its **squared norm**. It also averaged conditional
-error estimates over noise trajectories without weighting them by their
-acceptance probabilities. This affects the numerical values in Fig. 14 and
-the corresponding auxiliary estimates in Appendix D.4. The separately computed online and offline
-full-circuit statistics in the other figures remain unchanged.
-
-For the isolated 15-qubit noise model used in Fig. 14, an exact calculation with
-the corrected probabilities preserves both the S/T ordering and the
-order-of-magnitude comparison discussed in the article. At physical error
-probability 0.001, the corrected S-minus-T logical-error difference is about
-3.07e-8, and the discard difference is about 0.00742 (the text quotes approximately
-0.004). These differences remain small relative to the
-full-protocol rates used in that comparison. The derivation, assumptions and
-interval-wide ordering proof are given in [S/T probability estimates](docs/st-ordering-audit.md).
-The S/T substitution in the complete teleportation protocol remains supported
-by the model comparison described in Appendix D.4.
-
-The repository retains the original tables and provides two explicit modes:
-`legacy` (the default) evaluates the original estimator, while `probability`
-uses squared norms and acceptance-weighted averaging. To sample the corrected
-model, or to evaluate its probabilities exactly without random sampling:
-
-```bash
-python -m reproduction.run ts --ts-mode probability --smoke --shots 100 --output results/ts-corrected
-python -m checks.st_ordering_audit --statevector-check --output results/ts-exact.json
-```
+While organizing the code, we identified a minor error in the S/T comparison
+in Appendix D.4 (Fig. 14) of the supplementary material. The calculation used
+norms instead of squared norms and averaged noise trajectories without the
+appropriate acceptance weights. Correcting these estimates preserves the S/T
+ordering of both logical-error and discard probabilities, as well as the
+order-of-magnitude comparisons used in the argument. The paper's core
+conclusions therefore remain unchanged. See the
+[detailed analysis](docs/st-ordering-audit.md) for the derivation and corrected
+estimates.

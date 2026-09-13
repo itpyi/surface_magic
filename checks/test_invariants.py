@@ -7,7 +7,7 @@ import sinter
 import stim
 from reproduction.ip import IPDecoder, matrices
 from reproduction.experiments import cases
-from TS import qrm_state as ts
+from simulations.st_comparison import statevector as ts
 
 class Invariants(unittest.TestCase):
     def test_circuit_noiseless(self):

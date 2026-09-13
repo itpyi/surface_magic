@@ -1,20 +1,17 @@
 from . import surface_code as sc
-from . import qrm as qrm
+from . import qrm_code as qrm
 import stim
 import numpy as np
-from . import surgery as sg
+from . import lattice_surgery as sg
 
-def magic_preparation(T, T_lat_surg, t_round, error_rate):
-    """
-    Args:
-        T_sc_pre: number of rounds of surface code stabilizer measurements during the initial preparation stage
-        T_lat_surg: number of rounds of linking stabilizer measurements during the lattice surgery stage
-        T_before_grow: number of rounds of surface code stabilizer measurements before lattice growth
-        T_ps_grow: number of post-selected rounds of surface code stabilizer measurements during lattice growth
-        T_maintain: number of rounds of surface code stabilizer measurements after lattice growth
-        error_rate: physical error rate for each gate
-    Returns:
-        A stim circuit object that prepares a surface code magic state.
+def build_circuit(T, T_lat_surg, t_round, error_rate):
+    """Build the pre-teleportation or full online circuit.
+
+    T specifies additional initial surface-code rounds. For t_round <= T,
+    the circuit ends before teleportation with logical X readout. For
+    t_round > T, it includes T_lat_surg surgery rounds followed by
+    t_round - T surface-code rounds and ideal logical Y readout.
+    error_rate is the physical gate-error probability.
     """
     qrm_code = qrm.QRMCode(error_rate, x_pos_shift=-10)
     sc_shift = qrm_code.total_qubit_number + 1 + 2

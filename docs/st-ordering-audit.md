@@ -13,11 +13,11 @@ The original state-vector estimator used norms instead of squared norms and
 averaged conditional errors without acceptance weights. The corrected
 calculation below preserves the S/T ordering over the full plotted interval
 and preserves the order-of-magnitude comparison used in the article. The
-original Fig. 14 table remains available in `data-pub/fig14.csv`.
+original Fig. 14 table remains available in `published_data/fig14.csv`.
 
 ## Model and result
 
-Consider precisely the model implemented in `TS/qrm_state.py`: the ideal
+Consider precisely the model implemented in `simulations/st_comparison/statevector.py`: the ideal
 15-qubit QRM logical-plus state; a physical transversal S or T layer; independent
 physical X noise with probability p per qubit; the inverse transversal layer;
 postselection on the four X stabilizers; and an X-logical measurement on qubits
@@ -185,7 +185,7 @@ The script `checks/st_ordering_audit.py` verifies the stabilizer groups,
 enumerates all 32768 physical error patterns, constructs the exact probability
 polynomials and checks the positive Bernstein coefficients. It also compares
 16 deterministic error patterns with the tensor-projector calculation in
-`TS/qrm_state.py`, using an absolute tolerance of 10^-12 for this numerical
+`simulations/st_comparison/statevector.py`, using an absolute tolerance of 10^-12 for this numerical
 cross-check. The polynomial and positivity calculations use exact integers
 and fractions.
 
@@ -199,3 +199,17 @@ The calculation is deterministic. The JSON output contains the polynomial
 coefficients, positivity certificate and evaluations at all ten plotted
 physical error probabilities. A saved result is provided in
 `validation/st-ordering/result.json`.
+
+## Sample the S/T trajectories
+
+The repository retains the original Fig. 14 table and provides two simulation
+modes. `legacy` (the default) evaluates the original estimator; `probability`
+uses squared norms and acceptance-weighted averaging. For a small-sample run
+of the corrected estimator:
+
+```bash
+python -m reproduction.run ts --ts-mode probability --smoke --shots 100 --output results/ts-corrected
+```
+
+Increase `--shots` to improve the precision of the trajectory averages. The
+exact calculation above evaluates the same corrected model deterministically.

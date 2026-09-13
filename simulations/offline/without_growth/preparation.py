@@ -1,10 +1,10 @@
 from . import surface_code as sc
-from . import qrm as qrm
+from . import qrm_code as qrm
 import stim
 import numpy as np
-from . import surgery as sg
+from . import lattice_surgery as sg
 
-def magic_preparation(T_sc_pre, T_lat_surg, T_before_grow, error_rate):
+def build_circuit(T_sc_pre, T_lat_surg, T_before_grow, error_rate):
     """
     Args:
         T_sc_pre: number of rounds of surface code stabilizer measurements during the initial preparation stage
