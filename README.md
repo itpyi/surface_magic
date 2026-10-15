@@ -12,6 +12,11 @@ Both protocols are simulated in the Clifford regime using S in place of T.
 The separate S/T comparison and a correction to its probability estimates are
 explained in the final section below.
 
+## License
+
+The code and circuit definitions in this repository are licensed under the
+[MIT License](LICENSE), copyright (c) 2026 Yifei Wang and Yingfei Gu.
+
 ## Installation
 
 Use **Python 3.11**. Run the following commands from the repository directory:
